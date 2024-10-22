@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://4fyoq8npekf0"]
+[gd_scene load_steps=10 format=3 uid="uid://4fyoq8npekf0"]
 
 [ext_resource type="Texture2D" uid="uid://edtwtxxl3cux" path="res://assets/sprites/bg_breakout_s.jpg" id="2_eg7hc"]
 [ext_resource type="Texture2D" uid="uid://d0cx83qclfgpy" path="res://assets/sprites/header.png" id="2_f71io"]
-[ext_resource type="Script" path="res://scenes/gameplay/gameplay.gd" id="5"]
+[ext_resource type="Script" path="res://scenes/gameplay/collisions.gd" id="4_2uf3n"]
+[ext_resource type="Script" path="res://scenes/gameplay/balls.gd" id="4_3r8ga"]
+[ext_resource type="FontFile" uid="uid://da2t6lyf41wty" path="res://assets/fonts/open-sans/open-sans-bold.ttf" id="4_sups3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gi71a"]
 size = Vector2(1858, 207)
@@ -16,8 +18,9 @@ size = Vector2(75.875, 1708)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_akqk2"]
 size = Vector2(2036, 190)
 
-[node name="Gameplay" type="Node"]
-script = ExtResource("5")
+[node name="Gameplay" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -35,44 +38,94 @@ color = Color(0.979246, 0.75809, 0.511064, 1)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
+offset_top = 2.0
+offset_bottom = 2.0
 grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 stretch_mode = 3
 
-[node name="Header2" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer"]
+[node name="HUD" type="Control" parent="CanvasLayer/AspectRatioContainer"]
+layout_mode = 2
+
+[node name="Header" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer/HUD"]
+position = Vector2(0, 100)
 texture = ExtResource("2_f71io")
-centered = false
-offset = Vector2(-480, 0)
+
+[node name="Level" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.0
+offset_top = 50.0
+offset_right = 55.0
+offset_bottom = 140.0
+grow_horizontal = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.10748, 0.10748, 0.10748, 1)
+theme_override_fonts/font = ExtResource("4_sups3")
+theme_override_font_sizes/font_size = 64
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 279.0
+offset_top = 50.0
+offset_right = 479.0
+offset_bottom = 140.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.10748, 0.10748, 0.10748, 1)
+theme_override_fonts/font = ExtResource("4_sups3")
+theme_override_font_sizes/font_size = 64
+text = "00000 "
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="Background" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer"]
+position = Vector2(-480, 200)
 texture = ExtResource("2_eg7hc")
 centered = false
-offset = Vector2(-480, 200)
 
-[node name="TopBorder" type="Area2D" parent="CanvasLayer/AspectRatioContainer/Background"]
-position = Vector2(-480, 0)
+[node name="Collisions" type="Node2D" parent="CanvasLayer/AspectRatioContainer/Background"]
+script = ExtResource("4_2uf3n")
 
-[node name="CollisionTop" type="CollisionShape2D" parent="CanvasLayer/AspectRatioContainer/Background/TopBorder"]
-position = Vector2(480, 100)
-shape = SubResource("RectangleShape2D_gi71a")
-
-[node name="LeftBorder" type="Area2D" parent="CanvasLayer/AspectRatioContainer/Background"]
-position = Vector2(-480, 0)
+[node name="TopBorder" type="Area2D" parent="CanvasLayer/AspectRatioContainer/Background/Collisions"]
 input_pickable = false
 
-[node name="CollisionLeft" type="CollisionShape2D" parent="CanvasLayer/AspectRatioContainer/Background/LeftBorder"]
+[node name="CollisionTop" type="CollisionShape2D" parent="CanvasLayer/AspectRatioContainer/Background/Collisions/TopBorder"]
+position = Vector2(480, -100)
+shape = SubResource("RectangleShape2D_gi71a")
+
+[node name="LeftBorder" type="Area2D" parent="CanvasLayer/AspectRatioContainer/Background/Collisions"]
+position = Vector2(0, -200)
+input_pickable = false
+
+[node name="CollisionLeft" type="CollisionShape2D" parent="CanvasLayer/AspectRatioContainer/Background/Collisions/LeftBorder"]
 position = Vector2(-33, 854)
 shape = SubResource("RectangleShape2D_dwdi2")
 
-[node name="RightBorder" type="Area2D" parent="CanvasLayer/AspectRatioContainer/Background"]
-position = Vector2(480, 0)
+[node name="RightBorder" type="Area2D" parent="CanvasLayer/AspectRatioContainer/Background/Collisions"]
+position = Vector2(960, -200)
+input_pickable = false
 
-[node name="CollisionRight" type="CollisionShape2D" parent="CanvasLayer/AspectRatioContainer/Background/RightBorder"]
+[node name="CollisionRight" type="CollisionShape2D" parent="CanvasLayer/AspectRatioContainer/Background/Collisions/RightBorder"]
 position = Vector2(37, 850)
 shape = SubResource("RectangleShape2D_la4wx")
 
-[node name="bottomBorder" type="Area2D" parent="CanvasLayer/AspectRatioContainer/Background"]
-position = Vector2(-480, 1550)
+[node name="bottomBorder" type="Area2D" parent="CanvasLayer/AspectRatioContainer/Background/Collisions"]
+position = Vector2(0, 1350)
+input_pickable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/AspectRatioContainer/Background/bottomBorder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/AspectRatioContainer/Background/Collisions/bottomBorder"]
 position = Vector2(480, 86)
 shape = SubResource("RectangleShape2D_akqk2")
+
+[node name="Balls" type="Node2D" parent="CanvasLayer/AspectRatioContainer/Background"]
+script = ExtResource("4_3r8ga")
