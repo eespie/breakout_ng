@@ -1,24 +1,30 @@
-[gd_scene load_steps=12 format=3 uid="uid://4fyoq8npekf0"]
+[gd_scene load_steps=18 format=3 uid="uid://4fyoq8npekf0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/gameplay.gd" id="1_64d0d"]
 [ext_resource type="Texture2D" uid="uid://edtwtxxl3cux" path="res://assets/sprites/bg_breakout_s.jpg" id="2_eg7hc"]
 [ext_resource type="Texture2D" uid="uid://d0cx83qclfgpy" path="res://assets/sprites/header.png" id="2_f71io"]
+[ext_resource type="Texture2D" uid="uid://cagq4lvo0ssyt" path="res://assets/sprites/bg_breakout_inv.png" id="2_o4b18"]
 [ext_resource type="Script" path="res://scenes/gameplay/collisions.gd" id="4_2uf3n"]
 [ext_resource type="Script" path="res://scenes/gameplay/balls.gd" id="4_3r8ga"]
 [ext_resource type="FontFile" uid="uid://da2t6lyf41wty" path="res://assets/fonts/open-sans/open-sans-bold.ttf" id="4_sups3"]
 [ext_resource type="Script" path="res://scenes/gameplay/bottom_border.gd" id="5_8y34y"]
+[ext_resource type="Script" path="res://scenes/gameplay/state_machine.gd" id="9_72q7v"]
+[ext_resource type="Script" path="res://scenes/gameplay/states/move_bricks.gd" id="11_acmy4"]
+[ext_resource type="Script" path="res://scenes/gameplay/states/idle.gd" id="11_ir0sw"]
+[ext_resource type="Script" path="res://scenes/gameplay/states/aim.gd" id="12_7wi6k"]
+[ext_resource type="Script" path="res://scenes/gameplay/states/run.gd" id="13_80xkc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gi71a"]
-size = Vector2(1858, 207)
+size = Vector2(1858, 384.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwdi2"]
-size = Vector2(68, 1705)
+size = Vector2(68, 2126)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_la4wx"]
-size = Vector2(75.875, 1708)
+size = Vector2(75.875, 2134)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_akqk2"]
-size = Vector2(2036, 190)
+size = Vector2(2036, 171)
 
 [node name="Gameplay" type="Control"]
 layout_mode = 3
@@ -37,6 +43,23 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.979246, 0.75809, 0.511064, 1)
 
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackImage" type="Sprite2D" parent="CanvasLayer/Control"]
+texture = ExtResource("2_o4b18")
+
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="CanvasLayer"]
 anchors_preset = 5
 anchor_left = 0.5
@@ -52,7 +75,8 @@ stretch_mode = 3
 layout_mode = 2
 
 [node name="Header" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer/HUD"]
-position = Vector2(0, 100)
+visible = false
+position = Vector2(0, 190)
 texture = ExtResource("2_f71io")
 
 [node name="Level" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD"]
@@ -60,15 +84,15 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -55.0
-offset_top = 50.0
-offset_right = 55.0
-offset_bottom = 140.0
+offset_left = -470.0
+offset_top = 102.0
+offset_right = -251.0
+offset_bottom = 277.0
 grow_horizontal = 2
 size_flags_horizontal = 8
 theme_override_colors/font_color = Color(0.10748, 0.10748, 0.10748, 1)
 theme_override_fonts/font = ExtResource("4_sups3")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 128
 text = "000"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -78,21 +102,21 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 279.0
-offset_top = 50.0
-offset_right = 479.0
-offset_bottom = 140.0
+offset_left = 104.0
+offset_top = 102.0
+offset_right = 469.0
+offset_bottom = 277.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 theme_override_colors/font_color = Color(0.10748, 0.10748, 0.10748, 1)
 theme_override_fonts/font = ExtResource("4_sups3")
-theme_override_font_sizes/font_size = 64
-text = "00000 "
+theme_override_font_sizes/font_size = 128
+text = "000M"
 horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Background" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer"]
-position = Vector2(-480, 200)
+position = Vector2(-480, 380)
 texture = ExtResource("2_eg7hc")
 centered = false
 
@@ -103,7 +127,7 @@ script = ExtResource("4_2uf3n")
 collision_mask = 4
 
 [node name="CollisionTop" type="CollisionShape2D" parent="CanvasLayer/AspectRatioContainer/Background/Collisions/TopBorder"]
-position = Vector2(480, -100)
+position = Vector2(480, -188.75)
 shape = SubResource("RectangleShape2D_gi71a")
 
 [node name="LeftBorder" type="StaticBody2D" parent="CanvasLayer/AspectRatioContainer/Background/Collisions"]
@@ -111,7 +135,7 @@ position = Vector2(0, -200)
 collision_mask = 4
 
 [node name="CollisionLeft" type="CollisionShape2D" parent="CanvasLayer/AspectRatioContainer/Background/Collisions/LeftBorder"]
-position = Vector2(-33, 854)
+position = Vector2(-33, 885)
 shape = SubResource("RectangleShape2D_dwdi2")
 
 [node name="RightBorder" type="StaticBody2D" parent="CanvasLayer/AspectRatioContainer/Background/Collisions"]
@@ -119,17 +143,40 @@ position = Vector2(960, -200)
 collision_mask = 4
 
 [node name="CollisionRight" type="CollisionShape2D" parent="CanvasLayer/AspectRatioContainer/Background/Collisions/RightBorder"]
-position = Vector2(37, 850)
+position = Vector2(37, 885)
 shape = SubResource("RectangleShape2D_la4wx")
 
 [node name="bottomBorder" type="StaticBody2D" parent="CanvasLayer/AspectRatioContainer/Background/Collisions"]
-position = Vector2(0, 1350)
+position = Vector2(0, 1560)
 collision_mask = 4
 script = ExtResource("5_8y34y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/AspectRatioContainer/Background/Collisions/bottomBorder"]
-position = Vector2(480, 86)
+position = Vector2(480, 105.5)
 shape = SubResource("RectangleShape2D_akqk2")
 
 [node name="Balls" type="Node2D" parent="CanvasLayer/AspectRatioContainer/Background"]
+position = Vector2(480, 1450)
 script = ExtResource("4_3r8ga")
+
+[node name="bricks" type="Node2D" parent="CanvasLayer/AspectRatioContainer/Background"]
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("9_72q7v")
+starting_state = NodePath("MoveBricks")
+
+[node name="MoveBricks" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("11_acmy4")
+idle_state = NodePath("../Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("aim_state")]
+script = ExtResource("11_ir0sw")
+aim_state = NodePath("../Aim")
+
+[node name="Aim" type="Node" parent="StateMachine" node_paths=PackedStringArray("run_state")]
+script = ExtResource("12_7wi6k")
+run_state = NodePath("../Run")
+
+[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_bricks_state")]
+script = ExtResource("13_80xkc")
+move_bricks_state = NodePath("../MoveBricks")

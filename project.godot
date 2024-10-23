@@ -31,10 +31,14 @@ EventBus="*res://globals/EventBus.gd"
 
 property_name=1
 
+[debug]
+
+gdscript/warnings/unused_signal=0
+
 [display]
 
 window/size/viewport_width=960
-window/size/viewport_height=1708
+window/size/viewport_height=2133
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
@@ -43,7 +47,6 @@ window/name="godot-game-template"
 [editor]
 
 version_control/plugin_name="GitPlugin"
-version_control/autoload_on_startup=true
 
 [editor_plugins]
 

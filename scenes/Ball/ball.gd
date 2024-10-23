@@ -1,13 +1,12 @@
 extends StaticBody2D
 
 var speed : float = 1000
-var size = 32
+var size = 25
 
 var dir : float
-var spawnPos : Vector2 = Vector2(480, 1300)
 
 func _ready():
-	position = spawnPos
+	position = Vector2(0, 0)
 	constant_linear_velocity = Vector2(0, -speed).rotated(dir)
 
 
