@@ -9,6 +9,9 @@ func enter() -> void:
 	EventBus.sigBallShoot.emit()
 	EventBus.sigNoBallsRemaining.connect(_on_end_of_round)
 	
+func exit() -> void:
+	EventBus.sigNoBallsRemaining.disconnect(_on_end_of_round)
+	
 func _on_end_of_round():
 	next_state = move_bricks_state
 	
