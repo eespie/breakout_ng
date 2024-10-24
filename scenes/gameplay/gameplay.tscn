@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://4fyoq8npekf0"]
+[gd_scene load_steps=22 format=3 uid="uid://4fyoq8npekf0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/gameplay.gd" id="1_64d0d"]
 [ext_resource type="Texture2D" uid="uid://edtwtxxl3cux" path="res://assets/sprites/bg_breakout_s.jpg" id="2_eg7hc"]
@@ -7,12 +7,14 @@
 [ext_resource type="Script" path="res://scenes/gameplay/balls.gd" id="4_3r8ga"]
 [ext_resource type="FontFile" uid="uid://da2t6lyf41wty" path="res://assets/fonts/open-sans/open-sans-bold.ttf" id="4_sups3"]
 [ext_resource type="Script" path="res://scenes/gameplay/bottom_border.gd" id="5_8y34y"]
+[ext_resource type="Texture2D" uid="uid://dk2dlhxeew1y6" path="res://assets/sprites/cannon.png" id="7_4jp57"]
 [ext_resource type="Script" path="res://scenes/gameplay/ray_cast_for_aiming.gd" id="8_patm2"]
 [ext_resource type="Script" path="res://scenes/gameplay/state_machine.gd" id="9_72q7v"]
 [ext_resource type="Texture2D" uid="uid://c4nqy8deo4f4g" path="res://assets/sprites/ball_26_wheat_line.png" id="9_hau7t"]
 [ext_resource type="Script" path="res://scenes/gameplay/aiming.gd" id="10_0mjo4"]
 [ext_resource type="Script" path="res://scenes/gameplay/states/move_bricks.gd" id="11_acmy4"]
 [ext_resource type="Script" path="res://scenes/gameplay/states/idle.gd" id="11_ir0sw"]
+[ext_resource type="Script" path="res://scenes/gameplay/bricks.gd" id="11_s2rws"]
 [ext_resource type="Script" path="res://scenes/gameplay/states/aim.gd" id="12_7wi6k"]
 [ext_resource type="Script" path="res://scenes/gameplay/states/run.gd" id="13_80xkc"]
 
@@ -181,7 +183,12 @@ joint_mode = 2
 sharp_limit = 0.0
 round_precision = 1
 
+[node name="Cannon" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer/Background"]
+position = Vector2(480, 1450)
+texture = ExtResource("7_4jp57")
+
 [node name="bricks" type="Node2D" parent="CanvasLayer/AspectRatioContainer/Background"]
+script = ExtResource("11_s2rws")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("9_72q7v")

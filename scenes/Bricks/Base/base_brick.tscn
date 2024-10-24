@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwccud2pxhqfm"]
+
+[ext_resource type="Texture2D" uid="uid://bjbh8hllyu5f1" path="res://assets/sprites/bricks/base.png" id="1_uey47"]
+
+[node name="BaseBrick" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_uey47")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-36, -61, 37, -61, 45, -52, 45, 52, 37, 61, -35, 61, -46, 52, -46, -52)

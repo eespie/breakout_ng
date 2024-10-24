@@ -20,3 +20,9 @@ signal sigStopAiming
 
 # Abort aiming
 signal sigAbortAiming
+
+# Start Moving bricks
+signal sigStartMovingBricks
+
+# End of process of Moving bricks
+signal sigEndMovingBricks
