@@ -9,7 +9,6 @@ func process_input(event: InputEvent) -> State:	# Mouse in viewport coordinates.
 		if not event.is_pressed():
 			return run_state
 	elif event is InputEventMouseMotion:
-		#var pos = make_input_local(event).position
-		pass
+		EventBus.sigMouseAiming.emit(event.position)
 		
 	return null

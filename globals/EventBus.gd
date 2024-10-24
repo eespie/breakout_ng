@@ -11,3 +11,9 @@ signal sigNoBallsRemaining
 
 # When a ball collide on object
 signal sigBallsCollided(collider : Node2D, ball : Node2D)
+
+# When aiming with the mouse
+signal sigMouseAiming(pos : Vector2)
+
+# Abort aiming
+signal sigAbortAiming

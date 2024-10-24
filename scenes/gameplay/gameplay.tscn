@@ -177,6 +177,7 @@ aim_state = NodePath("../Aim")
 script = ExtResource("12_7wi6k")
 run_state = NodePath("../Run")
 
-[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_bricks_state")]
+[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_bricks_state", "idle_state")]
 script = ExtResource("13_80xkc")
 move_bricks_state = NodePath("../MoveBricks")
+idle_state = NodePath("../Idle")

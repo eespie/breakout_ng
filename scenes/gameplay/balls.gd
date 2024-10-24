@@ -8,19 +8,22 @@ var ballNextShootTime : float
 var ballDir
 
 func _ready():
-	ballDir = randf_range(-89, 89)
 	EventBus.sigBallShoot.connect(_on_ball_shoot)
 	EventBus.sigBallRemoved.connect(_on_ball_removed)
-	#EventBus.sigBallShoot.emit()
+	EventBus.sigMouseAiming.connect(_on_aiming)
 
 # Called when the node enters the scene tree for the first time.
 func _on_ball_shoot():
+	if not ballDir:
+		EventBus.sigAbortAiming.emit()
+		return
+		
 	ballRemainingCountToShoot = ballMaxCount
 	ballNextShootTime = 0.0
 	
 func shootOneBall():
 	var ballInstance = ball.instantiate()
-	ballInstance.dir = deg_to_rad(ballDir)
+	ballInstance.dir = ballDir
 	add_child(ballInstance)
 	ballCountActive += 1
 	ballRemainingCountToShoot -= 1
@@ -31,7 +34,13 @@ func _on_ball_removed(ballInstance : Node2D):
 	ballCountActive -= 1
 	if ballCountActive == 0:
 		EventBus.sigNoBallsRemaining.emit()
-	
+
+func _on_aiming(global_aiming_pos : Vector2):
+	var angle = global_position.angle_to_point(global_aiming_pos)
+	if angle < 0:
+		ballDir = deg_to_rad(90) + angle
+	else:
+		ballDir = null
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
