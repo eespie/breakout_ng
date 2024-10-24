@@ -1,14 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://4fyoq8npekf0"]
+[gd_scene load_steps=20 format=3 uid="uid://4fyoq8npekf0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/gameplay.gd" id="1_64d0d"]
 [ext_resource type="Texture2D" uid="uid://edtwtxxl3cux" path="res://assets/sprites/bg_breakout_s.jpg" id="2_eg7hc"]
-[ext_resource type="Texture2D" uid="uid://d0cx83qclfgpy" path="res://assets/sprites/header.png" id="2_f71io"]
 [ext_resource type="Texture2D" uid="uid://cagq4lvo0ssyt" path="res://assets/sprites/bg_breakout_inv.png" id="2_o4b18"]
 [ext_resource type="Script" path="res://scenes/gameplay/collisions.gd" id="4_2uf3n"]
 [ext_resource type="Script" path="res://scenes/gameplay/balls.gd" id="4_3r8ga"]
 [ext_resource type="FontFile" uid="uid://da2t6lyf41wty" path="res://assets/fonts/open-sans/open-sans-bold.ttf" id="4_sups3"]
 [ext_resource type="Script" path="res://scenes/gameplay/bottom_border.gd" id="5_8y34y"]
+[ext_resource type="Script" path="res://scenes/gameplay/ray_cast_for_aiming.gd" id="8_patm2"]
 [ext_resource type="Script" path="res://scenes/gameplay/state_machine.gd" id="9_72q7v"]
+[ext_resource type="Texture2D" uid="uid://c4nqy8deo4f4g" path="res://assets/sprites/ball_26_wheat_line.png" id="9_hau7t"]
+[ext_resource type="Script" path="res://scenes/gameplay/aiming.gd" id="10_0mjo4"]
 [ext_resource type="Script" path="res://scenes/gameplay/states/move_bricks.gd" id="11_acmy4"]
 [ext_resource type="Script" path="res://scenes/gameplay/states/idle.gd" id="11_ir0sw"]
 [ext_resource type="Script" path="res://scenes/gameplay/states/aim.gd" id="12_7wi6k"]
@@ -73,11 +75,6 @@ stretch_mode = 3
 
 [node name="HUD" type="Control" parent="CanvasLayer/AspectRatioContainer"]
 layout_mode = 2
-
-[node name="Header" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer/HUD"]
-visible = false
-position = Vector2(0, 190)
-texture = ExtResource("2_f71io")
 
 [node name="Level" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD"]
 layout_mode = 1
@@ -158,6 +155,31 @@ shape = SubResource("RectangleShape2D_akqk2")
 [node name="Balls" type="Node2D" parent="CanvasLayer/AspectRatioContainer/Background"]
 position = Vector2(480, 1450)
 script = ExtResource("4_3r8ga")
+
+[node name="RayCastForAiming" type="RayCast2D" parent="CanvasLayer/AspectRatioContainer/Background/Balls"]
+script = ExtResource("8_patm2")
+
+[node name="Aiming" type="Line2D" parent="CanvasLayer/AspectRatioContainer/Background/Balls" node_paths=PackedStringArray("raycast_for_aiming", "rebound_line")]
+texture_repeat = 2
+width = 26.0
+texture = ExtResource("9_hau7t")
+texture_mode = 1
+joint_mode = 2
+sharp_limit = 0.0
+round_precision = 1
+script = ExtResource("10_0mjo4")
+raycast_for_aiming = NodePath("../RayCastForAiming")
+rebound_line = NodePath("../AimingRebound")
+
+[node name="AimingRebound" type="Line2D" parent="CanvasLayer/AspectRatioContainer/Background/Balls"]
+visible = false
+texture_repeat = 2
+width = 26.0
+texture = ExtResource("9_hau7t")
+texture_mode = 1
+joint_mode = 2
+sharp_limit = 0.0
+round_precision = 1
 
 [node name="bricks" type="Node2D" parent="CanvasLayer/AspectRatioContainer/Background"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bs2l0gn60qspv"]
 
 [ext_resource type="Script" path="res://scenes/Ball/ball.gd" id="1_hp1le"]
-[ext_resource type="Texture2D" uid="uid://dau0xnmrlid27" path="res://assets/sprites/ball_32_wheat.png" id="2_f7137"]
+[ext_resource type="Texture2D" uid="uid://b1kcyo5iamje7" path="res://assets/sprites/ball_26_wheat.png" id="2_f8ukp"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vrcvw"]
 friction = 0.0
@@ -16,8 +16,7 @@ physics_material_override = SubResource("PhysicsMaterial_vrcvw")
 script = ExtResource("1_hp1le")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.781, 0.781)
-texture = ExtResource("2_f7137")
+texture = ExtResource("2_f8ukp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vlahc")

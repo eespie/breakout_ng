@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 var speed : float = 1000
-var size = 25
+var size = 26
 
 var dir : float
 

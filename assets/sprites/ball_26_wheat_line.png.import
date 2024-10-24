@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bappakir6ylb1"
-path="res://.godot/imported/ball_100_wheat.png-6b82f62eef04ee282ae5db79105f76ea.ctex"
+uid="uid://c4nqy8deo4f4g"
+path="res://.godot/imported/ball_26_wheat_line.png-048c3a6cdc471ccd30d53d102f3f6a41.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ball_100_wheat.png"
-dest_files=["res://.godot/imported/ball_100_wheat.png-6b82f62eef04ee282ae5db79105f76ea.ctex"]
+source_file="res://assets/sprites/ball_26_wheat_line.png"
+dest_files=["res://.godot/imported/ball_26_wheat_line.png-048c3a6cdc471ccd30d53d102f3f6a41.ctex"]
 
 [params]
 

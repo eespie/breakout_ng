@@ -25,5 +25,5 @@ func _on_abort_aiming():
 func _on_end_of_round():
 	next_state = move_bricks_state
 	
-func process_frame(delta: float) -> State:
+func process_frame(_delta: float) -> State:
 	return next_state
