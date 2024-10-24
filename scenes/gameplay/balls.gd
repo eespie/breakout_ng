@@ -6,7 +6,7 @@ var ball = preload("res://scenes/Ball/Ball.tscn")
 @onready
 var raycast_line = $RayCastForAiming
 
-var ballMaxCount = 100
+var ballMaxCount = 1
 var ballRemainingCountToShoot = 0
 var ballCountActive = 0
 var ballNextShootTime : float
@@ -14,6 +14,10 @@ var ballNextShootTime : float
 func _ready():
 	EventBus.sigBallShoot.connect(_on_ball_shoot)
 	EventBus.sigBallRemoved.connect(_on_ball_removed)
+	EventBus.sigAddNewBall.connect(_on_add_new_ball)
+
+func _on_add_new_ball():
+	ballMaxCount += 1
 
 # Called when the node enters the scene tree for the first time.
 func _on_ball_shoot():

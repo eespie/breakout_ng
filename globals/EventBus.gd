@@ -26,3 +26,12 @@ signal sigStartMovingBricks
 
 # End of process of Moving bricks
 signal sigEndMovingBricks
+
+# indicate the next level
+signal sigNextLevel(level : int)
+
+# Add points to score
+signal sigAddScorePoints(points : int)
+
+# Add a new ball
+signal sigAddNewBall

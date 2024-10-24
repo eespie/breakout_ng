@@ -1,12 +1,14 @@
-[gd_scene load_steps=22 format=3 uid="uid://4fyoq8npekf0"]
+[gd_scene load_steps=24 format=3 uid="uid://4fyoq8npekf0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/gameplay.gd" id="1_64d0d"]
 [ext_resource type="Texture2D" uid="uid://edtwtxxl3cux" path="res://assets/sprites/bg_breakout_s.jpg" id="2_eg7hc"]
 [ext_resource type="Texture2D" uid="uid://cagq4lvo0ssyt" path="res://assets/sprites/bg_breakout_inv.png" id="2_o4b18"]
 [ext_resource type="Script" path="res://scenes/gameplay/collisions.gd" id="4_2uf3n"]
 [ext_resource type="Script" path="res://scenes/gameplay/balls.gd" id="4_3r8ga"]
+[ext_resource type="Script" path="res://scenes/gameplay/level.gd" id="4_d63jg"]
 [ext_resource type="FontFile" uid="uid://da2t6lyf41wty" path="res://assets/fonts/open-sans/open-sans-bold.ttf" id="4_sups3"]
 [ext_resource type="Script" path="res://scenes/gameplay/bottom_border.gd" id="5_8y34y"]
+[ext_resource type="Script" path="res://scenes/gameplay/score.gd" id="5_36mxb"]
 [ext_resource type="Texture2D" uid="uid://dk2dlhxeew1y6" path="res://assets/sprites/cannon.png" id="7_4jp57"]
 [ext_resource type="Script" path="res://scenes/gameplay/ray_cast_for_aiming.gd" id="8_patm2"]
 [ext_resource type="Script" path="res://scenes/gameplay/state_machine.gd" id="9_72q7v"]
@@ -95,6 +97,7 @@ theme_override_font_sizes/font_size = 128
 text = "000"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("4_d63jg")
 
 [node name="Score" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD"]
 layout_mode = 1
@@ -113,6 +116,7 @@ theme_override_font_sizes/font_size = 128
 text = "000M"
 horizontal_alignment = 2
 vertical_alignment = 1
+script = ExtResource("5_36mxb")
 
 [node name="Background" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer"]
 position = Vector2(-480, 380)
@@ -154,6 +158,9 @@ script = ExtResource("5_8y34y")
 position = Vector2(480, 105.5)
 shape = SubResource("RectangleShape2D_akqk2")
 
+[node name="bricks" type="Node2D" parent="CanvasLayer/AspectRatioContainer/Background"]
+script = ExtResource("11_s2rws")
+
 [node name="Balls" type="Node2D" parent="CanvasLayer/AspectRatioContainer/Background"]
 position = Vector2(480, 1450)
 script = ExtResource("4_3r8ga")
@@ -186,9 +193,6 @@ round_precision = 1
 [node name="Cannon" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer/Background"]
 position = Vector2(480, 1450)
 texture = ExtResource("7_4jp57")
-
-[node name="bricks" type="Node2D" parent="CanvasLayer/AspectRatioContainer/Background"]
-script = ExtResource("11_s2rws")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("9_72q7v")

@@ -8,9 +8,13 @@ var next_state
 
 func enter() -> void:
 	EventBus.sigStartMovingBricks.emit()
+	EventBus.sigEndMovingBricks.connect(_on_end_moving_bricks)
 
 func exit() -> void:
 	pass
 
+func _on_end_moving_bricks():
+	next_state = idle_state
+
 func process_frame(_delta: float) -> State:
-	return idle_state
+	return next_state

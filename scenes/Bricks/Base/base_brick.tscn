@@ -1,13 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwccud2pxhqfm"]
+[gd_scene load_steps=3 format=3 uid="uid://bwccud2pxhqfm"]
 
+[ext_resource type="Script" path="res://scenes/Bricks/Base/base_brick.gd" id="1_6ripf"]
 [ext_resource type="Texture2D" uid="uid://bjbh8hllyu5f1" path="res://assets/sprites/bricks/base.png" id="1_uey47"]
 
-[node name="BaseBrick" type="StaticBody2D"]
+[node name="BaseBrick" type="StaticBody2D" groups=["Bricks"]]
 collision_layer = 2
 collision_mask = 4
+script = ExtResource("1_6ripf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_uey47")
+centered = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-36, -61, 37, -61, 45, -52, 45, 52, 37, 61, -35, 61, -46, 52, -46, -52)
+polygon = PackedVector2Array(10, 0, 81, 0, 91, 10, 91, 113, 81, 122, 10, 122, 0, 113, 0, 10)
