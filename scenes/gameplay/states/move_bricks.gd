@@ -6,6 +6,9 @@ var idle_state : State
 @export
 var end_game_state : State
 
+@export
+var red_zone : Sprite2D
+
 # set to idle state when necessary
 var next_state
 
@@ -14,7 +17,7 @@ func enter() -> void:
 	EventBus.sigEndOfGame.connect(_on_end_of_game)
 	
 	for brk in get_tree().get_nodes_in_group("Bricks"):
-		if brk.position.y > 1291:
+		if brk.position.y > red_zone.get_offset().y:
 			EventBus.sigEndOfGame.emit()
 			return;
 	

@@ -260,10 +260,11 @@ script = ExtResource("19_f2ip5")
 script = ExtResource("9_72q7v")
 starting_state = NodePath("MoveBricks")
 
-[node name="MoveBricks" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "end_game_state")]
+[node name="MoveBricks" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "end_game_state", "red_zone")]
 script = ExtResource("11_acmy4")
 idle_state = NodePath("../Idle")
 end_game_state = NodePath("../EndOfGame")
+red_zone = NodePath("../../CanvasLayer/AspectRatioContainer/Background/RedZone")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("aim_state")]
 script = ExtResource("11_ir0sw")
