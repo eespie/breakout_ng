@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://4fyoq8npekf0"]
+[gd_scene load_steps=30 format=3 uid="uid://4fyoq8npekf0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/gameplay.gd" id="1_64d0d"]
 [ext_resource type="Texture2D" uid="uid://edtwtxxl3cux" path="res://assets/sprites/bg_breakout_s.jpg" id="2_eg7hc"]
@@ -9,16 +9,22 @@
 [ext_resource type="FontFile" uid="uid://da2t6lyf41wty" path="res://assets/fonts/open-sans/open-sans-bold.ttf" id="4_sups3"]
 [ext_resource type="Script" path="res://scenes/gameplay/bottom_border.gd" id="5_8y34y"]
 [ext_resource type="Script" path="res://scenes/gameplay/score.gd" id="5_36mxb"]
+[ext_resource type="FontFile" uid="uid://cawekr44fruhm" path="res://assets/fonts/open-sans/open-sans-regular.ttf" id="6_dsdio"]
+[ext_resource type="Script" path="res://scenes/gameplay/time.gd" id="7_3s1na"]
 [ext_resource type="Texture2D" uid="uid://dk2dlhxeew1y6" path="res://assets/sprites/cannon.png" id="7_4jp57"]
 [ext_resource type="Script" path="res://scenes/gameplay/ray_cast_for_aiming.gd" id="8_patm2"]
 [ext_resource type="Script" path="res://scenes/gameplay/state_machine.gd" id="9_72q7v"]
+[ext_resource type="Texture2D" uid="uid://bgcfet4ieymxh" path="res://assets/sprites/redzone.png" id="9_a5q4o"]
 [ext_resource type="Texture2D" uid="uid://c4nqy8deo4f4g" path="res://assets/sprites/ball_26_wheat_line.png" id="9_hau7t"]
 [ext_resource type="Script" path="res://scenes/gameplay/aiming.gd" id="10_0mjo4"]
+[ext_resource type="Script" path="res://scenes/gameplay/red_zone.gd" id="10_vm5rp"]
 [ext_resource type="Script" path="res://scenes/gameplay/states/move_bricks.gd" id="11_acmy4"]
 [ext_resource type="Script" path="res://scenes/gameplay/states/idle.gd" id="11_ir0sw"]
 [ext_resource type="Script" path="res://scenes/gameplay/bricks.gd" id="11_s2rws"]
 [ext_resource type="Script" path="res://scenes/gameplay/states/aim.gd" id="12_7wi6k"]
 [ext_resource type="Script" path="res://scenes/gameplay/states/run.gd" id="13_80xkc"]
+[ext_resource type="Script" path="res://scenes/gameplay/game_over.gd" id="19_f2ip5"]
+[ext_resource type="Script" path="res://scenes/gameplay/end_of_game.gd" id="24_ttg2a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gi71a"]
 size = Vector2(1858, 384.5)
@@ -94,8 +100,7 @@ size_flags_horizontal = 8
 theme_override_colors/font_color = Color(0.10748, 0.10748, 0.10748, 1)
 theme_override_fonts/font = ExtResource("4_sups3")
 theme_override_font_sizes/font_size = 128
-text = "000"
-horizontal_alignment = 1
+text = "0"
 vertical_alignment = 1
 script = ExtResource("4_d63jg")
 
@@ -113,15 +118,34 @@ size_flags_horizontal = 8
 theme_override_colors/font_color = Color(0.10748, 0.10748, 0.10748, 1)
 theme_override_fonts/font = ExtResource("4_sups3")
 theme_override_font_sizes/font_size = 128
-text = "000M"
+text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("5_36mxb")
+
+[node name="Time" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD"]
+layout_mode = 0
+offset_left = -123.0
+offset_top = 274.0
+offset_right = 131.0
+offset_bottom = 362.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_dsdio")
+theme_override_font_sizes/font_size = 64
+text = "00:00:00"
+script = ExtResource("7_3s1na")
 
 [node name="Background" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer"]
 position = Vector2(-480, 380)
 texture = ExtResource("2_eg7hc")
 centered = false
+
+[node name="RedZone" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer/Background"]
+modulate = Color(1, 0, 0, 0.478431)
+texture = ExtResource("9_a5q4o")
+centered = false
+offset = Vector2(0, 1291)
+script = ExtResource("10_vm5rp")
 
 [node name="Collisions" type="Node2D" parent="CanvasLayer/AspectRatioContainer/Background"]
 script = ExtResource("4_2uf3n")
@@ -215,13 +239,31 @@ round_precision = 1
 position = Vector2(480, 1450)
 texture = ExtResource("7_4jp57")
 
+[node name="Message" type="Control" parent="CanvasLayer/AspectRatioContainer"]
+layout_mode = 2
+
+[node name="GameOver" type="Label" parent="CanvasLayer/AspectRatioContainer/Message"]
+visible = false
+layout_mode = 2
+offset_left = -347.0
+offset_top = 987.0
+offset_right = 366.0
+offset_bottom = 1162.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_sups3")
+theme_override_font_sizes/font_size = 128
+text = "Game Over"
+horizontal_alignment = 1
+script = ExtResource("19_f2ip5")
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("9_72q7v")
 starting_state = NodePath("MoveBricks")
 
-[node name="MoveBricks" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+[node name="MoveBricks" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "end_game_state")]
 script = ExtResource("11_acmy4")
 idle_state = NodePath("../Idle")
+end_game_state = NodePath("../EndOfGame")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("aim_state")]
 script = ExtResource("11_ir0sw")
@@ -235,3 +277,6 @@ run_state = NodePath("../Run")
 script = ExtResource("13_80xkc")
 move_bricks_state = NodePath("../MoveBricks")
 idle_state = NodePath("../Idle")
+
+[node name="EndOfGame" type="Node" parent="StateMachine"]
+script = ExtResource("24_ttg2a")

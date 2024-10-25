@@ -6,12 +6,14 @@ var brick = preload("res://scenes/Bricks/Hexa/hexa_brick.tscn")
 @export
 var level: int = 0
 
-var tween
+var tween: Tween
+var game_ended : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	EventBus.sigStartMovingBricks.connect(_on_start_moving)
 	EventBus.sigBallsCollided.connect(_on_ball_collided)
+	EventBus.sigEndOfGame.connect(_on_end_of_game)
 
 # Add a new level of bricks
 # Move down all the bricks
@@ -27,6 +29,12 @@ func _on_start_moving():
 		tween.tween_callback(EventBus.sigEndMovingBricks.emit)
 		
 	tween.tween_callback(EventBus.sigEndStateMovingBricks.emit)
+	
+func _on_end_of_game():
+	print("End of game")
+	if tween:
+		tween.kill()
+	game_ended = true
 
 func _generate_one_level_of_bricks():
 	level += 1

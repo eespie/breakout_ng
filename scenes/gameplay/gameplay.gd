@@ -1,6 +1,7 @@
 extends Control
 
-@onready var StateMachine = $StateMachine
+@onready
+var StateMachine = $StateMachine
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,6 +10,7 @@ func _ready():
 
 func _on_end_of_round():
 	print("End of Round")
+
 
 func _process(delta):
 	StateMachine.process_frame(delta)

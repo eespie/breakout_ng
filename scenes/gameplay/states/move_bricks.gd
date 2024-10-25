@@ -3,18 +3,32 @@ extends "res://StateMachine/state.gd"
 @export
 var idle_state : State
 
+@export
+var end_game_state : State
+
 # set to idle state when necessary
 var next_state
 
 func enter() -> void:
-	EventBus.sigStartMovingBricks.emit()
 	EventBus.sigEndMovingBricks.connect(_on_end_moving_bricks)
+	EventBus.sigEndOfGame.connect(_on_end_of_game)
+	
+	for brk in get_tree().get_nodes_in_group("Bricks"):
+		if brk.position.y > 1291:
+			EventBus.sigEndOfGame.emit()
+			return;
+	
+	EventBus.sigStartMovingBricks.emit()
 
 func exit() -> void:
 	EventBus.sigEndMovingBricks.disconnect(_on_end_moving_bricks)
+	EventBus.sigEndOfGame.disconnect(_on_end_of_game)
 
 func _on_end_moving_bricks():
 	next_state = idle_state
+	
+func _on_end_of_game():
+	next_state = end_game_state
 
 func process_frame(_delta: float) -> State:
 	return next_state

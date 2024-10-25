@@ -38,3 +38,6 @@ signal sigAddScorePoints(points : int)
 
 # Add a new ball
 signal sigAddNewBall
+
+# End of game
+signal sigEndOfGame

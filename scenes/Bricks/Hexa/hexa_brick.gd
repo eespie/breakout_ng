@@ -42,6 +42,7 @@ func move_down(step: float):
 
 func _on_end_moving_bricks():
 	last_pos = position
+		
 
 func ball_collided(_ball : Node2D):
 	life_points -= 1
