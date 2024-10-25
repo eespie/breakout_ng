@@ -40,12 +40,13 @@ func _process(_delta):
 		line_points.append(limitAimingPoint(Vector2.ZERO, collision_point))
 		var remaining_length = target.length() - collision_point.length()
 		# and the rebound
-		var normal = raycast_for_aiming.get_collision_normal()
-		if normal.y == 0:
-			var rebound_points = PackedVector2Array()
-			rebound_points.append(collision_point)
-			var rebound = target.bounce(normal).normalized() * remaining_length + collision_point
-			rebound_points.append(limitAimingPoint(collision_point, rebound))
-			rebound_line.set_points(rebound_points)
-			rebound_line.show()
+		if collision_point.y > -1380:
+			var normal = raycast_for_aiming.get_collision_normal()
+			if normal.y == 0:
+				var rebound_points = PackedVector2Array()
+				rebound_points.append(collision_point)
+				var rebound = target.bounce(normal).normalized() * remaining_length + collision_point
+				rebound_points.append(limitAimingPoint(collision_point, rebound))
+				rebound_line.set_points(rebound_points)
+				rebound_line.show()
 	set_points(line_points)

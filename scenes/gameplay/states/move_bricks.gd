@@ -11,7 +11,7 @@ func enter() -> void:
 	EventBus.sigEndMovingBricks.connect(_on_end_moving_bricks)
 
 func exit() -> void:
-	pass
+	EventBus.sigEndMovingBricks.disconnect(_on_end_moving_bricks)
 
 func _on_end_moving_bricks():
 	next_state = idle_state

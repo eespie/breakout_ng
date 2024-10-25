@@ -1,10 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bs2l0gn60qspv"]
+[gd_scene load_steps=4 format=3 uid="uid://bs2l0gn60qspv"]
 
 [ext_resource type="Script" path="res://scenes/Ball/ball.gd" id="1_hp1le"]
 [ext_resource type="Texture2D" uid="uid://b1kcyo5iamje7" path="res://assets/sprites/ball_26_wheat.png" id="2_f8ukp"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vrcvw"]
-friction = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vlahc"]
 radius = 12.0
@@ -12,7 +9,6 @@ radius = 12.0
 [node name="Ball" type="StaticBody2D"]
 collision_layer = 4
 collision_mask = 3
-physics_material_override = SubResource("PhysicsMaterial_vrcvw")
 script = ExtResource("1_hp1le")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -24,8 +24,11 @@ signal sigAbortAiming
 # Start Moving bricks
 signal sigStartMovingBricks
 
-# End of process of Moving bricks
+# End moving bricks one level (can be repeated after level 50)
 signal sigEndMovingBricks
+
+# End of state for moving bricks
+signal sigEndStateMovingBricks
 
 # indicate the next level
 signal sigNextLevel(level : int)

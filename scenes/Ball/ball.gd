@@ -1,5 +1,6 @@
 extends StaticBody2D
 
+@export
 var speed : float = 1000
 var size = 26
 

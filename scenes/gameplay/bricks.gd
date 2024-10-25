@@ -1,38 +1,47 @@
 extends Node2D
 
 @onready
-var brick = preload("res://scenes/Bricks/Base/base_brick.tscn")
+var brick = preload("res://scenes/Bricks/Hexa/hexa_brick.tscn")
 
 @export
 var level: int = 0
 
+var tween
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	EventBus.sigStartMovingBricks.connect(_on_start_moving)
+	EventBus.sigBallsCollided.connect(_on_ball_collided)
 
 # Add a new level of bricks
 # Move down all the bricks
 func _on_start_moving():
 	var turns = ceili(level / 50) + 1
+	if tween:
+		tween.kill()
+	tween = get_tree().create_tween()
 	for turn in range(turns):
-		level += 1
-		EventBus.sigNextLevel.emit(level)
-		var nb_bricks = randi_range(0, get_max_bricks()) + 2
-		var columns = {}
-		for i in range(nb_bricks):
-			var brick_instance = brick.instantiate()
-			var column = randi_range(0, 7)
-			while columns.has(column):
-				column = randi_range(0, 7)
-			columns[column] = column
-			brick_instance.set_column(column)
-			add_child(brick_instance)
-	
-	# Now move down all the bricks
-	var tween = get_tree().create_tween()
-	tween.tween_method(_move_down_bricks, 0.0, 1.0, 1)
-	tween.tween_callback(EventBus.sigEndMovingBricks.emit)
-	
+		# Now move down all the bricks
+		tween.tween_callback(_generate_one_level_of_bricks)
+		tween.tween_method(_move_down_bricks, 0.0, 1.0, 1)
+		tween.tween_callback(EventBus.sigEndMovingBricks.emit)
+		
+	tween.tween_callback(EventBus.sigEndStateMovingBricks.emit)
+
+func _generate_one_level_of_bricks():
+	level += 1
+	EventBus.sigNextLevel.emit(level)
+	var brick_types = ['ball', 'point', 'base', 'base', 'base', 'base', 'base']
+	var nb_bricks = randi_range(0, get_max_bricks()) + 2
+	var columns = {}
+	for i in range(nb_bricks):
+		var brick_instance = brick.instantiate()
+		var column = randi_range(0, 7)
+		while columns.has(column):
+			column = randi_range(0, 7)
+		columns[column] = column
+		brick_instance.init_brick(column, level, brick_types[i])
+		add_child(brick_instance)
 
 # Move down bricks using step between 0 and 1
 func _move_down_bricks(step: float):
@@ -48,6 +57,6 @@ func get_max_bricks() -> int:
 	
 	return floori(value / 50.0)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+func _on_ball_collided(collider : Node2D, ball : Node2D):
+	if collider.is_in_group("Bricks"):
+		collider.ball_collided(ball)

@@ -43,7 +43,7 @@ func move_down(step: float):
 func _on_end_moving_bricks():
 	last_pos = position
 
-func ball_collided(ball : Node2D):
+func ball_collided(_ball : Node2D):
 	life_points -= 1
 		
 	if life_points == 0:
@@ -55,6 +55,6 @@ func ball_collided(ball : Node2D):
 			EventBus.sigAddScorePoints.emit(1)
 
 		var tween = get_tree().create_tween()
-		tween.tween_property(self, "modulate", Color.RED, 0.1)
-		tween.tween_property(self, "scale", Vector2(), 0.1)
+		tween.tween_property(self, "modulate", Color.RED, 0.1).set_trans(Tween.TRANS_SINE)
+		tween.tween_property(self, "scale", Vector2(), 0.1).set_trans(Tween.TRANS_BOUNCE)
 		tween.tween_callback(self.queue_free)
