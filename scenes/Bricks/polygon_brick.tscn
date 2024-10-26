@@ -39,6 +39,7 @@ centered = false
 
 [node name="OctoCollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(30, 0, 62, 0, 91, 30, 91, 92, 62, 122, 30, 122, 0, 92, 0, 30)
+one_way_collision_margin = 0.0
 
 [node name="Deco" type="Node2D" parent="."]
 

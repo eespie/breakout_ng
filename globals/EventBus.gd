@@ -34,7 +34,7 @@ signal sigEndStateMovingBricks
 signal sigNextLevel(level : int)
 
 # Add points to score
-signal sigAddScorePoints(points : int)
+signal sigAddScorePoint()
 
 # Add a new ball
 signal sigAddNewBall

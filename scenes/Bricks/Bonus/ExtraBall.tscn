@@ -1,7 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://qd6rd6ihpa7c"]
+[gd_scene load_steps=9 format=3 uid="uid://qd6rd6ihpa7c"]
 
-[ext_resource type="Texture2D" uid="uid://b1kcyo5iamje7" path="res://assets/sprites/ball_26_wheat.png" id="1_qg43s"]
+[ext_resource type="Texture2D" uid="uid://ctf26nq3slg0a" path="res://assets/sprites/rotating_ball.png" id="1_iwi44"]
 
-[node name="ExtraBall" type="Sprite2D"]
-modulate = Color(0.47451, 0.47451, 0.47451, 0.54902)
-texture = ExtResource("1_qg43s")
+[sub_resource type="AtlasTexture" id="AtlasTexture_vby12"]
+atlas = ExtResource("1_iwi44")
+region = Rect2(0, 0, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5fuw"]
+atlas = ExtResource("1_iwi44")
+region = Rect2(26, 0, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ogal"]
+atlas = ExtResource("1_iwi44")
+region = Rect2(52, 0, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kdpj"]
+atlas = ExtResource("1_iwi44")
+region = Rect2(0, 26, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu87c"]
+atlas = ExtResource("1_iwi44")
+region = Rect2(26, 26, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cwhr"]
+atlas = ExtResource("1_iwi44")
+region = Rect2(52, 26, 26, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dss30"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vby12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5fuw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ogal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kdpj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu87c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cwhr")
+}],
+"loop": true,
+"name": &"rotate",
+"speed": 20.0
+}]
+
+[node name="ExtraBall" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_dss30")
+animation = &"rotate"
+autoplay = "rotate"

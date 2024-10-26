@@ -24,6 +24,9 @@ var brick_sprite : Sprite2D
 @onready
 var bonus_extra_ball = preload("res://scenes/Bricks/Bonus/ExtraBall.tscn")
 
+@onready
+var bonus_extra_coin = preload("res://scenes/Bricks/Bonus/ExtraCoin.tscn")
+
 var life_points : int
 var last_pos : Vector2
 var brick_type : String
@@ -70,6 +73,7 @@ func ball_collided(_ball : Node2D):
 		if brick_type == 'ball':
 			extra_ball.hide()
 			var bonus_instance = bonus_extra_ball.instantiate()
+			bonus_instance.position = Vector2(46, 61)
 			add_child(bonus_instance)
 			var target : Sprite2D
 			for cannon in get_tree().get_nodes_in_group("TargetExtraBall"):
@@ -79,6 +83,15 @@ func ball_collided(_ball : Node2D):
 			tween.tween_callback(EventBus.sigAddNewBall.emit)
 			
 		elif brick_type == 'point':
-			EventBus.sigAddScorePoints.emit(1)
+			extra_coin.hide()
+			var bonus_instance = bonus_extra_coin.instantiate()
+			bonus_instance.position = Vector2(46, 61)
+			add_child(bonus_instance)
+			var target : Sprite2D
+			for score_coin in get_tree().get_nodes_in_group("TargetExtraCoin"):
+				target = score_coin
+		
+			tween.tween_property(bonus_instance, "global_position", target.global_position, 0.8)
+			tween.tween_callback(EventBus.sigAddScorePoint.emit)
 
 		tween.tween_callback(self.queue_free)

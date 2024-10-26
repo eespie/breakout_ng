@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b1kcyo5iamje7" path="res://assets/sprites/ball_26_wheat.png" id="2_f8ukp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vlahc"]
-radius = 12.0
+radius = 5.0
 
 [node name="Ball" type="StaticBody2D" groups=["Balls"]]
 collision_layer = 4
@@ -16,3 +16,4 @@ texture = ExtResource("2_f8ukp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vlahc")
+one_way_collision_margin = 0.0

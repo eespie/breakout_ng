@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://bde744i0315vm"]
+
+[ext_resource type="Texture2D" uid="uid://ctf26nq3slg0a" path="res://assets/sprites/rotating_ball.png" id="1_mob17"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_taeuq"]
+atlas = ExtResource("1_mob17")
+region = Rect2(0, 0, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d57qo"]
+atlas = ExtResource("1_mob17")
+region = Rect2(26, 0, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_755on"]
+atlas = ExtResource("1_mob17")
+region = Rect2(52, 0, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3cvp"]
+atlas = ExtResource("1_mob17")
+region = Rect2(0, 26, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7hrk"]
+atlas = ExtResource("1_mob17")
+region = Rect2(26, 26, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxgyp"]
+atlas = ExtResource("1_mob17")
+region = Rect2(52, 26, 26, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5glfj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_taeuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d57qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_755on")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3cvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7hrk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxgyp")
+}],
+"loop": true,
+"name": &"rotate",
+"speed": 20.0
+}]
+
+[node name="ExtraCoin" type="AnimatedSprite2D"]
+modulate = Color(1, 0.741176, 0.278431, 1)
+sprite_frames = SubResource("SpriteFrames_5glfj")
+animation = &"rotate"
+autoplay = "rotate"
