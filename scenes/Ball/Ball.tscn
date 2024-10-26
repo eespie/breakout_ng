@@ -11,7 +11,7 @@ collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_hp1le")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BallSprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_f8ukp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,14 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://dx8ctxh8owqpq"]
+[gd_scene load_steps=7 format=3 uid="uid://dx8ctxh8owqpq"]
 
 [ext_resource type="Script" path="res://scenes/Bricks/polygon_brick.gd" id="1_5voqs"]
 [ext_resource type="Texture2D" uid="uid://bjbh8hllyu5f1" path="res://assets/sprites/bricks/base.png" id="2_7rvuw"]
 [ext_resource type="Texture2D" uid="uid://da7fj2lt0l3ob" path="res://assets/sprites/bricks/hexa.png" id="3_7qfs2"]
 [ext_resource type="Texture2D" uid="uid://hjnmy3dekj1k" path="res://assets/sprites/bricks/octo.png" id="4_2dijm"]
+[ext_resource type="Texture2D" uid="uid://b1kcyo5iamje7" path="res://assets/sprites/ball_26_wheat.png" id="5_3xx4o"]
+[ext_resource type="Texture2D" uid="uid://by5ksn8emxdpo" path="res://assets/sprites/coins-black.png" id="6_ukih1"]
 
-[node name="PolygonBrick" type="StaticBody2D" groups=["Bricks"]]
+[node name="PolygonBrick" type="StaticBody2D" node_paths=PackedStringArray("extra_ball", "extra_coin", "brick_sprite") groups=["Bricks"]]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_5voqs")
+extra_ball = NodePath("Deco/ExtraBall")
+extra_coin = NodePath("Deco/ExtraCoin")
+brick_sprite = NodePath("OctoBrickSprite")
 
 [node name="BaseBrickSprite" type="Sprite2D" parent="."]
 visible = false
@@ -34,3 +39,15 @@ centered = false
 
 [node name="OctoCollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(30, 0, 62, 0, 91, 30, 91, 92, 62, 122, 30, 122, 0, 92, 0, 30)
+
+[node name="Deco" type="Node2D" parent="."]
+
+[node name="ExtraBall" type="Sprite2D" parent="Deco"]
+visible = false
+position = Vector2(46, 61)
+texture = ExtResource("5_3xx4o")
+
+[node name="ExtraCoin" type="Sprite2D" parent="Deco"]
+visible = false
+position = Vector2(46, 61)
+texture = ExtResource("6_ukih1")

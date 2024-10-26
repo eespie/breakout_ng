@@ -12,6 +12,18 @@ var cell_width : int = 120
 @export
 var cell_height : int = 122
 
+@export
+var extra_ball : Sprite2D
+
+@export
+var extra_coin : Sprite2D
+
+@export
+var brick_sprite : Sprite2D
+
+@onready
+var bonus_extra_ball = preload("res://scenes/Bricks/Bonus/ExtraBall.tscn")
+
 var life_points : int
 var last_pos : Vector2
 var brick_type : String
@@ -25,9 +37,11 @@ func init_brick(column: int, level: int, type):
 	life_points = level
 	brick_type = type
 	if brick_type == 'ball':
-		set_modulate(Color.DARK_OLIVE_GREEN)
+		brick_sprite.set_modulate(Color.DARK_OLIVE_GREEN)
+		extra_ball.show()
 	elif brick_type == 'point':
-		set_modulate(Color.DARK_SALMON)
+		brick_sprite.set_modulate(Color.DARK_SALMON)
+		extra_coin.show()
 
 
 func _set_column(column: int) -> void:
@@ -50,12 +64,21 @@ func ball_collided(_ball : Node2D):
 	if life_points == 0:
 		# avoid future collisions
 		set_collision_layer_value(2, false)
+		var tween = get_tree().create_tween()
+		tween.tween_property(brick_sprite, "modulate", Color.RED, 0.1).set_trans(Tween.TRANS_SINE)
+		tween.tween_property(brick_sprite, "scale", Vector2(), 0.1).set_trans(Tween.TRANS_BOUNCE)
 		if brick_type == 'ball':
-			EventBus.sigAddNewBall.emit()
+			extra_ball.hide()
+			var bonus_instance = bonus_extra_ball.instantiate()
+			add_child(bonus_instance)
+			var target : Sprite2D
+			for cannon in get_tree().get_nodes_in_group("TargetExtraBall"):
+				target = cannon
+		
+			tween.tween_property(bonus_instance, "global_position", target.global_position, 0.8)
+			tween.tween_callback(EventBus.sigAddNewBall.emit)
+			
 		elif brick_type == 'point':
 			EventBus.sigAddScorePoints.emit(1)
 
-		var tween = get_tree().create_tween()
-		tween.tween_property(self, "modulate", Color.RED, 0.1).set_trans(Tween.TRANS_SINE)
-		tween.tween_property(self, "scale", Vector2(), 0.1).set_trans(Tween.TRANS_BOUNCE)
 		tween.tween_callback(self.queue_free)

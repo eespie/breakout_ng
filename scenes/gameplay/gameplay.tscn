@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://4fyoq8npekf0"]
+[gd_scene load_steps=32 format=3 uid="uid://4fyoq8npekf0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/gameplay.gd" id="1_64d0d"]
 [ext_resource type="Texture2D" uid="uid://edtwtxxl3cux" path="res://assets/sprites/bg_breakout_s.jpg" id="2_eg7hc"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://da2t6lyf41wty" path="res://assets/fonts/open-sans/open-sans-bold.ttf" id="4_sups3"]
 [ext_resource type="Script" path="res://scenes/gameplay/bottom_border.gd" id="5_8y34y"]
 [ext_resource type="Script" path="res://scenes/gameplay/score.gd" id="5_36mxb"]
+[ext_resource type="Texture2D" uid="uid://bg6hob0l71yr2" path="res://assets/sprites/coins-black-big.png" id="6_2v7iq"]
 [ext_resource type="FontFile" uid="uid://cawekr44fruhm" path="res://assets/fonts/open-sans/open-sans-regular.ttf" id="6_dsdio"]
 [ext_resource type="Script" path="res://scenes/gameplay/time.gd" id="7_3s1na"]
 [ext_resource type="Texture2D" uid="uid://dk2dlhxeew1y6" path="res://assets/sprites/cannon.png" id="7_4jp57"]
@@ -90,12 +91,26 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/AspectRatioContainer/HUD"]
 layout_mode = 0
 offset_left = -480.0
-offset_top = 100.0
+offset_top = 20.0
 offset_right = 480.0
-offset_bottom = 275.0
+offset_bottom = 553.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Level" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/AspectRatioContainer/HUD/HBoxContainer"]
+layout_mode = 2
+
+[node name="LevelLabel" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.10748, 0.10748, 0.10748, 1)
+theme_override_fonts/font = ExtResource("6_dsdio")
+theme_override_font_sizes/font_size = 64
+text = " Level"
+vertical_alignment = 1
+
+[node name="LevelValue" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_colors/font_color = Color(0.10748, 0.10748, 0.10748, 1)
@@ -105,6 +120,16 @@ text = "0"
 vertical_alignment = 1
 script = ExtResource("4_d63jg")
 
+[node name="HighScore" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.10748, 0.10748, 0.10748, 1)
+theme_override_fonts/font = ExtResource("6_dsdio")
+theme_override_font_sizes/font_size = 64
+text = "0"
+vertical_alignment = 1
+
 [node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/AspectRatioContainer/HUD"]
 layout_mode = 0
 offset_left = 34.0
@@ -112,7 +137,14 @@ offset_top = 100.0
 offset_right = 472.0
 offset_bottom = 275.0
 
-[node name="Score" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD/HBoxContainer3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/AspectRatioContainer/HUD/HBoxContainer3"]
+layout_mode = 2
+
+[node name="CoinsSprite2D" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer/HUD/HBoxContainer3/VBoxContainer" groups=["TargetExtraCoin"]]
+position = Vector2(386, -27)
+texture = ExtResource("6_2v7iq")
+
+[node name="Score" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD/HBoxContainer3/VBoxContainer"]
 custom_minimum_size = Vector2(430, 0)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -204,12 +236,10 @@ shape = SubResource("RectangleShape2D_la4wx")
 
 [node name="bricks" type="Node2D" parent="CanvasLayer/AspectRatioContainer/Background"]
 script = ExtResource("11_s2rws")
-level = 48
 
 [node name="Balls" type="Node2D" parent="CanvasLayer/AspectRatioContainer/Background"]
 position = Vector2(480, 1450)
 script = ExtResource("4_3r8ga")
-ballMaxCount = 50
 
 [node name="RayCastForAiming" type="RayCast2D" parent="CanvasLayer/AspectRatioContainer/Background/Balls"]
 collision_mask = 8
@@ -239,7 +269,7 @@ joint_mode = 2
 sharp_limit = 0.0
 round_precision = 1
 
-[node name="Cannon" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer/Background"]
+[node name="Cannon" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer/Background" groups=["TargetExtraBall"]]
 position = Vector2(480, 1450)
 texture = ExtResource("7_4jp57")
 

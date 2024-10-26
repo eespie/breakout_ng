@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://qd6rd6ihpa7c"]
+
+[ext_resource type="Texture2D" uid="uid://b1kcyo5iamje7" path="res://assets/sprites/ball_26_wheat.png" id="1_qg43s"]
+
+[node name="ExtraBall" type="Sprite2D"]
+modulate = Color(0.47451, 0.47451, 0.47451, 0.54902)
+texture = ExtResource("1_qg43s")
