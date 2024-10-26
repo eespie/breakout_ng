@@ -41,3 +41,6 @@ signal sigAddNewBall
 
 # End of game
 signal sigEndOfGame
+
+# Changed the speed factor
+signal sigSpeedFactorChanged(speed_factor : float)

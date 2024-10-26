@@ -9,7 +9,7 @@ var end_game_state : State
 @export
 var red_zone : Sprite2D
 
-# set to idle state when necessary
+# set to idle or end game state when necessary
 var next_state
 
 func enter() -> void:

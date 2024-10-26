@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx8ctxh8owqpq"]
+
+[ext_resource type="Script" path="res://scenes/Bricks/polygon_brick.gd" id="1_5voqs"]
+[ext_resource type="Texture2D" uid="uid://bjbh8hllyu5f1" path="res://assets/sprites/bricks/base.png" id="2_7rvuw"]
+[ext_resource type="Texture2D" uid="uid://da7fj2lt0l3ob" path="res://assets/sprites/bricks/hexa.png" id="3_7qfs2"]
+[ext_resource type="Texture2D" uid="uid://hjnmy3dekj1k" path="res://assets/sprites/bricks/octo.png" id="4_2dijm"]
+
+[node name="PolygonBrick" type="StaticBody2D" groups=["Bricks"]]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_5voqs")
+
+[node name="BaseBrickSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_7rvuw")
+centered = false
+
+[node name="BaseBrickCollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(10, 0, 81, 0, 91, 10, 91, 113, 81, 122, 10, 122, 0, 113, 0, 10)
+
+[node name="HexaBrickSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_7qfs2")
+centered = false
+
+[node name="HexaCollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(45, 0, 91, 38, 91, 84, 45, 122, 0, 84, 0, 38)
+
+[node name="OctoBrickSprite" type="Sprite2D" parent="."]
+texture = ExtResource("4_2dijm")
+centered = false
+
+[node name="OctoCollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(30, 0, 62, 0, 91, 30, 91, 92, 62, 122, 30, 122, 0, 92, 0, 30)
