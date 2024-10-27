@@ -1,51 +1,51 @@
 [gd_scene load_steps=9 format=3 uid="uid://bde744i0315vm"]
 
-[ext_resource type="Texture2D" uid="uid://ctf26nq3slg0a" path="res://assets/sprites/rotating_ball.png" id="1_mob17"]
+[ext_resource type="Texture2D" uid="uid://b5h46wal3juhl" path="res://assets/sprites/rotating_coin.png" id="1_iw4q3"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_taeuq"]
-atlas = ExtResource("1_mob17")
-region = Rect2(0, 0, 26, 26)
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6250"]
+atlas = ExtResource("1_iw4q3")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d57qo"]
-atlas = ExtResource("1_mob17")
-region = Rect2(26, 0, 26, 26)
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2it8"]
+atlas = ExtResource("1_iw4q3")
+region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_755on"]
-atlas = ExtResource("1_mob17")
-region = Rect2(52, 0, 26, 26)
+[sub_resource type="AtlasTexture" id="AtlasTexture_32o16"]
+atlas = ExtResource("1_iw4q3")
+region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g3cvp"]
-atlas = ExtResource("1_mob17")
-region = Rect2(0, 26, 26, 26)
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxavo"]
+atlas = ExtResource("1_iw4q3")
+region = Rect2(0, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h7hrk"]
-atlas = ExtResource("1_mob17")
-region = Rect2(26, 26, 26, 26)
+[sub_resource type="AtlasTexture" id="AtlasTexture_75ony"]
+atlas = ExtResource("1_iw4q3")
+region = Rect2(32, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sxgyp"]
-atlas = ExtResource("1_mob17")
-region = Rect2(52, 26, 26, 26)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fq3c0"]
+atlas = ExtResource("1_iw4q3")
+region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5glfj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_taeuq")
+"texture": SubResource("AtlasTexture_a6250")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_d57qo")
+"texture": SubResource("AtlasTexture_g2it8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_755on")
+"texture": SubResource("AtlasTexture_32o16")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g3cvp")
+"texture": SubResource("AtlasTexture_xxavo")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h7hrk")
+"texture": SubResource("AtlasTexture_75ony")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sxgyp")
+"texture": SubResource("AtlasTexture_fq3c0")
 }],
 "loop": true,
 "name": &"rotate",
@@ -53,7 +53,6 @@ animations = [{
 }]
 
 [node name="ExtraCoin" type="AnimatedSprite2D"]
-modulate = Color(1, 0.741176, 0.278431, 1)
 sprite_frames = SubResource("SpriteFrames_5glfj")
 animation = &"rotate"
 autoplay = "rotate"

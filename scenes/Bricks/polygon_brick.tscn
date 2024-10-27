@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dx8ctxh8owqpq"]
+[gd_scene load_steps=12 format=3 uid="uid://dx8ctxh8owqpq"]
 
 [ext_resource type="Script" path="res://scenes/Bricks/polygon_brick.gd" id="1_5voqs"]
 [ext_resource type="Texture2D" uid="uid://bjbh8hllyu5f1" path="res://assets/sprites/bricks/base.png" id="2_7rvuw"]
@@ -8,16 +8,24 @@
 [ext_resource type="Texture2D" uid="uid://bmtvjjxfi6da5" path="res://assets/sprites/bricks/octo-mask.png" id="5_xtsqq"]
 [ext_resource type="Texture2D" uid="uid://j8nijqr2cfeq" path="res://assets/sprites/bricks/octo-mask-cracked.png" id="6_m2qun"]
 [ext_resource type="Texture2D" uid="uid://by5ksn8emxdpo" path="res://assets/sprites/coins-black.png" id="6_ukih1"]
+[ext_resource type="Texture2D" uid="uid://dgijtskab5deg" path="res://assets/sprites/bricks/extra-coin.png" id="8_o3ai0"]
+[ext_resource type="Texture2D" uid="uid://g1046o2ejh0s" path="res://assets/sprites/bricks/extra-balls.png" id="8_vgmh0"]
+[ext_resource type="Texture2D" uid="uid://bvljlnsxwe4au" path="res://assets/sprites/bricks/star.png" id="11_qlic5"]
 
-[node name="PolygonBrick" type="StaticBody2D" node_paths=PackedStringArray("extra_ball", "extra_coin", "brick_sprite", "brick_mask", "brick_mask_cracked") groups=["Bricks"]]
+[node name="PolygonBrick" type="StaticBody2D" node_paths=PackedStringArray("extra_ball", "extra_coin", "extra_balls", "extra_coins", "brick_sprite", "brick_mask", "brick_mask_cracked", "bonus1", "bonus2", "bonus3") groups=["Bricks"]]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_5voqs")
 extra_ball = NodePath("Deco/ExtraBall")
 extra_coin = NodePath("Deco/ExtraCoin")
+extra_balls = NodePath("Deco/ExtraBalls")
+extra_coins = NodePath("Deco/ExtraCoins")
 brick_sprite = NodePath("OctoBrickSprite")
-brick_mask = NodePath("OctoMask")
-brick_mask_cracked = NodePath("OctoMaskCracked")
+brick_mask = NodePath("Mask/OctoMask")
+brick_mask_cracked = NodePath("Mask/OctoMaskCracked")
+bonus1 = NodePath("Deco/Bonus1")
+bonus2 = NodePath("Deco/Bonus2")
+bonus3 = NodePath("Deco/Bonus3")
 
 [node name="BaseBrickSprite" type="Sprite2D" parent="."]
 visible = false
@@ -37,21 +45,23 @@ centered = false
 visible = false
 polygon = PackedVector2Array(45, 0, 91, 38, 91, 84, 45, 122, 0, 84, 0, 38)
 
+[node name="OctoCollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(30, 0, 62, 0, 91, 30, 91, 92, 62, 122, 30, 122, 0, 92, 0, 30)
+one_way_collision_margin = 0.0
+
 [node name="OctoBrickSprite" type="Sprite2D" parent="."]
 texture = ExtResource("4_2dijm")
 centered = false
 
-[node name="OctoMask" type="Sprite2D" parent="."]
+[node name="Mask" type="Node2D" parent="."]
+
+[node name="OctoMask" type="Sprite2D" parent="Mask"]
 texture = ExtResource("5_xtsqq")
 centered = false
 
-[node name="OctoMaskCracked" type="Sprite2D" parent="."]
+[node name="OctoMaskCracked" type="Sprite2D" parent="Mask"]
 texture = ExtResource("6_m2qun")
 centered = false
-
-[node name="OctoCollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(30, 0, 62, 0, 91, 30, 91, 92, 62, 122, 30, 122, 0, 92, 0, 30)
-one_way_collision_margin = 0.0
 
 [node name="Deco" type="Node2D" parent="."]
 
@@ -60,7 +70,32 @@ visible = false
 position = Vector2(46, 61)
 texture = ExtResource("5_3xx4o")
 
+[node name="ExtraBalls" type="Sprite2D" parent="Deco"]
+visible = false
+position = Vector2(46, 61)
+texture = ExtResource("8_vgmh0")
+
 [node name="ExtraCoin" type="Sprite2D" parent="Deco"]
 visible = false
 position = Vector2(46, 61)
+texture = ExtResource("8_o3ai0")
+
+[node name="ExtraCoins" type="Sprite2D" parent="Deco"]
+visible = false
+position = Vector2(46, 61)
 texture = ExtResource("6_ukih1")
+
+[node name="Bonus1" type="Sprite2D" parent="Deco"]
+visible = false
+texture = ExtResource("11_qlic5")
+offset = Vector2(46, 90)
+
+[node name="Bonus2" type="Sprite2D" parent="Deco"]
+visible = false
+texture = ExtResource("11_qlic5")
+offset = Vector2(30, 85)
+
+[node name="Bonus3" type="Sprite2D" parent="Deco"]
+visible = false
+texture = ExtResource("11_qlic5")
+offset = Vector2(62, 85)

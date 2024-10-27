@@ -1,42 +1,29 @@
 extends StaticBody2D
 
-@export
-var top_margin : int = 50
+@export var top_margin : int = 50
+@export var cell_margin : int = 30
+@export var cell_width : int = 120
+@export var cell_height : int = 122
 
-@export
-var cell_margin : int = 30
+@export var extra_ball : Sprite2D
+@export var extra_coin : Sprite2D
+@export var extra_balls : Sprite2D
+@export var extra_coins : Sprite2D
+@export var brick_sprite : Sprite2D
+@export var brick_mask : Sprite2D
+@export var brick_mask_cracked : Sprite2D
+@export var bonus1 : Sprite2D
+@export var bonus2 : Sprite2D
+@export var bonus3 : Sprite2D
 
-@export
-var cell_width : int = 120
-
-@export
-var cell_height : int = 122
-
-@export
-var extra_ball : Sprite2D
-
-@export
-var extra_coin : Sprite2D
-
-@export
-var brick_sprite : Sprite2D
-
-@export
-var brick_mask : Sprite2D
-
-@export
-var brick_mask_cracked : Sprite2D
-
-@onready
-var bonus_extra_ball = preload("res://scenes/Bricks/Bonus/ExtraBall.tscn")
-
-@onready
-var bonus_extra_coin = preload("res://scenes/Bricks/Bonus/ExtraCoin.tscn")
+@onready var bonus_extra_ball = preload("res://scenes/Bricks/Bonus/ExtraBall.tscn")
+@onready var bonus_extra_coin = preload("res://scenes/Bricks/Bonus/ExtraCoin.tscn")
 
 var life_points : int
 var starting_life_points : int
 var last_pos : Vector2
 var brick_type : String
+var bonus_amount : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -48,14 +35,42 @@ func init_brick(column: int, level: int, type):
 	starting_life_points = level
 	life_points = level
 	brick_type = type
+	bonus_amount = 0
 	if brick_type == 'ball':
 		brick_sprite.set_modulate(Color.DARK_OLIVE_GREEN)
-		extra_ball.show()
+		bonus_amount = get_bonus_amount([[0.95, 1], [0.99, 2], [1.0, 3]])
+		if bonus_amount == 1:
+			extra_ball.show()
+		else:
+			extra_balls.show()
+			if bonus_amount == 2:
+				bonus2.show()
+				bonus3.show()
+			else:
+				bonus1.show()
+				bonus2.show()
+				bonus3.show()
+				
 	elif brick_type == 'point':
 		brick_sprite.set_modulate(Color.ORANGE)
-		extra_coin.show()
+		bonus_amount = get_bonus_amount([[0.85, 1], [0.95, 3], [0.98, 5], [1.0, 10]])
+		if bonus_amount == 1:
+			extra_coin.show()
+		else:
+			extra_coins.show()
+			if bonus_amount == 3:
+				bonus1.show()
+			elif bonus_amount == 5:
+				bonus2.show()
+				bonus3.show()
+			else:
+				bonus1.show()
+				bonus2.show()
+				bonus3.show()
+
 	else:
 		brick_sprite.set_modulate(Color.MEDIUM_PURPLE)
+		
 
 
 func _set_column(column: int) -> void:
@@ -83,10 +98,16 @@ func ball_collided(_ball : Node2D):
 		tween.tween_property(brick_sprite, "modulate", Color.RED, 0.1).set_trans(Tween.TRANS_SINE)
 		brick_mask.hide()
 		brick_mask_cracked.hide()
+		extra_ball.hide()
+		extra_balls.hide()
+		extra_coin.hide()
+		extra_coins.hide()
+		bonus1.hide()
+		bonus2.hide()
+		bonus3.hide()
 		tween.tween_property(brick_sprite, "scale", Vector2(), 0.1).set_trans(Tween.TRANS_BOUNCE)
 		
 		if brick_type == 'ball':
-			extra_ball.hide()
 			var bonus_instance = bonus_extra_ball.instantiate()
 			bonus_instance.position = Vector2(46, 61)
 			add_child(bonus_instance)
@@ -95,10 +116,9 @@ func ball_collided(_ball : Node2D):
 				target = cannon
 		
 			tween.tween_property(bonus_instance, "global_position", target.global_position, 0.8)
-			tween.tween_callback(EventBus.sigAddNewBall.emit)
+			tween.tween_callback(_earn_bonus)
 			
 		elif brick_type == 'point':
-			extra_coin.hide()
 			var bonus_instance = bonus_extra_coin.instantiate()
 			bonus_instance.position = Vector2(46, 61)
 			add_child(bonus_instance)
@@ -107,6 +127,22 @@ func ball_collided(_ball : Node2D):
 				target = score_coin
 		
 			tween.tween_property(bonus_instance, "global_position", target.global_position, 0.8)
-			tween.tween_callback(EventBus.sigAddScorePoint.emit)
+			tween.tween_callback(_earn_bonus)
 
 		tween.tween_callback(self.queue_free)
+
+func get_bonus_amount(steps) -> int:
+	var v = randf()
+	for step in steps:
+		if v < step[0]:
+			return step[1]
+	return 1
+
+func _earn_bonus():
+	if brick_type == 'ball':
+		EventBus.sigAddNewBalls.emit(bonus_amount)
+		
+	elif brick_type == 'point':
+		EventBus.sigAddScorePoints.emit(bonus_amount)
+		
+	

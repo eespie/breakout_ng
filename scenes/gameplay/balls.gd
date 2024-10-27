@@ -16,11 +16,11 @@ var ballSpeedFactor : float
 func _ready():
 	EventBus.sigBallShoot.connect(_on_ball_shoot)
 	EventBus.sigBallRemoved.connect(_on_ball_removed)
-	EventBus.sigAddNewBall.connect(_on_add_new_ball)
+	EventBus.sigAddNewBalls.connect(_on_add_new_ball)
 	EventBus.sigSpeedFactorChanged.connect(_on_speed_factor_changed)
 
-func _on_add_new_ball():
-	ballMaxCount += 1
+func _on_add_new_ball(balls : int):
+	ballMaxCount += balls
 
 # Called when the node enters the scene tree for the first time.
 func _on_ball_shoot():

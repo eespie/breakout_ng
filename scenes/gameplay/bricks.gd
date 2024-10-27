@@ -5,6 +5,7 @@ var brick = preload("res://scenes/Bricks/polygon_brick.tscn")
 
 @export
 var level: int = 0
+var brick_life: int
 
 var tween: Tween
 var game_ended : bool = false
@@ -14,6 +15,7 @@ func _ready():
 	EventBus.sigStartMovingBricks.connect(_on_start_moving)
 	EventBus.sigBallsCollided.connect(_on_ball_collided)
 	EventBus.sigEndOfGame.connect(_on_end_of_game)
+	EventBus.sigAddNewBalls.connect(_on_add_new_balls)
 
 # Add a new level of bricks
 # Move down all the bricks
@@ -38,6 +40,7 @@ func _on_end_of_game():
 
 func _generate_one_level_of_bricks():
 	level += 1
+	brick_life += 1
 	EventBus.sigNextLevel.emit(level)
 	var brick_types = ['ball', 'point', 'base', 'base', 'base', 'base', 'base']
 	var nb_bricks = randi_range(0, get_max_bricks()) + 2
@@ -48,7 +51,7 @@ func _generate_one_level_of_bricks():
 		while columns.has(column):
 			column = randi_range(0, 7)
 		columns[column] = column
-		brick_instance.init_brick(column, level, brick_types[i])
+		brick_instance.init_brick(column, brick_life, brick_types[i])
 		add_child(brick_instance)
 
 # Move down bricks using step between 0 and 1
@@ -68,3 +71,6 @@ func get_max_bricks() -> int:
 func _on_ball_collided(collider : Node2D, ball : Node2D):
 	if collider.is_in_group("Bricks"):
 		collider.ball_collided(ball)
+
+func _on_add_new_balls(balls: int):
+	pass
