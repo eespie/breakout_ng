@@ -13,7 +13,8 @@ var red_zone : Sprite2D
 var next_state
 
 func enter() -> void:
-	EventBus.sigEndMovingBricks.connect(_on_end_moving_bricks)
+	next_state = null
+	EventBus.sigEndStateMovingBricks.connect(_on_end_moving_bricks)
 	EventBus.sigEndOfGame.connect(_on_end_of_game)
 	
 	for brk in get_tree().get_nodes_in_group("Bricks"):
@@ -24,7 +25,7 @@ func enter() -> void:
 	EventBus.sigStartMovingBricks.emit()
 
 func exit() -> void:
-	EventBus.sigEndMovingBricks.disconnect(_on_end_moving_bricks)
+	EventBus.sigEndStateMovingBricks.disconnect(_on_end_moving_bricks)
 	EventBus.sigEndOfGame.disconnect(_on_end_of_game)
 
 func _on_end_moving_bricks():

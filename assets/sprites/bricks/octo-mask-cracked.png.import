@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hjnmy3dekj1k"
-path="res://.godot/imported/octo.png-bda38cd892c3c7483743bc8174e3bb2c.ctex"
+uid="uid://j8nijqr2cfeq"
+path="res://.godot/imported/octo-mask-cracked.png-97a6447600f23a11ace764194ac05e92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/bricks/octo.png"
-dest_files=["res://.godot/imported/octo.png-bda38cd892c3c7483743bc8174e3bb2c.ctex"]
+source_file="res://assets/sprites/bricks/octo-mask-cracked.png"
+dest_files=["res://.godot/imported/octo-mask-cracked.png-97a6447600f23a11ace764194ac05e92.ctex"]
 
 [params]
 

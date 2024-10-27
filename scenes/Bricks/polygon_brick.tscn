@@ -1,19 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://dx8ctxh8owqpq"]
+[gd_scene load_steps=9 format=3 uid="uid://dx8ctxh8owqpq"]
 
 [ext_resource type="Script" path="res://scenes/Bricks/polygon_brick.gd" id="1_5voqs"]
 [ext_resource type="Texture2D" uid="uid://bjbh8hllyu5f1" path="res://assets/sprites/bricks/base.png" id="2_7rvuw"]
 [ext_resource type="Texture2D" uid="uid://da7fj2lt0l3ob" path="res://assets/sprites/bricks/hexa.png" id="3_7qfs2"]
-[ext_resource type="Texture2D" uid="uid://hjnmy3dekj1k" path="res://assets/sprites/bricks/octo.png" id="4_2dijm"]
+[ext_resource type="Texture2D" uid="uid://hjnmy3dekj1k" path="res://assets/sprites/octo.png" id="4_2dijm"]
 [ext_resource type="Texture2D" uid="uid://b1kcyo5iamje7" path="res://assets/sprites/ball_26_wheat.png" id="5_3xx4o"]
+[ext_resource type="Texture2D" uid="uid://bmtvjjxfi6da5" path="res://assets/sprites/bricks/octo-mask.png" id="5_xtsqq"]
+[ext_resource type="Texture2D" uid="uid://j8nijqr2cfeq" path="res://assets/sprites/bricks/octo-mask-cracked.png" id="6_m2qun"]
 [ext_resource type="Texture2D" uid="uid://by5ksn8emxdpo" path="res://assets/sprites/coins-black.png" id="6_ukih1"]
 
-[node name="PolygonBrick" type="StaticBody2D" node_paths=PackedStringArray("extra_ball", "extra_coin", "brick_sprite") groups=["Bricks"]]
+[node name="PolygonBrick" type="StaticBody2D" node_paths=PackedStringArray("extra_ball", "extra_coin", "brick_sprite", "brick_mask", "brick_mask_cracked") groups=["Bricks"]]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_5voqs")
 extra_ball = NodePath("Deco/ExtraBall")
 extra_coin = NodePath("Deco/ExtraCoin")
 brick_sprite = NodePath("OctoBrickSprite")
+brick_mask = NodePath("OctoMask")
+brick_mask_cracked = NodePath("OctoMaskCracked")
 
 [node name="BaseBrickSprite" type="Sprite2D" parent="."]
 visible = false
@@ -35,6 +39,14 @@ polygon = PackedVector2Array(45, 0, 91, 38, 91, 84, 45, 122, 0, 84, 0, 38)
 
 [node name="OctoBrickSprite" type="Sprite2D" parent="."]
 texture = ExtResource("4_2dijm")
+centered = false
+
+[node name="OctoMask" type="Sprite2D" parent="."]
+texture = ExtResource("5_xtsqq")
+centered = false
+
+[node name="OctoMaskCracked" type="Sprite2D" parent="."]
+texture = ExtResource("6_m2qun")
 centered = false
 
 [node name="OctoCollisionPolygon2D" type="CollisionPolygon2D" parent="."]

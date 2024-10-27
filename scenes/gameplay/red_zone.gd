@@ -9,7 +9,7 @@ func _ready():
 func _on_next_level(level : int):
 	if level > 0 and level % 50 == 0:
 		if tween:
-			tween.kill
+			tween.kill()
 		tween = get_tree().create_tween()
 		tween.tween_property(self, "offset", Vector2(0, get_offset().y - 122), 1.0)
 

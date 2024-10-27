@@ -21,6 +21,12 @@ var extra_coin : Sprite2D
 @export
 var brick_sprite : Sprite2D
 
+@export
+var brick_mask : Sprite2D
+
+@export
+var brick_mask_cracked : Sprite2D
+
 @onready
 var bonus_extra_ball = preload("res://scenes/Bricks/Bonus/ExtraBall.tscn")
 
@@ -28,6 +34,7 @@ var bonus_extra_ball = preload("res://scenes/Bricks/Bonus/ExtraBall.tscn")
 var bonus_extra_coin = preload("res://scenes/Bricks/Bonus/ExtraCoin.tscn")
 
 var life_points : int
+var starting_life_points : int
 var last_pos : Vector2
 var brick_type : String
 
@@ -37,14 +44,18 @@ func _ready():
 	
 func init_brick(column: int, level: int, type):
 	_set_column(column)
+	brick_mask_cracked.set_modulate(Color.TRANSPARENT)
+	starting_life_points = level
 	life_points = level
 	brick_type = type
 	if brick_type == 'ball':
 		brick_sprite.set_modulate(Color.DARK_OLIVE_GREEN)
 		extra_ball.show()
 	elif brick_type == 'point':
-		brick_sprite.set_modulate(Color.DARK_SALMON)
+		brick_sprite.set_modulate(Color.ORANGE)
 		extra_coin.show()
+	else:
+		brick_sprite.set_modulate(Color.MEDIUM_PURPLE)
 
 
 func _set_column(column: int) -> void:
@@ -63,13 +74,17 @@ func _on_end_moving_bricks():
 
 func ball_collided(_ball : Node2D):
 	life_points -= 1
+	brick_mask_cracked.set_modulate(Color(1.0,1.0,1.0,1.0*(starting_life_points - life_points)/starting_life_points))
 		
 	if life_points == 0:
 		# avoid future collisions
 		set_collision_layer_value(2, false)
 		var tween = get_tree().create_tween()
 		tween.tween_property(brick_sprite, "modulate", Color.RED, 0.1).set_trans(Tween.TRANS_SINE)
+		brick_mask.hide()
+		brick_mask_cracked.hide()
 		tween.tween_property(brick_sprite, "scale", Vector2(), 0.1).set_trans(Tween.TRANS_BOUNCE)
+		
 		if brick_type == 'ball':
 			extra_ball.hide()
 			var bonus_instance = bonus_extra_ball.instantiate()

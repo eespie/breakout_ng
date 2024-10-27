@@ -7,9 +7,9 @@ func _ready():
 	EventBus.sigSpeedFactorChanged.connect(_on_speed_factor_changed)
 
 func _on_speed_factor_changed(speed_factor : float):
-	set_text("x%.1f" % speed_factor)
+	set_text("%.1fX" % speed_factor)
 	if tween:
-		tween.kill
+		tween.kill()
 	show()
 	set_modulate(Color.WHITE)
 	tween = get_tree().create_tween()
