@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://4fyoq8npekf0"]
+[gd_scene load_steps=32 format=3 uid="uid://4fyoq8npekf0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/gameplay.gd" id="1_64d0d"]
 [ext_resource type="Texture2D" uid="uid://edtwtxxl3cux" path="res://assets/sprites/bg_breakout_s.jpg" id="2_eg7hc"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" path="res://scenes/gameplay/bricks.gd" id="11_s2rws"]
 [ext_resource type="Script" path="res://scenes/gameplay/states/aim.gd" id="12_7wi6k"]
 [ext_resource type="Script" path="res://scenes/gameplay/states/run.gd" id="13_80xkc"]
+[ext_resource type="Texture2D" uid="uid://c0hua74hgei24" path="res://assets/sprites/bg_footer.png" id="18_80wrp"]
 [ext_resource type="FontFile" uid="uid://c23aucss1g3k5" path="res://assets/fonts/Kenney/Kenney Blocks.ttf" id="18_a1faq"]
 [ext_resource type="Script" path="res://scenes/gameplay/game_over.gd" id="19_f2ip5"]
 [ext_resource type="Script" path="res://scenes/gameplay/speed_factor.gd" id="20_ybshx"]
@@ -256,6 +257,10 @@ round_precision = 1
 [node name="Cannon" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer/Background" groups=["TargetExtraBall"]]
 position = Vector2(480, 1450)
 texture = ExtResource("7_4jp57")
+
+[node name="Footer" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer"]
+position = Vector2(0, 2238)
+texture = ExtResource("18_80wrp")
 
 [node name="Message" type="Control" parent="CanvasLayer/AspectRatioContainer"]
 layout_mode = 2
