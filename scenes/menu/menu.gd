@@ -25,6 +25,7 @@ func _on_PlayButton_pressed() -> void:
 	Game.change_scene_to_file("res://scenes/gameplay/gameplay.tscn", params)
 
 
+
 func _on_ExitButton_pressed() -> void:
 	# gently shutdown the game
 	var transitions = get_node_or_null("/root/Transitions")
@@ -35,3 +36,9 @@ func _on_ExitButton_pressed() -> void:
 		await transitions.anim.animation_finished
 		await get_tree().create_timer(0.3).timeout
 	get_tree().quit()
+
+func _on_credits_button_pressed():
+	var params = {
+		"show_progress_bar": false
+	}
+	Game.change_scene_to_file("res://scenes/menu/credits/Credits.tscn", params)

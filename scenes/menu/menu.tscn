@@ -74,11 +74,20 @@ theme_override_constants/separation = 16
 [node name="PlayButton" type="Button" parent="MarginContainer/Control/VBoxContainer"]
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../ExitButton")
-focus_next = NodePath("../ExitButton")
+focus_neighbor_bottom = NodePath("../CreditsButton")
+focus_next = NodePath("../CreditsButton")
 theme_override_fonts/font = ExtResource("3_734e5")
 theme_override_font_sizes/font_size = 32
 text = "START"
+
+[node name="CreditsButton" type="Button" parent="MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+focus_neighbor_top = NodePath("../PlayButton")
+focus_previous = NodePath("../PlayButton")
+theme_override_fonts/font = ExtResource("3_734e5")
+theme_override_font_sizes/font_size = 32
+text = "CREDITS"
 
 [node name="ExitButton" type="Button" parent="MarginContainer/Control/VBoxContainer"]
 custom_minimum_size = Vector2(200, 100)
@@ -101,13 +110,18 @@ grow_vertical = 0
 [node name="GameVersion" type="Label" parent="MarginContainer/Control/Version"]
 layout_mode = 2
 theme_type_variation = &"LabelSmall"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_734e5")
+theme_override_font_sizes/font_size = 24
 text = "<x.y.z>"
 script = ExtResource("4_3hod2")
 
 [node name="GodotVersion" type="Label" parent="MarginContainer/Control/Version"]
 layout_mode = 2
 theme_type_variation = &"LabelSmall"
-theme_override_colors/font_color = Color(0.92549, 0.92549, 0.92549, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_734e5")
+theme_override_font_sizes/font_size = 24
 text = "<GodotVersion>"
 script = ExtResource("5_fdyjp")
 
@@ -126,11 +140,12 @@ grow_vertical = 0
 [node name="MadeByLabel" type="Label" parent="MarginContainer/Control/Credits"]
 layout_mode = 2
 theme_type_variation = &"LabelSmall"
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "made by: Eric Espié"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_734e5")
+theme_override_font_sizes/font_size = 32
+text = "made by: Eric ESPIE"
 
 [node name="Developer1" type="Label" parent="MarginContainer/Control/Credits"]
-visible = false
 layout_mode = 2
 theme_type_variation = &"LabelSmall"
 theme_override_colors/font_color = Color(0.92549, 0.92549, 0.92549, 1)
@@ -150,4 +165,5 @@ theme_override_colors/font_color = Color(0.886275, 0.87451, 0.87451, 1)
 text = "Developer 3"
 
 [connection signal="pressed" from="MarginContainer/Control/VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Control/VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
