@@ -11,7 +11,6 @@ func _ready():
 func _on_end_of_round():
 	print("End of Round")
 
-
 func _process(delta):
 	StateMachine.process_frame(delta)
 	
