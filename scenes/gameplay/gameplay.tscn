@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://4fyoq8npekf0"]
+[gd_scene load_steps=36 format=3 uid="uid://4fyoq8npekf0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/gameplay.gd" id="1_64d0d"]
 [ext_resource type="Texture2D" uid="uid://edtwtxxl3cux" path="res://assets/sprites/bg_breakout_s.jpg" id="2_eg7hc"]
@@ -26,7 +26,9 @@
 [ext_resource type="Texture2D" uid="uid://c0hua74hgei24" path="res://assets/sprites/bg_footer.png" id="18_80wrp"]
 [ext_resource type="FontFile" uid="uid://c23aucss1g3k5" path="res://assets/fonts/Kenney/Kenney Blocks.ttf" id="18_a1faq"]
 [ext_resource type="Script" path="res://scenes/gameplay/game_over.gd" id="19_f2ip5"]
+[ext_resource type="Script" path="res://scenes/gameplay/ball_count.gd" id="20_et33c"]
 [ext_resource type="Script" path="res://scenes/gameplay/speed_factor.gd" id="20_ybshx"]
+[ext_resource type="Script" path="res://scenes/gameplay/time.gd" id="21_hycui"]
 [ext_resource type="Script" path="res://scenes/gameplay/end_of_game.gd" id="24_ttg2a"]
 [ext_resource type="Script" path="res://scenes/gameplay/starting.gd" id="26_ay4hl"]
 
@@ -264,6 +266,32 @@ texture = ExtResource("7_4jp57")
 [node name="Footer" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer"]
 position = Vector2(0, 2238)
 texture = ExtResource("18_80wrp")
+
+[node name="FooterHUD" type="Control" parent="CanvasLayer/AspectRatioContainer/Footer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BallCount" type="Label" parent="CanvasLayer/AspectRatioContainer/Footer/FooterHUD"]
+layout_mode = 0
+offset_left = -441.0
+offset_top = -275.0
+offset_right = -353.0
+offset_bottom = -227.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "123"
+script = ExtResource("20_et33c")
+
+[node name="Time" type="Label" parent="CanvasLayer/AspectRatioContainer/Footer/FooterHUD"]
+layout_mode = 0
+offset_left = 242.0
+offset_top = -275.0
+offset_right = 448.0
+offset_bottom = -226.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "00:00:00"
+script = ExtResource("21_hycui")
 
 [node name="Message" type="Control" parent="CanvasLayer/AspectRatioContainer"]
 layout_mode = 2

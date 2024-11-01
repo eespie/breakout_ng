@@ -105,6 +105,8 @@ func load_game(node_data):
 	EventBus.sigNextLevel.emit(level)
 	max_level = node_data["max_level"]
 	EventBus.sigMaxLevel.emit(max_level)
+	if level == 1:
+		return
 	for brick_data in node_data["bricks"]:
 		var brick_instance = brick.instantiate()
 		brick_instance.display_brick(

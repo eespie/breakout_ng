@@ -6,6 +6,9 @@ signal sigBallShoot
 # When a ball should be removed
 signal sigBallRemoved(ball : Node2D)
 
+# When the ball count is updated
+signal sigBallCountUpdated(ball_count : int)
+
 # When no more balls on screen
 signal sigNoBallsRemaining
 

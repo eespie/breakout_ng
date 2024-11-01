@@ -22,6 +22,7 @@ func _ready():
 
 func _on_add_new_ball(balls : int):
 	ballMaxCount += balls
+	EventBus.sigBallCountUpdated.emit(ballMaxCount)
 
 # Called when the node enters the scene tree for the first time.
 func _on_ball_shoot():
@@ -73,3 +74,4 @@ func save_game():
 
 func load_game(node_data):
 	ballMaxCount = node_data["ball_count"]
+	EventBus.sigBallCountUpdated.emit(ballMaxCount)
