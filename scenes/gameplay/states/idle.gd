@@ -1,4 +1,4 @@
-extends "res://StateMachine/state.gd"
+extends "res://state_machine/state.gd"
 
 @export
 var aim_state : State

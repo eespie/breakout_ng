@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready
-var ball = preload("res://scenes/Ball/Ball.tscn")
+var ball = preload("res://scenes/ball/ball.tscn")
 
 @onready
 var raycast_line = $RayCastForAiming

@@ -1,29 +1,29 @@
 [gd_scene load_steps=9 format=3 uid="uid://bde744i0315vm"]
 
-[ext_resource type="Texture2D" uid="uid://b5h46wal3juhl" path="res://assets/sprites/rotating_coin.png" id="1_iw4q3"]
+[ext_resource type="Texture2D" uid="uid://b5h46wal3juhl" path="res://assets/sprites/rotating_coin.png" id="1_u6y5a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a6250"]
-atlas = ExtResource("1_iw4q3")
+atlas = ExtResource("1_u6y5a")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2it8"]
-atlas = ExtResource("1_iw4q3")
+atlas = ExtResource("1_u6y5a")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_32o16"]
-atlas = ExtResource("1_iw4q3")
+atlas = ExtResource("1_u6y5a")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xxavo"]
-atlas = ExtResource("1_iw4q3")
+atlas = ExtResource("1_u6y5a")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_75ony"]
-atlas = ExtResource("1_iw4q3")
+atlas = ExtResource("1_u6y5a")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fq3c0"]
-atlas = ExtResource("1_iw4q3")
+atlas = ExtResource("1_u6y5a")
 region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5glfj"]

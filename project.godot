@@ -25,8 +25,8 @@ Game="*res://addons/ggt-core/game.gd"
 Transitions="*res://addons/ggt-core/transitions/transitions.tscn"
 Scenes="*res://addons/ggt-core/scenes/scenes.gd"
 Utils="*res://addons/ggt-core/utils/utils.gd"
-EventBus="*res://globals/EventBus.gd"
-TriangulaDistribution="*res://globals/TriangulaDistribution.gd"
+EventBus="*res://globals/event_bus.gd"
+TriangulaDistribution="*res://globals/triangular_distribution.gd"
 
 [category]
 

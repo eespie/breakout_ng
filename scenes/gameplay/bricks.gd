@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready
-var brick = preload("res://scenes/Bricks/polygon_brick.tscn")
+var brick = preload("res://scenes/bricks/polygon_brick.tscn")
 
 @export
 var level: int = 0

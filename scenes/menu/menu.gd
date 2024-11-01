@@ -14,17 +14,8 @@ func _ready():
 func _on_PlayButton_pressed() -> void:
 	var params = {
 		"show_progress_bar": false,
-		"a_number": 10,
-		"a_string": "Ciao!",
-		"an_array": [1, 2, 3, 4],
-		"a_dict": {
-			"name": "test",
-			"val": 15
-		},
 	}
 	Game.change_scene_to_file("res://scenes/gameplay/gameplay.tscn", params)
-
-
 
 func _on_ExitButton_pressed() -> void:
 	# gently shutdown the game
@@ -42,3 +33,7 @@ func _on_credits_button_pressed():
 		"show_progress_bar": false
 	}
 	Game.change_scene_to_file("res://scenes/menu/credits/Credits.tscn", params)
+
+
+func _on_store_button_pressed():
+	pass # Replace with function body.

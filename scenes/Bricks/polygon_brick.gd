@@ -16,8 +16,8 @@ extends StaticBody2D
 @export var bonus2 : Sprite2D
 @export var bonus3 : Sprite2D
 
-@onready var bonus_extra_ball = preload("res://scenes/Bricks/Bonus/ExtraBall.tscn")
-@onready var bonus_extra_coin = preload("res://scenes/Bricks/Bonus/ExtraCoin.tscn")
+@onready var bonus_extra_ball = preload("res://scenes/bricks/bonus/extra_ball.tscn")
+@onready var bonus_extra_coin = preload("res://scenes/bricks/bonus/extra_coin.tscn")
 
 var life_points : int
 var starting_life_points : int
