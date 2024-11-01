@@ -68,6 +68,17 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="LinkButton" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_3ottm")
+theme_override_font_sizes/font_size = 24
+text = "Tribute to Ricochlime by Adil Hanney"
+underline = 1
+uri = "https://github.com/adil192/ricochlime"
+
+[node name="LinkButton1" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_3ottm")
@@ -77,6 +88,7 @@ underline = 1
 uri = "https://kenney.nl/"
 
 [node name="LinkButton4" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_3ottm")
@@ -86,6 +98,7 @@ underline = 1
 uri = "https://www.flaticon.com/free-icons/coin"
 
 [node name="LinkButton2" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_3ottm")
@@ -95,6 +108,7 @@ underline = 1
 uri = "https://www.flaticon.com/free-icons/travel"
 
 [node name="LinkButton3" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_3ottm")
@@ -102,6 +116,16 @@ theme_override_font_sizes/font_size = 24
 text = "Compass icons created by Freepik - Flaticon"
 underline = 1
 uri = "https://www.flaticon.com/free-icons/compass"
+
+[node name="LinkButton5" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_3ottm")
+theme_override_font_sizes/font_size = 24
+text = "Background texture by Freepik"
+underline = 1
+uri = "https://www.freepik.com/free-vector/gradient-black-background-with-wavy-lines_19538126.htm#fromView=search&page=1&position=44&uuid=a0ffe70f-a594-4098-88d3-9c606655c15c"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Control"]
 layout_mode = 1
@@ -117,7 +141,7 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="BackButton" type="Button" parent="MarginContainer/Control/VBoxContainer2"]
-custom_minimum_size = Vector2(400, 100)
+custom_minimum_size = Vector2(600, 130)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../CreditsButton")
 focus_next = NodePath("../CreditsButton")

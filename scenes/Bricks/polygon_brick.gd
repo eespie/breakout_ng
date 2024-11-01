@@ -31,14 +31,23 @@ func _ready():
 	
 func init_brick(column: int, level: int, type):
 	_set_column(column)
-	brick_mask_cracked.set_modulate(Color.TRANSPARENT)
-	starting_life_points = level
-	life_points = level
+	var bonus = 0
+	if type == 'ball':
+		bonus = get_bonus_amount([[0.95, 1], [0.99, 2], [1.0, 3]])
+	elif type == 'point':
+		bonus = get_bonus_amount([[0.85, 1], [0.95, 3], [0.98, 5], [1.0, 10]])
+	display_brick(position, level, level, type, bonus)
+		
+func display_brick(pos : Vector2, starting_life : int, life : int, type : String, bonus : int):
+	position = pos
+	last_pos = pos
+	starting_life_points = starting_life
+	life_points = life
 	brick_type = type
-	bonus_amount = 0
+	bonus_amount = bonus
+	brick_mask_cracked.set_modulate(Color(1.0,1.0,1.0,1.0*(starting_life_points - life_points)/starting_life_points))
 	if brick_type == 'ball':
 		brick_sprite.set_modulate(Color.DARK_OLIVE_GREEN)
-		bonus_amount = get_bonus_amount([[0.95, 1], [0.99, 2], [1.0, 3]])
 		if bonus_amount == 1:
 			extra_ball.show()
 		else:
@@ -50,10 +59,8 @@ func init_brick(column: int, level: int, type):
 				bonus1.show()
 				bonus2.show()
 				bonus3.show()
-				
 	elif brick_type == 'point':
 		brick_sprite.set_modulate(Color.ORANGE)
-		bonus_amount = get_bonus_amount([[0.85, 1], [0.95, 3], [0.98, 5], [1.0, 10]])
 		if bonus_amount == 1:
 			extra_coin.show()
 		else:
@@ -67,11 +74,8 @@ func init_brick(column: int, level: int, type):
 				bonus1.show()
 				bonus2.show()
 				bonus3.show()
-
 	else:
 		brick_sprite.set_modulate(Color.MEDIUM_PURPLE)
-		
-
 
 func _set_column(column: int) -> void:
 	position = Vector2(cell_margin/2 + cell_width * column, -top_margin)

@@ -33,6 +33,9 @@ signal sigEndStateMovingBricks
 # indicate the next level
 signal sigNextLevel(level : int)
 
+# indicates that the maximum level has been reached
+signal sigMaxLevel(max_level : int)
+
 # Add points to score
 signal sigAddScorePoints(points: int)
 

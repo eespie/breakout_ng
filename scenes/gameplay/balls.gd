@@ -18,6 +18,7 @@ func _ready():
 	EventBus.sigBallRemoved.connect(_on_ball_removed)
 	EventBus.sigAddNewBalls.connect(_on_add_new_ball)
 	EventBus.sigSpeedFactorChanged.connect(_on_speed_factor_changed)
+	EventBus.sigEndOfGame.connect(_on_end_of_game)
 
 func _on_add_new_ball(balls : int):
 	ballMaxCount += balls
@@ -49,6 +50,10 @@ func _on_ball_removed(ballInstance : Node2D):
 		
 func _on_speed_factor_changed(speed_factor: float):
 	ballSpeedFactor = speed_factor
+	
+func _on_end_of_game():
+	ballMaxCount = 1
+	SaveGame.save_game()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -58,3 +63,13 @@ func _process(delta):
 	ballNextShootTime -= delta
 	if ballNextShootTime < 0.0:
 		shootOneBall()
+
+func save_game():
+	var save_dict = {
+		"name" : get_path(),
+		"ball_count" : ballMaxCount
+	}
+	return save_dict
+
+func load_game(node_data):
+	ballMaxCount = node_data["ball_count"]

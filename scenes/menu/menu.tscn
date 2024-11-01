@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2gocuhw2o7py"]
+[gd_scene load_steps=7 format=3 uid="uid://c2gocuhw2o7py"]
 
+[ext_resource type="Theme" uid="uid://ducfept6pmkkm" path="res://resources/theme/theme-main.tres" id="1_wuukk"]
 [ext_resource type="FontFile" uid="uid://c23aucss1g3k5" path="res://assets/fonts/Kenney/Kenney Blocks.ttf" id="2_ctvyu"]
 [ext_resource type="FontFile" uid="uid://bh67d45bm8cxh" path="res://assets/fonts/Kenney/Kenney Bold.ttf" id="3_734e5"]
 [ext_resource type="Script" path="res://scenes/menu/game_version.gd" id="4_3hod2"]
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_wuukk")
 script = ExtResource("5")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -72,39 +74,32 @@ grow_vertical = 2
 theme_override_constants/separation = 16
 
 [node name="PlayButton" type="Button" parent="MarginContainer/Control/VBoxContainer"]
-custom_minimum_size = Vector2(400, 100)
+custom_minimum_size = Vector2(600, 130)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../CreditsButton")
 focus_next = NodePath("../CreditsButton")
-theme_override_fonts/font = ExtResource("3_734e5")
-theme_override_font_sizes/font_size = 32
+theme = ExtResource("1_wuukk")
 text = "START"
 
 [node name="StoreButton" type="Button" parent="MarginContainer/Control/VBoxContainer"]
-custom_minimum_size = Vector2(400, 100)
+custom_minimum_size = Vector2(400, 130)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../CreditsButton")
 focus_next = NodePath("../CreditsButton")
-theme_override_fonts/font = ExtResource("3_734e5")
-theme_override_font_sizes/font_size = 32
 text = "STORE"
 
 [node name="CreditsButton" type="Button" parent="MarginContainer/Control/VBoxContainer"]
-custom_minimum_size = Vector2(200, 100)
+custom_minimum_size = Vector2(200, 130)
 layout_mode = 2
 focus_neighbor_top = NodePath("../PlayButton")
 focus_previous = NodePath("../PlayButton")
-theme_override_fonts/font = ExtResource("3_734e5")
-theme_override_font_sizes/font_size = 32
 text = "CREDITS"
 
 [node name="ExitButton" type="Button" parent="MarginContainer/Control/VBoxContainer"]
-custom_minimum_size = Vector2(200, 100)
+custom_minimum_size = Vector2(200, 130)
 layout_mode = 2
 focus_neighbor_top = NodePath("../PlayButton")
 focus_previous = NodePath("../PlayButton")
-theme_override_fonts/font = ExtResource("3_734e5")
-theme_override_font_sizes/font_size = 32
 text = "EXIT"
 
 [node name="Version" type="VBoxContainer" parent="MarginContainer/Control"]
@@ -152,9 +147,11 @@ theme_type_variation = &"LabelSmall"
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_734e5")
 theme_override_font_sizes/font_size = 32
-text = "made by: Eric ESPIE"
+text = "made by:
+Eric ESPIE"
 
 [node name="Developer1" type="Label" parent="MarginContainer/Control/Credits"]
+visible = false
 layout_mode = 2
 theme_type_variation = &"LabelSmall"
 theme_override_colors/font_color = Color(0.92549, 0.92549, 0.92549, 1)

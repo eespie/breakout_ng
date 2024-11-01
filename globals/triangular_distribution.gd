@@ -11,5 +11,4 @@ func get_value(minimum: float, peak: float, maximum: float):
 	else:
 		v = maximum - sqrt((1.0 - v) * (maximum - minimum) * (maximum - peak))
 	
-	print("Triangulation: ", v)
 	return v

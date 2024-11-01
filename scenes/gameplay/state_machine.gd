@@ -1,19 +1,23 @@
 extends Node
 
-@export
-var starting_state: State
+@export var initial_state: State
+@export var from_scratch_state: State
+@export var continue_starting_state: State
 
 var current_state: State
 
 # Initialize the state machine by giving each child state a reference to the
 # parent object it belongs to and enter the default starting_state.
 func init() -> void:
-#	for child in get_children():
-#		child.parent = parent
-
 	# Initialize to the default state
-	change_state(starting_state)
-
+	change_state(initial_state)
+	
+func start_game(level : int):
+	if level == 1:
+		change_state(from_scratch_state)
+	else:
+		change_state(continue_starting_state)
+		
 # Change to the new state by first calling any exit logic on the current state.
 func change_state(new_state: State) -> void:
 	print("Changing to state: ", new_state)

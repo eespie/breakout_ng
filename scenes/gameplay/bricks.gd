@@ -5,6 +5,7 @@ var brick = preload("res://scenes/bricks/polygon_brick.tscn")
 
 @export
 var level: int = 0
+var max_level: int = 0
 var brick_life: int
 
 var tween: Tween
@@ -37,11 +38,16 @@ func _on_end_of_game():
 	if tween:
 		tween.kill()
 	game_ended = true
+	level = 0
+	SaveGame.save_game()
 
 func _generate_one_level_of_bricks():
 	level += 1
 	brick_life += 1
 	EventBus.sigNextLevel.emit(level)
+	if level > max_level:
+		max_level = level
+		EventBus.sigMaxLevel.emit(max_level)
 	var brick_types = ['ball', 'point', 'base', 'base', 'base', 'base', 'base']
 	var nb_bricks = randi_range(0, get_max_bricks()) + 2
 	var columns = {}
@@ -74,3 +80,38 @@ func _on_ball_collided(collider : Node2D, ball : Node2D):
 
 func _on_add_new_balls(balls: int):
 	pass
+
+func save_game():
+	var bricks_to_save = []
+	for brk in get_tree().get_nodes_in_group("Bricks"):
+		bricks_to_save.append({
+			"pos_x" : brk.position.x,
+			"pos_y" : brk.position.y,
+			"life_points" : brk.life_points,
+			"starting_life_points" : brk.starting_life_points,
+			"brick_type" : brk.brick_type,
+			"bonus_amount" : brk.bonus_amount
+		})
+	var save_dict = {
+		"name" : get_path(),
+		"level" : level,
+		"max_level" : max_level,
+		"bricks" : bricks_to_save
+	}
+	return save_dict
+
+func load_game(node_data):
+	level = node_data["level"]
+	EventBus.sigNextLevel.emit(level)
+	max_level = node_data["max_level"]
+	EventBus.sigMaxLevel.emit(max_level)
+	for brick_data in node_data["bricks"]:
+		var brick_instance = brick.instantiate()
+		brick_instance.display_brick(
+			Vector2(brick_data["pos_x"], brick_data["pos_y"]),
+			brick_data["starting_life_points"],
+			brick_data["life_points"],
+			brick_data["brick_type"],
+			brick_data["bonus_amount"]
+			)
+		add_child(brick_instance)
