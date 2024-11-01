@@ -156,7 +156,7 @@ horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("5_36mxb")
 
-[node name="Background" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer"]
+[node name="Background" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer" groups=["GameArea"]]
 position = Vector2(-480, 380)
 texture = ExtResource("2_eg7hc")
 centered = false
