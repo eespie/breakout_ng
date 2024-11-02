@@ -55,5 +55,6 @@ func load_game():
 			GameManager.load_game(node_data)
 		else:
 			var loaded_node = get_node(node_data["name"])
-			loaded_node.load_game(node_data)
+			if loaded_node:
+				loaded_node.load_game(node_data)
 		

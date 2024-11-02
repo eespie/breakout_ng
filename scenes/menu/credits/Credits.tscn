@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://ddr72sh4ahf56"]
 
-[ext_resource type="Script" path="res://scenes/menu/credits/credits.gd" id="1_sv2xn"]
-[ext_resource type="FontFile" uid="uid://c23aucss1g3k5" path="res://assets/fonts/Kenney/Kenney Blocks.ttf" id="1_viwlr"]
-[ext_resource type="FontFile" uid="uid://bh67d45bm8cxh" path="res://assets/fonts/Kenney/Kenney Bold.ttf" id="2_3ottm"]
+[ext_resource type="Script" path="res://scenes/menu/credits/credits.gd" id="1_pj2j4"]
+[ext_resource type="FontFile" uid="uid://c23aucss1g3k5" path="res://assets/fonts/Kenney/Kenney Blocks.ttf" id="2_jgw4p"]
+[ext_resource type="FontFile" uid="uid://bh67d45bm8cxh" path="res://assets/fonts/Kenney/Kenney Bold.ttf" id="3_43b5n"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -11,7 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_sv2xn")
+script = ExtResource("1_pj2j4")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -46,7 +46,7 @@ grow_horizontal = 2
 [node name="Title" type="Label" parent="MarginContainer/Control/CenterContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.219501, 0.219501, 0.219501, 1)
-theme_override_fonts/font = ExtResource("1_viwlr")
+theme_override_fonts/font = ExtResource("2_jgw4p")
 theme_override_font_sizes/font_size = 120
 text = "CREDITS"
 horizontal_alignment = 1
@@ -67,65 +67,132 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Ricochlime" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Tribute to Ricochlime by"
+
 [node name="LinkButton" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_3ottm")
+theme_override_fonts/font = ExtResource("3_43b5n")
 theme_override_font_sizes/font_size = 24
-text = "Tribute to Ricochlime by Adil Hanney"
+text = "Adil Hanney"
 underline = 1
 uri = "https://github.com/adil192/ricochlime"
+
+[node name="Fonts" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+Fonts created by"
 
 [node name="LinkButton1" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_3ottm")
+theme_override_fonts/font = ExtResource("3_43b5n")
 theme_override_font_sizes/font_size = 24
-text = "Fonts by Kenney"
+text = "Kenney"
 underline = 1
 uri = "https://kenney.nl/"
+
+[node name="Coins" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+Coin icons created by"
 
 [node name="LinkButton4" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_3ottm")
+theme_override_fonts/font = ExtResource("3_43b5n")
 theme_override_font_sizes/font_size = 24
-text = "Coin icons created by Freepik - Flaticon"
+text = "Freepik - Flaticon"
 underline = 1
 uri = "https://www.flaticon.com/free-icons/coin"
+
+[node name="Travel" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+Travel icons created by"
 
 [node name="LinkButton2" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_3ottm")
+theme_override_fonts/font = ExtResource("3_43b5n")
 theme_override_font_sizes/font_size = 24
-text = "Travel icons created by Freepik - Flaticon"
+text = "Freepik - Flaticon"
 underline = 1
 uri = "https://www.flaticon.com/free-icons/travel"
+
+[node name="Compass" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+Compass icons created by"
 
 [node name="LinkButton3" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_3ottm")
+theme_override_fonts/font = ExtResource("3_43b5n")
 theme_override_font_sizes/font_size = 24
-text = "Compass icons created by Freepik - Flaticon"
+text = "Freepik - Flaticon"
 underline = 1
 uri = "https://www.flaticon.com/free-icons/compass"
+
+[node name="BgTexture" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+Background texture by"
 
 [node name="LinkButton5" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_3ottm")
+theme_override_fonts/font = ExtResource("3_43b5n")
 theme_override_font_sizes/font_size = 24
-text = "Background texture by Freepik"
+text = "Freepik"
 underline = 1
 uri = "https://www.freepik.com/free-vector/gradient-black-background-with-wavy-lines_19538126.htm#fromView=search&page=1&position=44&uuid=a0ffe70f-a594-4098-88d3-9c606655c15c"
+
+[node name="Nuke" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+Nuke icons created by "
+
+[node name="LinkButton6" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_43b5n")
+theme_override_font_sizes/font_size = 24
+text = "heisenberg_jr - Flaticon"
+underline = 1
+uri = "https://www.flaticon.com/free-icons/nuke"
+
+[node name="Firework" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+Fireworks icons created by"
+
+[node name="LinkButton7" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_43b5n")
+theme_override_font_sizes/font_size = 24
+text = "Freepik - Flaticon"
+underline = 1
+uri = "https://www.flaticon.com/free-icons/fireworks"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Control"]
 layout_mode = 1
@@ -145,7 +212,7 @@ custom_minimum_size = Vector2(600, 130)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../CreditsButton")
 focus_next = NodePath("../CreditsButton")
-theme_override_fonts/font = ExtResource("2_3ottm")
+theme_override_fonts/font = ExtResource("3_43b5n")
 theme_override_font_sizes/font_size = 32
 text = "BACK
 "

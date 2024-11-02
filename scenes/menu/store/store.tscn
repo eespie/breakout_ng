@@ -1,0 +1,184 @@
+[gd_scene load_steps=8 format=3 uid="uid://cevatuov1ge7j"]
+
+[ext_resource type="Script" path="res://scenes/menu/store/store.gd" id="1_1alwh"]
+[ext_resource type="FontFile" uid="uid://c23aucss1g3k5" path="res://assets/fonts/Kenney/Kenney Blocks.ttf" id="1_e7axj"]
+[ext_resource type="FontFile" uid="uid://bh67d45bm8cxh" path="res://assets/fonts/Kenney/Kenney Bold.ttf" id="2_y6jwx"]
+[ext_resource type="Texture2D" uid="uid://5o8tsl0fecnn" path="res://assets/sprites/bricks/fireworks_brick_store.png" id="3_1xrbe"]
+[ext_resource type="Texture2D" uid="uid://bg6hob0l71yr2" path="res://assets/sprites/coins-black-big.png" id="4_0ruek"]
+[ext_resource type="Texture2D" uid="uid://ddu4ewrrp3vuy" path="res://assets/sprites/bricks/bomb_brick_store.png" id="4_ffu0g"]
+[ext_resource type="Script" path="res://scenes/menu/store/coin_amount.gd" id="4_otqk0"]
+
+[node name="Store" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1alwh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.964706, 0.878431, 0.811765, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/Control/VBoxContainer/CenterContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.219501, 0.219501, 0.219501, 1)
+theme_override_fonts/font = ExtResource("1_e7axj")
+theme_override_font_sizes/font_size = 120
+text = "STORE"
+horizontal_alignment = 1
+justification_flags = 0
+uppercase = true
+
+[node name="Wallet" type="HBoxContainer" parent="MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="CoinAmount" type="Label" parent="MarginContainer/Control/VBoxContainer/Wallet"]
+custom_minimum_size = Vector2(430, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.10748, 0.10748, 0.10748, 1)
+theme_override_fonts/font = ExtResource("2_y6jwx")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("4_otqk0")
+
+[node name="CoinsIcon" type="TextureButton" parent="MarginContainer/Control/VBoxContainer/Wallet"]
+layout_mode = 2
+texture_normal = ExtResource("4_0ruek")
+
+[node name="GridContainer2" type="GridContainer" parent="MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 50
+columns = 3
+
+[node name="Item" type="Label" parent="MarginContainer/Control/VBoxContainer/GridContainer2"]
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Item"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Price" type="Label" parent="MarginContainer/Control/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Price"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="MarginContainer/Control/VBoxContainer/GridContainer2"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Description"
+horizontal_alignment = 1
+
+[node name="FireworkButton" type="TextureButton" parent="MarginContainer/Control/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("3_1xrbe")
+
+[node name="FireworkPrice" type="Label" parent="MarginContainer/Control/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "1000"
+horizontal_alignment = 1
+
+[node name="FireworkDesc" type="Label" parent="MarginContainer/Control/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "When hit, the brick
+generate balls in
+every direction"
+horizontal_alignment = 3
+
+[node name="BombButton" type="TextureButton" parent="MarginContainer/Control/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("4_ffu0g")
+
+[node name="BombPrice" type="Label" parent="MarginContainer/Control/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "1000"
+horizontal_alignment = 1
+
+[node name="BombDesc" type="Label" parent="MarginContainer/Control/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "When hit, the brick
+will explode all
+the bricks of the
+screen"
+horizontal_alignment = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="ItemPurchased" type="Label" parent="MarginContainer/Control/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "The brick has been added
+to your inventory"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="BackButton" type="Button" parent="MarginContainer/Control/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(400, 130)
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../CreditsButton")
+focus_next = NodePath("../CreditsButton")
+theme_override_fonts/font = ExtResource("2_y6jwx")
+theme_override_font_sizes/font_size = 32
+text = "BACK
+"
+
+[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/VBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]

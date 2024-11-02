@@ -32,8 +32,11 @@ func _on_credits_button_pressed():
 	var params = {
 		"show_progress_bar": false
 	}
-	Game.change_scene_to_file("res://scenes/menu/credits/Credits.tscn", params)
+	Game.change_scene_to_file("res://scenes/menu/credits/credits.tscn", params)
 
 
 func _on_store_button_pressed():
-	pass # Replace with function body.
+	var params = {
+		"show_progress_bar": false
+	}
+	Game.change_scene_to_file("res://scenes/menu/store/store.tscn", params)

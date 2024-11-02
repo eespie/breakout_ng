@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da7fj2lt0l3ob"
-path="res://.godot/imported/hexa.png-a08fd88412dbc3070ea2eb9c03ee2664.ctex"
+uid="uid://5o8tsl0fecnn"
+path="res://.godot/imported/fireworks_brick_store.png-e5634a24d919e17772a8e92d81cb1b7c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/bricks/hexa.png"
-dest_files=["res://.godot/imported/hexa.png-a08fd88412dbc3070ea2eb9c03ee2664.ctex"]
+source_file="res://assets/sprites/bricks/fireworks_brick_store.png"
+dest_files=["res://.godot/imported/fireworks_brick_store.png-e5634a24d919e17772a8e92d81cb1b7c.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjbh8hllyu5f1"
-path="res://.godot/imported/base.png-ea1d67a815b8218879ca4d4122593bb2.ctex"
+uid="uid://ddu4ewrrp3vuy"
+path="res://.godot/imported/bomb_brick_store.png-9a14f26efbedd432d794cecaf40eff8c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/bricks/base.png"
-dest_files=["res://.godot/imported/base.png-ea1d67a815b8218879ca4d4122593bb2.ctex"]
+source_file="res://assets/sprites/bricks/bomb_brick_store.png"
+dest_files=["res://.godot/imported/bomb_brick_store.png-9a14f26efbedd432d794cecaf40eff8c.ctex"]
 
 [params]
 
