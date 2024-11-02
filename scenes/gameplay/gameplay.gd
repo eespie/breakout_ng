@@ -3,7 +3,7 @@ extends Control
 @onready
 var StateMachine = $StateMachine
 
-var level = 1
+var level = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

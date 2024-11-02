@@ -17,7 +17,14 @@ func process_input(event: InputEvent) -> State:	# Mouse in viewport coordinates.
 			EventBus.sigStopAiming.emit()
 			return run_state
 	elif event is InputEventMouseMotion:
-		if game_area.get_rect().has_point(game_area.to_local(event.position)):
+		var event_pos = game_area.to_local(event.position)
+		var game_rect = game_area.get_rect()
+		# Allow horizontal outbounding
+		if event_pos.x < 0:
+			event_pos.x = 0
+		elif event_pos.x > game_rect.size.x - 1:
+			event_pos.x = game_rect.size.x - 1
+		if game_rect.has_point(event_pos):
 			EventBus.sigMouseAiming.emit(event.position)
 		
 	return null

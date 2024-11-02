@@ -29,14 +29,14 @@ var bonus_amount : int
 func _ready():
 	EventBus.sigEndMovingBricks.connect(_on_end_moving_bricks)
 	
-func init_brick(column: int, level: int, type):
+func init_brick(column: int, life: int, type):
 	_set_column(column)
 	var bonus = 0
 	if type == 'ball':
 		bonus = get_bonus_amount([[0.95, 1], [0.99, 2], [1.0, 3]])
 	elif type == 'point':
 		bonus = get_bonus_amount([[0.85, 1], [0.95, 3], [0.98, 5], [1.0, 10]])
-	display_brick(position, level, level, type, bonus)
+	display_brick(position, life, life, type, bonus)
 		
 func display_brick(pos : Vector2, starting_life : int, life : int, type : String, bonus : int):
 	position = pos

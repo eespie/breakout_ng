@@ -6,7 +6,7 @@ var brick = preload("res://scenes/bricks/polygon_brick.tscn")
 @export
 var level: int = 0
 var max_level: int = 0
-var brick_life: int
+var brick_life: int = 0
 
 var tween: Tween
 var game_ended : bool = false
@@ -21,7 +21,7 @@ func _ready():
 # Add a new level of bricks
 # Move down all the bricks
 func _on_start_moving():
-	var turns = ceili(level / 50) + 1
+	var turns = min(ceili(level / 50) + 1, 4)
 	if tween:
 		tween.kill()
 	tween = get_tree().create_tween()
@@ -102,10 +102,11 @@ func save_game():
 
 func load_game(node_data):
 	level = node_data["level"]
+	brick_life = level
 	EventBus.sigNextLevel.emit(level)
 	max_level = node_data["max_level"]
 	EventBus.sigMaxLevel.emit(max_level)
-	if level == 1:
+	if level == 0:
 		return
 	for brick_data in node_data["bricks"]:
 		var brick_instance = brick.instantiate()

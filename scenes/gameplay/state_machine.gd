@@ -13,7 +13,7 @@ func init() -> void:
 	change_state(initial_state)
 	
 func start_game(level : int):
-	if level == 1:
+	if level == 0:
 		change_state(from_scratch_state)
 	else:
 		change_state(continue_starting_state)
