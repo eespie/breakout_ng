@@ -1,10 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://4fyoq8npekf0"]
+[gd_scene load_steps=37 format=3 uid="uid://4fyoq8npekf0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/gameplay.gd" id="1_64d0d"]
 [ext_resource type="Texture2D" uid="uid://edtwtxxl3cux" path="res://assets/sprites/bg_breakout_s.jpg" id="2_eg7hc"]
 [ext_resource type="Texture2D" uid="uid://cagq4lvo0ssyt" path="res://assets/sprites/bg_breakout_inv.png" id="2_o4b18"]
 [ext_resource type="FontFile" uid="uid://bh67d45bm8cxh" path="res://assets/fonts/Kenney/Kenney Bold.ttf" id="3_ae4a6"]
-[ext_resource type="Script" path="res://scenes/gameplay/collisions.gd" id="4_2uf3n"]
 [ext_resource type="Script" path="res://scenes/gameplay/balls.gd" id="4_3r8ga"]
 [ext_resource type="Script" path="res://scenes/gameplay/level.gd" id="4_d63jg"]
 [ext_resource type="Script" path="res://scenes/gameplay/high_score.gd" id="5_8vtbj"]
@@ -12,10 +11,12 @@
 [ext_resource type="Script" path="res://scenes/gameplay/score.gd" id="5_36mxb"]
 [ext_resource type="Texture2D" uid="uid://bg6hob0l71yr2" path="res://assets/sprites/coins-black-big.png" id="6_2v7iq"]
 [ext_resource type="Texture2D" uid="uid://dk2dlhxeew1y6" path="res://assets/sprites/cannon.png" id="7_4jp57"]
+[ext_resource type="Script" path="res://scenes/gameplay/replay_buttons.gd" id="8_fo2tb"]
 [ext_resource type="Script" path="res://scenes/gameplay/ray_cast_for_aiming.gd" id="8_patm2"]
 [ext_resource type="Script" path="res://scenes/gameplay/state_machine.gd" id="9_72q7v"]
 [ext_resource type="Texture2D" uid="uid://bgcfet4ieymxh" path="res://assets/sprites/redzone.png" id="9_a5q4o"]
 [ext_resource type="Texture2D" uid="uid://c4nqy8deo4f4g" path="res://assets/sprites/ball_26_wheat_line.png" id="9_hau7t"]
+[ext_resource type="Texture2D" uid="uid://glysyt10l6jl" path="res://assets/sprites/replay.png" id="9_ss7xo"]
 [ext_resource type="Script" path="res://scenes/gameplay/aiming.gd" id="10_0mjo4"]
 [ext_resource type="Script" path="res://scenes/gameplay/red_zone.gd" id="10_vm5rp"]
 [ext_resource type="Script" path="res://scenes/gameplay/states/move_bricks.gd" id="11_acmy4"]
@@ -149,7 +150,7 @@ layout_mode = 2
 position = Vector2(388, -49)
 texture = ExtResource("6_2v7iq")
 
-[node name="Score" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD/HBoxContainer3/VBoxContainer" groups=["Persist"]]
+[node name="Score" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD/HBoxContainer3/VBoxContainer"]
 custom_minimum_size = Vector2(430, 0)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -161,12 +162,32 @@ horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("5_36mxb")
 
+[node name="ReplayButtons" type="TextureButton" parent="CanvasLayer/AspectRatioContainer/HUD" groups=["Persist"]]
+visible = false
+layout_mode = 0
+offset_left = -38.0
+offset_top = 153.0
+offset_right = 35.0
+offset_bottom = 283.0
+texture_normal = ExtResource("9_ss7xo")
+script = ExtResource("8_fo2tb")
+
+[node name="ReplayCount" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD/ReplayButtons"]
+layout_mode = 0
+offset_left = -11.0
+offset_top = 67.0
+offset_right = 76.0
+offset_bottom = 115.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "3"
+horizontal_alignment = 1
+
 [node name="Background" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer" groups=["GameArea"]]
 position = Vector2(-480, 380)
 texture = ExtResource("2_eg7hc")
 centered = false
 
-[node name="RedZone" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer/Background" groups=["Persist"]]
+[node name="RedZone" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer/Background"]
 modulate = Color(1, 0, 0, 0.478431)
 texture = ExtResource("9_a5q4o")
 centered = false
@@ -174,7 +195,6 @@ offset = Vector2(0, 1291)
 script = ExtResource("10_vm5rp")
 
 [node name="Collisions" type="Node2D" parent="CanvasLayer/AspectRatioContainer/Background"]
-script = ExtResource("4_2uf3n")
 
 [node name="TopBorder" type="StaticBody2D" parent="CanvasLayer/AspectRatioContainer/Background/Collisions"]
 collision_mask = 4
@@ -229,7 +249,7 @@ shape = SubResource("RectangleShape2D_la4wx")
 [node name="Bricks" type="Node2D" parent="CanvasLayer/AspectRatioContainer/Background" groups=["Persist"]]
 script = ExtResource("11_s2rws")
 
-[node name="Balls" type="Node2D" parent="CanvasLayer/AspectRatioContainer/Background" groups=["Persist"]]
+[node name="Balls" type="Node2D" parent="CanvasLayer/AspectRatioContainer/Background"]
 position = Vector2(480, 1450)
 script = ExtResource("4_3r8ga")
 
@@ -354,3 +374,5 @@ idle_state = NodePath("../Idle")
 
 [node name="EndOfGame" type="Node" parent="StateMachine"]
 script = ExtResource("24_ttg2a")
+
+[connection signal="pressed" from="CanvasLayer/AspectRatioContainer/HUD/ReplayButtons" to="CanvasLayer/AspectRatioContainer/HUD/ReplayButtons" method="_on_pressed"]

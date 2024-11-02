@@ -6,6 +6,11 @@ extends Node
 # dict of relevant variables.
 func save_game():
 	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	
+	var node_data = GameManager.save_game()
+	var json_string = JSON.stringify(node_data)
+	save_file.store_line(json_string)
+	
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	for node in save_nodes:
 		# Check the node has a save function.
@@ -14,10 +19,10 @@ func save_game():
 			continue
 
 		# Call the node's save function.
-		var node_data = node.call("save_game")
+		node_data = node.call("save_game")
 
 		# JSON provides a static method to serialized JSON string.
-		var json_string = JSON.stringify(node_data)
+		json_string = JSON.stringify(node_data)
 
 		# Store the save dictionary as a new line in the save file.
 		save_file.store_line(json_string)
@@ -46,6 +51,9 @@ func load_game():
 		# Get the data from the JSON object.
 		var node_data = json.data
 		
-		var loaded_node = get_node(node_data["name"])
-		loaded_node.load_game(node_data)
+		if node_data["name"] == "GameManager":
+			GameManager.load_game(node_data)
+		else:
+			var loaded_node = get_node(node_data["name"])
+			loaded_node.load_game(node_data)
 		

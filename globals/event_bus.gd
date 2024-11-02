@@ -1,5 +1,11 @@
 extends Node
 
+# Entering a StateMachine state
+signal sigEnterState(state : String)
+
+# Exiting a StateMachine state
+signal sigExitState(state : String)
+
 # When a ball should start
 signal sigBallShoot
 
@@ -42,6 +48,9 @@ signal sigMaxLevel(max_level : int)
 # Add points to score
 signal sigAddScorePoints(points: int)
 
+# When score points is updated
+signal sigScorePointsUpdated
+
 # Add a new ball
 signal sigAddNewBalls(balls: int)
 
@@ -50,3 +59,6 @@ signal sigEndOfGame
 
 # Changed the speed factor
 signal sigSpeedFactorChanged(speed_factor : float)
+
+# Add Replay bonuses
+signal sigBonusAddReplay(count : int)

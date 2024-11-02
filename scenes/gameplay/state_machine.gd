@@ -12,8 +12,8 @@ func init() -> void:
 	# Initialize to the default state
 	change_state(initial_state)
 	
-func start_game(level : int):
-	if level == 0:
+func start_game():
+	if GameManager.level == 0:
 		change_state(from_scratch_state)
 	else:
 		change_state(continue_starting_state)
@@ -23,9 +23,11 @@ func change_state(new_state: State) -> void:
 	print("Changing to state: ", new_state)
 	if current_state:
 		current_state.exit()
+		EventBus.sigExitState.emit(current_state.get_name())
 
 	current_state = new_state
 	current_state.enter()
+	EventBus.sigEnterState.emit(current_state.get_name())
 	
 # Pass through functions for the Player to call,
 # handling state changes as needed.

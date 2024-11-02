@@ -28,6 +28,7 @@ Utils="*res://addons/ggt-core/utils/utils.gd"
 EventBus="*res://globals/event_bus.gd"
 TriangulaDistribution="*res://globals/triangular_distribution.gd"
 SaveGame="*res://globals/save_game.gd"
+GameManager="*res://globals/game_manager.gd"
 
 [category]
 

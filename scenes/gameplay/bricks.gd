@@ -3,25 +3,18 @@ extends Node2D
 @onready
 var brick = preload("res://scenes/bricks/polygon_brick.tscn")
 
-@export
-var level: int = 0
-var max_level: int = 0
-var brick_life: int = 0
-
 var tween: Tween
-var game_ended : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	EventBus.sigStartMovingBricks.connect(_on_start_moving)
 	EventBus.sigBallsCollided.connect(_on_ball_collided)
 	EventBus.sigEndOfGame.connect(_on_end_of_game)
-	EventBus.sigAddNewBalls.connect(_on_add_new_balls)
 
 # Add a new level of bricks
 # Move down all the bricks
 func _on_start_moving():
-	var turns = min(ceili(level / 50) + 1, 4)
+	var turns = GameManager.get_number_of_brick_lines()
 	if tween:
 		tween.kill()
 	tween = get_tree().create_tween()
@@ -34,23 +27,14 @@ func _on_start_moving():
 	tween.tween_callback(EventBus.sigEndStateMovingBricks.emit)
 	
 func _on_end_of_game():
-	print("End of game")
 	if tween:
 		tween.kill()
-	game_ended = true
-	level = 0
-	SaveGame.save_game()
 	tween = get_tree().create_tween()
 	for brk in get_tree().get_nodes_in_group("Bricks"):
 		tween.tween_callback(brk.brick_kill).set_delay(.1)
 
 func _generate_one_level_of_bricks():
-	level += 1
-	brick_life += 1
-	EventBus.sigNextLevel.emit(level)
-	if level > max_level:
-		max_level = level
-		EventBus.sigMaxLevel.emit(max_level)
+	EventBus.sigNextLevel.emit(GameManager.level + 1)
 	var brick_types = ['ball', 'point', 'base', 'base', 'base', 'base', 'base']
 	var nb_bricks = randi_range(0, get_max_bricks()) + 2
 	var columns = {}
@@ -60,7 +44,7 @@ func _generate_one_level_of_bricks():
 		while columns.has(column):
 			column = randi_range(0, 7)
 		columns[column] = column
-		brick_instance.init_brick(column, brick_life, brick_types[i])
+		brick_instance.init_brick(column, GameManager.brick_life, brick_types[i])
 		add_child(brick_instance)
 
 # Move down bricks using step between 0 and 1
@@ -70,8 +54,8 @@ func _move_down_bricks(step: float):
 
 # Use weighted random to get the number of additional bricks
 func get_max_bricks() -> int:
-	var curr_level = level
-	if level > 240:
+	var curr_level = GameManager.level
+	if curr_level > 240:
 		curr_level = 240
 	var value = TriangulaDistribution.get_value(0, curr_level, 250)
 	
@@ -80,9 +64,6 @@ func get_max_bricks() -> int:
 func _on_ball_collided(collider : Node2D, ball : Node2D):
 	if collider.is_in_group("Bricks"):
 		collider.ball_collided(ball)
-
-func _on_add_new_balls(balls: int):
-	pass
 
 func save_game():
 	var bricks_to_save = []
@@ -97,19 +78,12 @@ func save_game():
 		})
 	var save_dict = {
 		"name" : get_path(),
-		"level" : level,
-		"max_level" : max_level,
 		"bricks" : bricks_to_save
 	}
 	return save_dict
 
 func load_game(node_data):
-	level = node_data["level"]
-	brick_life = level
-	EventBus.sigNextLevel.emit(level)
-	max_level = node_data["max_level"]
-	EventBus.sigMaxLevel.emit(max_level)
-	if level == 0:
+	if GameManager.level == 0:
 		return
 	for brick_data in node_data["bricks"]:
 		var brick_instance = brick.instantiate()
