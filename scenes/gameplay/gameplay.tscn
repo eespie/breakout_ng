@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://4fyoq8npekf0"]
+[gd_scene load_steps=38 format=3 uid="uid://4fyoq8npekf0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/gameplay.gd" id="1_64d0d"]
 [ext_resource type="Texture2D" uid="uid://edtwtxxl3cux" path="res://assets/sprites/bg_breakout_s.jpg" id="2_eg7hc"]
@@ -31,6 +31,7 @@
 [ext_resource type="Script" path="res://scenes/gameplay/speed_factor.gd" id="20_ybshx"]
 [ext_resource type="Script" path="res://scenes/gameplay/time.gd" id="21_hycui"]
 [ext_resource type="Script" path="res://scenes/gameplay/end_of_game.gd" id="24_ttg2a"]
+[ext_resource type="Script" path="res://scenes/gameplay/replay_bonus_message.gd" id="26_6d4s2"]
 [ext_resource type="Script" path="res://scenes/gameplay/starting.gd" id="26_ay4hl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gi71a"]
@@ -162,7 +163,7 @@ horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("5_36mxb")
 
-[node name="ReplayButtons" type="TextureButton" parent="CanvasLayer/AspectRatioContainer/HUD" groups=["Persist"]]
+[node name="ReplayButtons" type="TextureButton" parent="CanvasLayer/AspectRatioContainer/HUD"]
 visible = false
 layout_mode = 0
 offset_left = -38.0
@@ -316,7 +317,7 @@ script = ExtResource("21_hycui")
 [node name="Message" type="Control" parent="CanvasLayer/AspectRatioContainer"]
 layout_mode = 2
 
-[node name="GameOver" type="Label" parent="CanvasLayer/AspectRatioContainer/Message"]
+[node name="GameOverMessage" type="Label" parent="CanvasLayer/AspectRatioContainer/Message"]
 visible = false
 layout_mode = 2
 offset_left = -349.0
@@ -330,7 +331,7 @@ text = "Game Over"
 horizontal_alignment = 1
 script = ExtResource("19_f2ip5")
 
-[node name="SpeedFactor" type="Label" parent="CanvasLayer/AspectRatioContainer/Message"]
+[node name="SpeedFactorMessage" type="Label" parent="CanvasLayer/AspectRatioContainer/Message"]
 visible = false
 layout_mode = 2
 offset_left = -347.0
@@ -343,6 +344,19 @@ theme_override_font_sizes/font_size = 72
 text = "1.0X"
 horizontal_alignment = 1
 script = ExtResource("20_ybshx")
+
+[node name="ReplayBonusMessage" type="Label" parent="CanvasLayer/AspectRatioContainer/Message"]
+visible = false
+layout_mode = 0
+offset_left = -397.0
+offset_top = 984.0
+offset_right = 407.0
+offset_bottom = 1132.0
+theme_override_font_sizes/font_size = 48
+text = "Complete clean-up
+Replay bonus added"
+horizontal_alignment = 1
+script = ExtResource("26_6d4s2")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "from_scratch_state", "continue_starting_state")]
 script = ExtResource("9_72q7v")

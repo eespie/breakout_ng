@@ -8,7 +8,7 @@ var offset_start = 1413
 func _ready():
 	EventBus.sigNextLevel.connect(_on_next_level)
 
-func _on_next_level(level : int):
+func _on_next_level(_level : int):
 	var height = GameManager.get_number_of_brick_lines()
 	if tween:
 		tween.kill()

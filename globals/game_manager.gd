@@ -1,25 +1,36 @@
 extends Node
 
 var level: int = 0
-var max_level: int = 0
 var brick_life: int = 0
-
 var ball_max_count: int = 1
 
+var max_level: int = 0
 var total_points: int = 0
-
 var replay_bonus : int = 0
 
+var is_replay_asked : int = 0
+
+var state = null
 
 func _ready():
 	EventBus.sigAddScorePoints.connect(_on_add_point_to_score)
 	EventBus.sigNextLevel.connect(_on_next_level)
 	EventBus.sigAddNewBalls.connect(_on_add_new_ball)
+	EventBus.sigNoBallsRemaining.connect(_on_end_of_round)
+	EventBus.sigEndStateMovingBricks.connect(_on_end_moving_bricks)
 	EventBus.sigEndOfGame.connect(_on_end_of_game)
+	EventBus.sigEnterState.connect(_on_enter_state)
+	EventBus.sigExitState.connect(_on_exit_state)
 
 func get_number_of_brick_lines() -> int:
 	return min(ceili(level / 50) + 1, 4)
 
+func update_replay_bonus(bonus : int):
+	replay_bonus += bonus
+	EventBus.sigReplayBonusUpdated.emit(bonus)
+	if bonus < 1:
+		is_replay_asked += 1
+		Game.restart_scene()
 
 func _on_add_point_to_score(points: int):
 	total_points += points
@@ -35,11 +46,25 @@ func _on_next_level(lvl : int):
 func _on_add_new_ball(balls : int):
 	ball_max_count += balls
 	EventBus.sigBallCountUpdated.emit(ball_max_count)
-	
+
+func _on_end_of_round():
+	is_replay_asked = 0
+	SaveGame.save_game()
+
+func _on_end_moving_bricks():
+	SaveGame.save_game()
+
 func _on_end_of_game():
 	level = 0
+	brick_life = 0
 	ball_max_count = 1
 	SaveGame.save_game()
+
+func _on_enter_state(state : String):
+	self.state = state
+
+func _on_exit_state(_state : String):
+	self.state = null
 
 func save_game():
 	var save_dict = {
@@ -64,6 +89,9 @@ func load_game(node_data):
 	EventBus.sigScorePointsUpdated.emit()
 	
 	replay_bonus = node_data["replay_bonus"]
+	if is_replay_asked > 0:
+		replay_bonus -= is_replay_asked
+	EventBus.sigReplayBonusUpdated.emit(0)
 	
 	ball_max_count = node_data["ball_max_count"]
 	EventBus.sigBallCountUpdated.emit(ball_max_count)

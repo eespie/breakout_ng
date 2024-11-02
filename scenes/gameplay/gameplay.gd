@@ -5,20 +5,11 @@ var StateMachine = $StateMachine
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	EventBus.sigNoBallsRemaining.connect(_on_end_of_round)
-	EventBus.sigEndStateMovingBricks.connect(_on_end_moving_bricks)
 	StateMachine.init()
 
 func start():
 	SaveGame.load_game()
 	StateMachine.start_game()
-
-func _on_end_of_round():
-	SaveGame.save_game()
-	print("End of Round")
-	
-func _on_end_moving_bricks():
-	SaveGame.save_game()
 
 func _process(delta):
 	StateMachine.process_frame(delta)

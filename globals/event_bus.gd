@@ -60,5 +60,5 @@ signal sigEndOfGame
 # Changed the speed factor
 signal sigSpeedFactorChanged(speed_factor : float)
 
-# Add Replay bonuses
-signal sigBonusAddReplay(count : int)
+# Bonus replay updated
+signal sigReplayBonusUpdated(bonus : int)
