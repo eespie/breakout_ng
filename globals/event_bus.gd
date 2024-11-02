@@ -62,3 +62,12 @@ signal sigSpeedFactorChanged(speed_factor : float)
 
 # Bonus replay updated
 signal sigReplayBonusUpdated(bonus : int)
+
+# Permanent data have been loaded
+signal sigLoadPermanentDataDone
+
+###################
+# Store
+
+# Item purchased
+signal sigStoreItemPurchased(name : String, amount : int)

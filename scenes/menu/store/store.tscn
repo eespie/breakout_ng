@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cevatuov1ge7j"]
+[gd_scene load_steps=16 format=3 uid="uid://cevatuov1ge7j"]
 
 [ext_resource type="Script" path="res://scenes/menu/store/store.gd" id="1_1alwh"]
 [ext_resource type="FontFile" uid="uid://c23aucss1g3k5" path="res://assets/fonts/Kenney/Kenney Blocks.ttf" id="1_e7axj"]
@@ -7,6 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://bg6hob0l71yr2" path="res://assets/sprites/coins-black-big.png" id="4_0ruek"]
 [ext_resource type="Texture2D" uid="uid://ddu4ewrrp3vuy" path="res://assets/sprites/bricks/bomb_brick_store.png" id="4_ffu0g"]
 [ext_resource type="Script" path="res://scenes/menu/store/coin_amount.gd" id="4_otqk0"]
+[ext_resource type="Texture2D" uid="uid://bimsskttru0nf" path="res://assets/sprites/bricks/toxic_brick_store.png" id="6_4dpik"]
+[ext_resource type="Texture2D" uid="uid://cfpvyeaick0x4" path="res://assets/sprites/bricks/toxic_brick_store_disabled.png" id="7_a8whx"]
+[ext_resource type="Script" path="res://scenes/menu/store/toxic_button.gd" id="8_l7ogv"]
+[ext_resource type="Texture2D" uid="uid://ddsdpuaucst75" path="res://assets/sprites/bricks/fireworks_brick_store_disabled.png" id="9_uuy8n"]
+[ext_resource type="Texture2D" uid="uid://dvt01vylupou2" path="res://assets/sprites/bricks/bomb_brick_store_disabled.png" id="11_casep"]
+[ext_resource type="Script" path="res://scenes/menu/store/firework_button.gd" id="11_ina5o"]
+[ext_resource type="Script" path="res://scenes/menu/store/bomb_button.gd" id="14_cvnhe"]
+[ext_resource type="Script" path="res://scenes/menu/store/item_purchased.gd" id="15_ks2lm"]
 
 [node name="Store" type="Control"]
 layout_mode = 3
@@ -110,10 +118,35 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Description"
 horizontal_alignment = 1
 
+[node name="ToxicButton" type="TextureButton" parent="MarginContainer/Control/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("6_4dpik")
+texture_disabled = ExtResource("7_a8whx")
+script = ExtResource("8_l7ogv")
+
+[node name="ToxicPrice" type="Label" parent="MarginContainer/Control/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "500"
+horizontal_alignment = 1
+
+[node name="ToxicDesc" type="Label" parent="MarginContainer/Control/VBoxContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "When hit, the brick
+will reduce the
+life of all the
+bricks by half"
+
 [node name="FireworkButton" type="TextureButton" parent="MarginContainer/Control/VBoxContainer/GridContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = ExtResource("3_1xrbe")
+texture_disabled = ExtResource("9_uuy8n")
+script = ExtResource("11_ina5o")
 
 [node name="FireworkPrice" type="Label" parent="MarginContainer/Control/VBoxContainer/GridContainer2"]
 layout_mode = 2
@@ -129,18 +162,19 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "When hit, the brick
 generate balls in
 every direction"
-horizontal_alignment = 3
 
 [node name="BombButton" type="TextureButton" parent="MarginContainer/Control/VBoxContainer/GridContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = ExtResource("4_ffu0g")
+texture_disabled = ExtResource("11_casep")
+script = ExtResource("14_cvnhe")
 
 [node name="BombPrice" type="Label" parent="MarginContainer/Control/VBoxContainer/GridContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "1000"
+text = "2000"
 horizontal_alignment = 1
 
 [node name="BombDesc" type="Label" parent="MarginContainer/Control/VBoxContainer/GridContainer2"]
@@ -151,7 +185,6 @@ text = "When hit, the brick
 will explode all
 the bricks of the
 screen"
-horizontal_alignment = 3
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/Control/VBoxContainer"]
 layout_mode = 2
@@ -159,12 +192,14 @@ size_flags_horizontal = 4
 theme_override_constants/separation = 20
 
 [node name="ItemPurchased" type="Label" parent="MarginContainer/Control/VBoxContainer/VBoxContainer3"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "The brick has been added
 to your inventory"
 horizontal_alignment = 1
+script = ExtResource("15_ks2lm")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Control/VBoxContainer"]
 layout_mode = 2
@@ -181,4 +216,7 @@ theme_override_font_sizes/font_size = 32
 text = "BACK
 "
 
+[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/GridContainer2/ToxicButton" to="MarginContainer/Control/VBoxContainer/GridContainer2/ToxicButton" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/GridContainer2/FireworkButton" to="MarginContainer/Control/VBoxContainer/GridContainer2/FireworkButton" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/GridContainer2/BombButton" to="MarginContainer/Control/VBoxContainer/GridContainer2/BombButton" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/Control/VBoxContainer/VBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]

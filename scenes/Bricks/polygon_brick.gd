@@ -78,7 +78,7 @@ func display_brick(pos : Vector2, starting_life : int, life : int, type : String
 		brick_sprite.set_modulate(Color.MEDIUM_PURPLE)
 
 func _set_column(column: int) -> void:
-	position = Vector2(cell_margin/2 + cell_width * column, -top_margin)
+	position = Vector2(roundi(cell_margin/2.0 + cell_width * column), -top_margin)
 	last_pos = position
 	hide()
 	
