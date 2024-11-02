@@ -40,6 +40,9 @@ func _on_end_of_game():
 	game_ended = true
 	level = 0
 	SaveGame.save_game()
+	tween = get_tree().create_tween()
+	for brk in get_tree().get_nodes_in_group("Bricks"):
+		tween.tween_callback(brk.brick_kill).set_delay(.1)
 
 func _generate_one_level_of_bricks():
 	level += 1

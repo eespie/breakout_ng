@@ -89,28 +89,30 @@ func move_down(step: float):
 
 func _on_end_moving_bricks():
 	last_pos = position
-		
 
 func ball_collided(_ball : Node2D):
 	life_points -= 1
 	brick_mask_cracked.set_modulate(Color(1.0,1.0,1.0,1.0*(starting_life_points - life_points)/starting_life_points))
-		
 	if life_points == 0:
-		# avoid future collisions
-		set_collision_layer_value(2, false)
-		var tween = get_tree().create_tween()
-		tween.tween_property(brick_sprite, "modulate", Color.RED, 0.1).set_trans(Tween.TRANS_SINE)
-		brick_mask.hide()
-		brick_mask_cracked.hide()
-		extra_ball.hide()
-		extra_balls.hide()
-		extra_coin.hide()
-		extra_coins.hide()
-		bonus1.hide()
-		bonus2.hide()
-		bonus3.hide()
-		tween.tween_property(brick_sprite, "scale", Vector2(), 0.1).set_trans(Tween.TRANS_BOUNCE)
-		
+		brick_kill(true)
+
+func brick_kill(can_get_points : bool = false):
+	# avoid future collisions
+	set_collision_layer_value(2, false)
+	var tween = get_tree().create_tween()
+	tween.tween_property(brick_sprite, "modulate", Color.RED, 0.1).set_trans(Tween.TRANS_SINE)
+	brick_mask.hide()
+	brick_mask_cracked.hide()
+	extra_ball.hide()
+	extra_balls.hide()
+	extra_coin.hide()
+	extra_coins.hide()
+	bonus1.hide()
+	bonus2.hide()
+	bonus3.hide()
+	tween.tween_property(brick_sprite, "scale", Vector2(), 0.1).set_trans(Tween.TRANS_BOUNCE)
+	
+	if can_get_points:
 		if brick_type == 'ball':
 			var bonus_instance = bonus_extra_ball.instantiate()
 			bonus_instance.position = Vector2(46, 61)
@@ -133,7 +135,7 @@ func ball_collided(_ball : Node2D):
 			tween.tween_property(bonus_instance, "global_position", target.global_position, 0.8)
 			tween.tween_callback(_earn_bonus)
 
-		tween.tween_callback(self.queue_free)
+	tween.tween_callback(self.queue_free)
 
 func get_bonus_amount(steps) -> int:
 	var v = randf()

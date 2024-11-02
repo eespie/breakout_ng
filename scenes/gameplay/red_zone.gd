@@ -5,6 +5,13 @@ var tween
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	EventBus.sigNextLevel.connect(_on_next_level)
+	EventBus.sigEndOfGame.connect(_on_end_of_game)
+
+func _on_end_of_game():
+	if tween:
+		tween.kill()
+	tween = get_tree().create_tween()
+	tween.tween_property(self, "offset", Vector2(0, 1291), 1.0)
 	
 func _on_next_level(level : int):
 	if level > 0 and level < 151 and level % 50 == 0:
