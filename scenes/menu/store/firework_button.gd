@@ -12,7 +12,6 @@ func _on_data_loaded():
 
 
 func _on_pressed():
-	GameManager.update_total_points(-1000)
 	GameManager.add_item("Firework")
 	SaveGame.save_permanent_data()
 	EventBus.sigStoreItemPurchased.emit("Firework", 1000)

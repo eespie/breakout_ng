@@ -17,6 +17,7 @@ var state = null
 
 func _ready():
 	EventBus.sigAddScorePoints.connect(update_total_points)
+	EventBus.sigStoreItemPurchased.connect(_on_item_purchased)
 	EventBus.sigNextLevel.connect(_on_next_level)
 	EventBus.sigAddNewBalls.connect(_on_add_new_ball)
 	EventBus.sigNoBallsRemaining.connect(_on_end_of_round)
@@ -74,6 +75,10 @@ func _on_enter_state(_state : String):
 
 func _on_exit_state(_state : String):
 	state = null
+
+func _on_item_purchased(_name : String, amount : int):
+	total_points -= amount
+	EventBus.sigScorePointsUpdated.emit()
 
 func save_game():
 	var save_dict = {

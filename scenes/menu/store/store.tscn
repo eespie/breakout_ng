@@ -56,6 +56,7 @@ grow_vertical = 2
 theme_override_constants/separation = 50
 
 [node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 440)
 layout_mode = 2
 
 [node name="Title" type="Label" parent="MarginContainer/Control/VBoxContainer/CenterContainer2"]

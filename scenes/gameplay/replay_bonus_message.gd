@@ -1,6 +1,6 @@
 extends Label
 
-var tween
+var tween : Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,4 +13,5 @@ func _on_replay_bonus_updated(bonus : int):
 		show()
 		set_modulate(Color.WHITE)
 		tween = get_tree().create_tween()
-		tween.tween_property(self, "modulate", Color.TRANSPARENT, 2.0)
+		tween.tween_property(self, "modulate", Color.WHITE, 1.5)
+		tween.tween_property(self, "modulate", Color.TRANSPARENT, 0.5)

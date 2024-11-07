@@ -11,7 +11,6 @@ func _on_data_loaded():
 		set_disabled(false)
 
 func _on_pressed():
-	GameManager.update_total_points(-500)
 	GameManager.add_item("Toxic")
 	SaveGame.save_permanent_data()
 	EventBus.sigStoreItemPurchased.emit("Toxic", 500)
