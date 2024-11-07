@@ -12,6 +12,6 @@ func _on_data_loaded():
 
 
 func _on_pressed():
-	GameManager.add_item("Explosive")
+	GameManager.add_item("Bomb")
 	SaveGame.save_permanent_data()
-	EventBus.sigStoreItemPurchased.emit("Explosive", 2000)
+	EventBus.sigStoreItemPurchased.emit("Bomb", 2000)

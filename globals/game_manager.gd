@@ -40,11 +40,11 @@ func update_total_points(points : int):
 	total_points += points
 	EventBus.sigScorePointsUpdated.emit()
 
-func add_item(name : String):
+func add_item(_name : String):
 	var amount = 0
-	if items.has(name):
-		amount = items[name]
-	items[name] = amount + 1
+	if items.has(_name):
+		amount = items[_name]
+	items[_name] = amount + 1
 
 func _on_next_level(lvl : int):
 	level = lvl

@@ -5,4 +5,10 @@ func _ready():
 	EventBus.sigScorePointsUpdated.connect(_on_point_to_score_updated)
 
 func _on_point_to_score_updated():
-	set_text(str(GameManager.total_points))
+	var points = GameManager.total_points
+	if points > 10000:
+		points = "%.1fk" % (points / 1000.0)
+	else:
+		points = str(points)
+	
+	set_text(points)
