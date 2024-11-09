@@ -101,7 +101,7 @@ func _on_end_moving_bricks():
 func ball_collided(_ball : Node2D):
 	set_life_points(life_points - 1)
 	
-func set_life_points(points : int):
+func set_life_points(points : int = 0):
 	life_points = points
 	brick_mask_cracked.set_modulate(Color(1.0,1.0,1.0,1.0*(starting_life_points - life_points)/starting_life_points))
 	if life_points == 0:

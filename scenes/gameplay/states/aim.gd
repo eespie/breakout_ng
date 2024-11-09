@@ -1,11 +1,13 @@
 extends "res://state_machine/state.gd"
 
-@export
-var run_state: State
+@export var run_state: State
+@export var idle_state: State
 
 var game_area : Sprite2D
+var elapsed = 0
 
 func enter() -> void:
+	elapsed = Time.get_unix_time_from_system()
 	# Store the game area to restrict the aiming
 	for bg in get_tree().get_nodes_in_group("GameArea"):
 		game_area = bg
@@ -14,6 +16,9 @@ func process_input(event: InputEvent) -> State:	# Mouse in viewport coordinates.
 	if event is InputEventMouseButton:
 		#var pos = make_input_local(event).position
 		if not event.is_pressed():
+			elapsed = Time.get_unix_time_from_system() - elapsed
+			if elapsed < 1.0:
+				return idle_state
 			EventBus.sigStopAiming.emit()
 			return run_state
 	elif event is InputEventMouseMotion:
