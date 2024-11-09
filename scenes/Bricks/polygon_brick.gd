@@ -33,6 +33,9 @@ var bonus_amount : int
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	EventBus.sigEndMovingBricks.connect(_on_end_moving_bricks)
+	if bonus_masks.has(brick_type):
+		bonus_masks[brick_type].show()
+	
 	
 func init_brick(column: int, life: int, type):
 	_set_column(column)
@@ -82,7 +85,6 @@ func display_brick(pos : Vector2, starting_life : int, life : int, type : String
 	else:
 		brick_sprite.set_modulate(Color.MEDIUM_PURPLE)
 	
-
 func _set_column(column: int) -> void:
 	position = Vector2(roundi(cell_margin/2.0 + cell_width * column), -top_margin)
 	last_pos = position

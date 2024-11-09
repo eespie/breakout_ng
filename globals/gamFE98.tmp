@@ -49,8 +49,7 @@ func add_item(_name : String):
 func remove_item(_name : String):
 	if items.has(_name):
 		items[_name] = items[_name] - 1
-		SaveGame.save_game()
-		EventBus.sigBonusesUpdated.emit()
+		SaveGame.save_permanent_data()
 
 func _on_next_level(lvl : int):
 	level = lvl

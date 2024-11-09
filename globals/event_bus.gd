@@ -51,6 +51,9 @@ signal sigAddScorePoints(points: int)
 # When score points is updated
 signal sigScorePointsUpdated
 
+# When score points is updated
+signal sigBonusesUpdated
+
 # Add a new ball
 signal sigAddNewBalls(balls: int)
 

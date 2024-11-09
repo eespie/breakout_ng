@@ -6,6 +6,7 @@ var count = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	EventBus.sigLoadPermanentDataDone.connect(_on_data_loaded)
+	EventBus.sigBonusesUpdated.connect(_on_data_loaded)
 
 func _get_drag_data(at_position):
 	if count == 0:
