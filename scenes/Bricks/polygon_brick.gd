@@ -18,6 +18,11 @@ extends StaticBody2D
 
 @onready var bonus_extra_ball = preload("res://scenes/bricks/bonus/extra_ball.tscn")
 @onready var bonus_extra_coin = preload("res://scenes/bricks/bonus/extra_coin.tscn")
+@onready var bonus_masks = {
+	'Toxic' : $Deco/Toxic,
+	'Firework' : $Deco/Firework,
+	'Bomb' : $Deco/Bomb
+	}
 
 var life_points : int
 var starting_life_points : int
@@ -76,6 +81,7 @@ func display_brick(pos : Vector2, starting_life : int, life : int, type : String
 				bonus3.show()
 	else:
 		brick_sprite.set_modulate(Color.MEDIUM_PURPLE)
+	
 
 func _set_column(column: int) -> void:
 	position = Vector2(roundi(cell_margin/2.0 + cell_width * column), -top_margin)
@@ -91,10 +97,21 @@ func _on_end_moving_bricks():
 	last_pos = position
 
 func ball_collided(_ball : Node2D):
-	life_points -= 1
+	set_life_points(life_points - 1)
+	
+func set_life_points(points : int):
+	life_points = points
 	brick_mask_cracked.set_modulate(Color(1.0,1.0,1.0,1.0*(starting_life_points - life_points)/starting_life_points))
 	if life_points == 0:
 		brick_kill(true)
+
+func get_life_points() -> int:
+	return life_points
+
+func set_bonus_brick_type(type : String):
+	brick_type = type
+	life_points = 1
+	bonus_masks[type].show()
 
 func brick_kill(can_get_points : bool = false):
 	# avoid future collisions
@@ -110,7 +127,9 @@ func brick_kill(can_get_points : bool = false):
 	bonus1.hide()
 	bonus2.hide()
 	bonus3.hide()
-	tween.tween_property(brick_sprite, "scale", Vector2(), 0.1).set_trans(Tween.TRANS_BOUNCE)
+	tween.tween_property(self, "scale", Vector2(), 0.1).set_trans(Tween.TRANS_BOUNCE)
+	if bonus_masks.has(brick_type):
+		bonus_masks[brick_type].brick_kill()
 	
 	if can_get_points:
 		if brick_type == 'ball':
@@ -151,4 +170,3 @@ func _earn_bonus():
 	elif brick_type == 'point':
 		EventBus.sigAddScorePoints.emit(bonus_amount)
 		
-	

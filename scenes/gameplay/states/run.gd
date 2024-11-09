@@ -47,6 +47,6 @@ func process_input(event: InputEvent) -> State:
 				speed_factor += 0.5
 			EventBus.sigSpeedFactorChanged.emit(speed_factor)
 			for ball in get_tree().get_nodes_in_group("Balls"):
-				ball.speed_up()
+				ball.speed_up(speed_factor)
 
 	return null

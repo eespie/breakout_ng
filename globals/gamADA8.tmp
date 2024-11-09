@@ -45,6 +45,12 @@ func add_item(_name : String):
 	if items.has(_name):
 		amount = items[_name]
 	items[_name] = amount + 1
+	
+func remove_item(_name : String):
+	if items.has(_name):
+		items[_name] = items[_name] - 1
+		SaveGame.save_permanent_data()
+
 
 func _on_next_level(lvl : int):
 	level = lvl

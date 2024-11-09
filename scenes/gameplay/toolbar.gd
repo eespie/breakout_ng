@@ -13,5 +13,5 @@ func _on_enter_state(state : String):
 		show()
 
 func _on_exit_state(state : String):
-	if state == "Idle":
+	if state == "Aim":
 		hide()

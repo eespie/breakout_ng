@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://4fyoq8npekf0"]
+[gd_scene load_steps=45 format=3 uid="uid://4fyoq8npekf0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/gameplay.gd" id="1_64d0d"]
 [ext_resource type="Texture2D" uid="uid://edtwtxxl3cux" path="res://assets/sprites/bg_breakout_s.jpg" id="2_eg7hc"]
@@ -25,13 +25,10 @@
 [ext_resource type="Script" path="res://scenes/gameplay/states/idle.gd" id="11_ir0sw"]
 [ext_resource type="Script" path="res://scenes/gameplay/bricks.gd" id="11_s2rws"]
 [ext_resource type="Script" path="res://scenes/gameplay/states/aim.gd" id="12_7wi6k"]
-[ext_resource type="Texture2D" uid="uid://dh211gb6d5xok" path="res://assets/sprites/bricks/toxic_brick_button_disabled.png" id="12_chbgh"]
 [ext_resource type="Texture2D" uid="uid://cg5vbllwifce4" path="res://assets/sprites/bricks/fireworks_brick_button.png" id="12_fqyis"]
 [ext_resource type="Script" path="res://scenes/gameplay/toxic_buttons.gd" id="13_4xd1a"]
 [ext_resource type="Script" path="res://scenes/gameplay/states/run.gd" id="13_80xkc"]
-[ext_resource type="Texture2D" uid="uid://w7da617svkqk" path="res://assets/sprites/bricks/fireworks_brick_button_disabled.png" id="13_cstnv"]
 [ext_resource type="Texture2D" uid="uid://doig54judgcdg" path="res://assets/sprites/bricks/bomb_brick_button.png" id="14_ldh50"]
-[ext_resource type="Texture2D" uid="uid://uay8k0yjpan0" path="res://assets/sprites/bricks/bomb_brick_button_disabled.png" id="15_h06lr"]
 [ext_resource type="Script" path="res://scenes/gameplay/firework_buttons.gd" id="16_u18xe"]
 [ext_resource type="Texture2D" uid="uid://c0hua74hgei24" path="res://assets/sprites/bg_footer.png" id="18_80wrp"]
 [ext_resource type="FontFile" uid="uid://c23aucss1g3k5" path="res://assets/fonts/Kenney/Kenney Blocks.ttf" id="18_a1faq"]
@@ -208,10 +205,9 @@ grow_vertical = 2
 pivot_offset = Vector2(154, 0)
 script = ExtResource("10_4yr4c")
 
-[node name="ToxicButtons" type="TextureButton" parent="CanvasLayer/AspectRatioContainer/HUD/toolbar"]
+[node name="ToxicButtons" type="TextureRect" parent="CanvasLayer/AspectRatioContainer/HUD/toolbar"]
 layout_mode = 2
-texture_normal = ExtResource("10_8bwap")
-texture_disabled = ExtResource("12_chbgh")
+texture = ExtResource("10_8bwap")
 script = ExtResource("13_4xd1a")
 
 [node name="ToxicCount" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD/toolbar/ToxicButtons"]
@@ -224,10 +220,9 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="FireworkButtons" type="TextureButton" parent="CanvasLayer/AspectRatioContainer/HUD/toolbar"]
+[node name="FireworkButtons" type="TextureRect" parent="CanvasLayer/AspectRatioContainer/HUD/toolbar"]
 layout_mode = 2
-texture_normal = ExtResource("12_fqyis")
-texture_disabled = ExtResource("13_cstnv")
+texture = ExtResource("12_fqyis")
 script = ExtResource("16_u18xe")
 
 [node name="FireworkCount" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD/toolbar/FireworkButtons"]
@@ -240,10 +235,9 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="BombButtons" type="TextureButton" parent="CanvasLayer/AspectRatioContainer/HUD/toolbar"]
+[node name="BombButtons" type="TextureRect" parent="CanvasLayer/AspectRatioContainer/HUD/toolbar"]
 layout_mode = 2
-texture_normal = ExtResource("14_ldh50")
-texture_disabled = ExtResource("15_h06lr")
+texture = ExtResource("14_ldh50")
 script = ExtResource("19_na43j")
 
 [node name="BombCount" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD/toolbar/BombButtons"]
