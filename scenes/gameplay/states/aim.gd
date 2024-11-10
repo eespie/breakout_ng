@@ -16,10 +16,10 @@ func process_input(event: InputEvent) -> State:	# Mouse in viewport coordinates.
 	if event is InputEventMouseButton:
 		#var pos = make_input_local(event).position
 		if not event.is_pressed():
-			elapsed = Time.get_unix_time_from_system() - elapsed
-			if elapsed < 1.0:
-				return idle_state
 			EventBus.sigStopAiming.emit()
+			elapsed = Time.get_unix_time_from_system() - elapsed
+			if elapsed < 0.3:
+				return idle_state
 			return run_state
 	elif event is InputEventMouseMotion:
 		var event_pos = game_area.to_local(event.position)
