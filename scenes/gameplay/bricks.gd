@@ -11,10 +11,10 @@ func _ready():
 	EventBus.sigBallsCollided.connect(_on_ball_collided)
 	EventBus.sigEndOfGame.connect(_on_end_of_game)
 
-# Add a new level of bricks
+# Add a new levels of bricks
 # Move down all the bricks
 func _on_start_moving():
-	var turns = GameManager.get_number_of_brick_lines()
+	var turns = min(GameManager.get_number_of_brick_lines(), 2)
 	if tween:
 		tween.kill()
 	tween = get_tree().create_tween()

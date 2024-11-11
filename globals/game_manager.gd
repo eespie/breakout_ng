@@ -11,9 +11,10 @@ var total_points: int = 0
 var replay_bonus : int = 0
 var items = {}
 
+# Non saved variables
 var is_replay_asked : int = 0
-
 var state = null
+var speed_factor : float = 1.0
 
 func _ready():
 	EventBus.sigAddScorePoints.connect(update_total_points)
@@ -25,9 +26,10 @@ func _ready():
 	EventBus.sigEndOfGame.connect(_on_end_of_game)
 	EventBus.sigEnterState.connect(_on_enter_state)
 	EventBus.sigExitState.connect(_on_exit_state)
+	EventBus.sigSpeedFactorChanged.connect(_on_speed_factor_changed)
 
 func get_number_of_brick_lines() -> int:
-	return min(floori(level / 50.0) + 1, 4)
+	return min(floori(level / 50.0) + 1, 3)
 
 func update_replay_bonus(bonus : int):
 	replay_bonus += bonus
@@ -51,6 +53,9 @@ func remove_item(_name : String):
 		items[_name] = items[_name] - 1
 		SaveGame.save_game()
 		EventBus.sigBonusesUpdated.emit()
+
+func _on_speed_factor_changed(spd_fact: float):
+	speed_factor = spd_fact
 
 func _on_next_level(lvl : int):
 	level = lvl

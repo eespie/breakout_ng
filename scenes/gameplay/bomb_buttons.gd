@@ -8,7 +8,7 @@ func _ready():
 	EventBus.sigLoadPermanentDataDone.connect(_on_data_loaded)
 	EventBus.sigBonusesUpdated.connect(_on_data_loaded)
 
-func _get_drag_data(at_position):
+func _get_drag_data(_at_position):
 	if count == 0:
 		return null
 	

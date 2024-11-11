@@ -13,13 +13,14 @@ var speed_factor: float = 1.0
 var game_area : Sprite2D
 
 func enter() -> void:
+	EventBus.sigNoBallsRemaining.connect(_on_end_of_round)
+	EventBus.sigAbortAiming.connect(_on_abort_aiming)
 	# Store the game area to restrict the aiming
 	for bg in get_tree().get_nodes_in_group("GameArea"):
 		game_area = bg
 	next_state = null
 	speed_factor = 1.0
-	EventBus.sigNoBallsRemaining.connect(_on_end_of_round)
-	EventBus.sigAbortAiming.connect(_on_abort_aiming)
+	EventBus.sigSpeedFactorChanged.emit(speed_factor)
 	EventBus.sigBallShoot.emit()
 	
 func exit() -> void:

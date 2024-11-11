@@ -35,6 +35,8 @@ func _ready():
 	EventBus.sigEndMovingBricks.connect(_on_end_moving_bricks)
 	if bonus_masks.has(brick_type):
 		bonus_masks[brick_type].show()
+		if brick_type == 'Firework':
+			bonus_masks[brick_type].set_brick(self)
 	
 	
 func init_brick(column: int, life: int, type):
@@ -114,6 +116,8 @@ func set_bonus_brick_type(type : String):
 	brick_type = type
 	life_points = 1
 	bonus_masks[type].show()
+	if brick_type == 'Firework':
+		bonus_masks[brick_type].set_brick(self)
 
 func brick_kill(can_get_points : bool = false):
 	# avoid future collisions

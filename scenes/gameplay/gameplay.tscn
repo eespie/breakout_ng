@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://4fyoq8npekf0"]
+[gd_scene load_steps=46 format=3 uid="uid://4fyoq8npekf0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/gameplay.gd" id="1_64d0d"]
 [ext_resource type="Texture2D" uid="uid://edtwtxxl3cux" path="res://assets/sprites/bg_breakout_s.jpg" id="2_eg7hc"]
@@ -40,6 +40,7 @@
 [ext_resource type="Script" path="res://scenes/gameplay/end_of_game.gd" id="24_ttg2a"]
 [ext_resource type="Script" path="res://scenes/gameplay/replay_bonus_message.gd" id="26_6d4s2"]
 [ext_resource type="Script" path="res://scenes/gameplay/starting.gd" id="26_ay4hl"]
+[ext_resource type="Script" path="res://scenes/gameplay/fireworks.gd" id="26_ptkik"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gi71a"]
 size = Vector2(1858, 384.5)
@@ -346,6 +347,9 @@ texture_mode = 1
 joint_mode = 2
 sharp_limit = 0.0
 round_precision = 1
+
+[node name="Fireworks" type="Node2D" parent="CanvasLayer/AspectRatioContainer/Background"]
+script = ExtResource("26_ptkik")
 
 [node name="Cannon" type="Sprite2D" parent="CanvasLayer/AspectRatioContainer/Background" groups=["TargetExtraBall"]]
 position = Vector2(480, 1450)

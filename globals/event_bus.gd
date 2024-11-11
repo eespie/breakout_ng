@@ -66,6 +66,9 @@ signal sigSpeedFactorChanged(speed_factor : float)
 # Bonus replay updated
 signal sigReplayBonusUpdated(bonus : int)
 
+# Firework bonus hit
+signal sigFireworkStart(pos : Vector2)
+
 # Permanent data have been loaded
 signal sigLoadPermanentDataDone
 
