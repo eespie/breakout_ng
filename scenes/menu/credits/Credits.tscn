@@ -67,10 +67,19 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Ricochlime" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+[node name="Familly" type="Label" parent="MarginContainer/Control/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Tribute to Ricochlime by"
+text = "Thanks to my family for
+supporting me and
+giving me the time
+to program this game"
+
+[node name="Ricochlime2" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+Tribute to Ricochlime by"
 
 [node name="LinkButton" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
@@ -117,8 +126,7 @@ uri = "https://www.flaticon.com/free-icons/coin"
 [node name="Travel" type="Label" parent="MarginContainer/Control/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "
-Travel icons created by"
+text = "Travel icons created by"
 
 [node name="LinkButton2" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
@@ -133,8 +141,7 @@ uri = "https://www.flaticon.com/free-icons/travel"
 [node name="Compass" type="Label" parent="MarginContainer/Control/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "
-Compass icons created by"
+text = "Compass icons created by"
 
 [node name="LinkButton3" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
@@ -149,8 +156,7 @@ uri = "https://www.flaticon.com/free-icons/compass"
 [node name="BgTexture" type="Label" parent="MarginContainer/Control/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "
-Background texture by"
+text = "Background texture by"
 
 [node name="LinkButton5" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
@@ -165,8 +171,7 @@ uri = "https://www.freepik.com/free-vector/gradient-black-background-with-wavy-l
 [node name="Nuke" type="Label" parent="MarginContainer/Control/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "
-Nuke icons created by "
+text = "Nuke icons created by "
 
 [node name="LinkButton6" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
@@ -181,8 +186,7 @@ uri = "https://www.flaticon.com/free-icons/nuke"
 [node name="Firework" type="Label" parent="MarginContainer/Control/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "
-Fireworks icons created by"
+text = "Fireworks icons created by"
 
 [node name="LinkButton7" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
@@ -197,8 +201,7 @@ uri = "https://www.flaticon.com/free-icons/fireworks"
 [node name="Biohazard" type="Label" parent="MarginContainer/Control/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "
-Biohazard icons created by"
+text = "Biohazard icons created by"
 
 [node name="LinkButton8" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)

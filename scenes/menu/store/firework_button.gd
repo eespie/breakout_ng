@@ -15,3 +15,4 @@ func _on_pressed():
 	GameManager.add_item("Firework")
 	SaveGame.save_permanent_data()
 	EventBus.sigStoreItemPurchased.emit("Firework", 500)
+	_on_data_loaded()

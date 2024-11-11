@@ -14,3 +14,4 @@ func _on_pressed():
 	GameManager.add_item("Toxic")
 	SaveGame.save_permanent_data()
 	EventBus.sigStoreItemPurchased.emit("Toxic", 300)
+	_on_data_loaded()
