@@ -33,8 +33,6 @@ func shootOneBall():
 
 func _on_ball_removed(ballInstance : Node2D):
 	ballInstance.queue_free()
-	if get_tree().get_node_count_in_group("Balls") == 1:
-		EventBus.sigNoBallsRemaining.emit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

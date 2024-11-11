@@ -1,16 +1,12 @@
 extends "res://state_machine/state.gd"
 
-@export
-var move_bricks_state: State
-
-@export
-var idle_state: State
+@export var move_bricks_state: State
+@export var idle_state: State
 
 var next_state: State
-
 var speed_factor: float = 1.0
-
 var game_area : Sprite2D
+var elapsed : float
 
 func enter() -> void:
 	EventBus.sigNoBallsRemaining.connect(_on_end_of_round)
@@ -20,6 +16,7 @@ func enter() -> void:
 		game_area = bg
 	next_state = null
 	speed_factor = 1.0
+	elapsed = 0
 	EventBus.sigSpeedFactorChanged.emit(speed_factor)
 	EventBus.sigBallShoot.emit()
 	
@@ -34,7 +31,10 @@ func _on_abort_aiming():
 func _on_end_of_round():
 	next_state = move_bricks_state
 	
-func process_frame(_delta: float) -> State:
+func process_frame(delta: float) -> State:
+	elapsed += delta
+	if elapsed > 0.2 and get_tree().get_node_count_in_group("Balls") == 0:
+		EventBus.sigNoBallsRemaining.emit()
 	return next_state
 
 func process_input(event: InputEvent) -> State:

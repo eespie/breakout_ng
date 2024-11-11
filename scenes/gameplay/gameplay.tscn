@@ -52,7 +52,7 @@ size = Vector2(68, 2126)
 size = Vector2(75.875, 2134)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_akqk2"]
-size = Vector2(2036, 171)
+size = Vector2(2036, 548)
 
 [node name="Gameplay" type="Control"]
 layout_mode = 3
@@ -294,7 +294,7 @@ collision_mask = 4
 script = ExtResource("5_8y34y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/AspectRatioContainer/Background/Collisions/bottomBorder"]
-position = Vector2(480, 105.5)
+position = Vector2(480, 294)
 shape = SubResource("RectangleShape2D_akqk2")
 
 [node name="LeftBorderRaycast" type="StaticBody2D" parent="CanvasLayer/AspectRatioContainer/Background/Collisions"]
