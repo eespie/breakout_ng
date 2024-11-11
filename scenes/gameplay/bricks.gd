@@ -44,7 +44,7 @@ func _generate_one_level_of_bricks():
 		while columns.has(column):
 			column = randi_range(0, 7)
 		columns[column] = column
-		brick_instance.init_brick(column, GameManager.brick_life, brick_types[i])
+		brick_instance.create_brick(column, GameManager.brick_life, brick_types[i])
 		add_child(brick_instance)
 
 # Move down bricks using step between 0 and 1
@@ -87,7 +87,7 @@ func load_game(node_data):
 		return
 	for brick_data in node_data["bricks"]:
 		var brick_instance = brick.instantiate()
-		brick_instance.display_brick(
+		brick_instance.load_brick(
 			Vector2(brick_data["pos_x"], brick_data["pos_y"]),
 			brick_data["starting_life_points"],
 			brick_data["life_points"],

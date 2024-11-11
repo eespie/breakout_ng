@@ -1,36 +1,31 @@
-[gd_scene load_steps=17 format=3 uid="uid://dx8ctxh8owqpq"]
+[gd_scene load_steps=19 format=3 uid="uid://dx8ctxh8owqpq"]
 
 [ext_resource type="Script" path="res://scenes/bricks/polygon_brick.gd" id="1_5voqs"]
 [ext_resource type="Script" path="res://scenes/bricks/drop_target.gd" id="3_rqbyn"]
 [ext_resource type="Texture2D" uid="uid://hjnmy3dekj1k" path="res://assets/sprites/octo.png" id="4_2dijm"]
-[ext_resource type="Texture2D" uid="uid://b1kcyo5iamje7" path="res://assets/sprites/ball_26_wheat.png" id="5_3xx4o"]
 [ext_resource type="Texture2D" uid="uid://dkvejyf1tkcqd" path="res://assets/sprites/bricks/toxic_brick_mask.png" id="5_bbv0k"]
 [ext_resource type="Texture2D" uid="uid://bmtvjjxfi6da5" path="res://assets/sprites/bricks/octo-mask.png" id="5_xtsqq"]
+[ext_resource type="Texture2D" uid="uid://du23n72g7mwjj" path="res://assets/sprites/bricks/bonus1.png" id="6_aw4yp"]
 [ext_resource type="Texture2D" uid="uid://j8nijqr2cfeq" path="res://assets/sprites/bricks/octo-mask-cracked.png" id="6_m2qun"]
 [ext_resource type="Texture2D" uid="uid://bq7w155iadh73" path="res://assets/sprites/bricks/fireworks_brick_mask.png" id="6_rkvto"]
-[ext_resource type="Texture2D" uid="uid://by5ksn8emxdpo" path="res://assets/sprites/coins-black.png" id="6_ukih1"]
 [ext_resource type="Texture2D" uid="uid://dkn1y6rioqct4" path="res://assets/sprites/bricks/bomb_brick_mask.png" id="7_goaup"]
-[ext_resource type="Texture2D" uid="uid://dgijtskab5deg" path="res://assets/sprites/bricks/extra-coin.png" id="8_o3ai0"]
-[ext_resource type="Texture2D" uid="uid://g1046o2ejh0s" path="res://assets/sprites/bricks/extra-balls.png" id="8_vgmh0"]
-[ext_resource type="Texture2D" uid="uid://bvljlnsxwe4au" path="res://assets/sprites/bricks/star.png" id="11_qlic5"]
+[ext_resource type="Script" path="res://scenes/bricks/bonus.gd" id="7_ni40k"]
+[ext_resource type="Texture2D" uid="uid://c5nrnq25qcq8" path="res://assets/sprites/bricks/bonus2.png" id="7_q3vw4"]
+[ext_resource type="Texture2D" uid="uid://ds2t84nm2y7hy" path="res://assets/sprites/bricks/bonus3.png" id="8_b3brj"]
+[ext_resource type="Texture2D" uid="uid://dwr1em31yubqs" path="res://assets/sprites/bricks/bonus4.png" id="9_j0khj"]
+[ext_resource type="Texture2D" uid="uid://cs8m0rli317q4" path="res://assets/sprites/bricks/bonus5.png" id="10_lnwqb"]
+[ext_resource type="Texture2D" uid="uid://duu3mtrh6jqum" path="res://assets/sprites/bricks/bonus10.png" id="11_db7b5"]
 [ext_resource type="Script" path="res://scenes/bricks/toxic.gd" id="12_085to"]
 [ext_resource type="Script" path="res://scenes/bricks/firework.gd" id="14_3ehg1"]
 [ext_resource type="Script" path="res://scenes/bricks/bomb.gd" id="16_w33o0"]
 
-[node name="PolygonBrick" type="StaticBody2D" node_paths=PackedStringArray("extra_ball", "extra_coin", "extra_balls", "extra_coins", "brick_sprite", "brick_mask", "brick_mask_cracked", "bonus1", "bonus2", "bonus3") groups=["Bricks"]]
+[node name="PolygonBrick" type="StaticBody2D" node_paths=PackedStringArray("brick_sprite", "brick_mask", "brick_mask_cracked") groups=["Bricks"]]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_5voqs")
-extra_ball = NodePath("Deco/ExtraBall")
-extra_coin = NodePath("Deco/ExtraCoin")
-extra_balls = NodePath("Deco/ExtraBalls")
-extra_coins = NodePath("Deco/ExtraCoins")
 brick_sprite = NodePath("OctoBrickSprite")
 brick_mask = NodePath("Mask/OctoMask")
 brick_mask_cracked = NodePath("Mask/OctoMaskCracked")
-bonus1 = NodePath("Deco/Bonus1")
-bonus2 = NodePath("Deco/Bonus2")
-bonus3 = NodePath("Deco/Bonus3")
 
 [node name="DropTarget" type="TextureRect" parent="." node_paths=PackedStringArray("brick")]
 offset_right = 40.0
@@ -59,54 +54,69 @@ centered = false
 
 [node name="Deco" type="Node2D" parent="."]
 
-[node name="ExtraBall" type="Sprite2D" parent="Deco"]
-visible = false
-position = Vector2(46, 61)
-texture = ExtResource("5_3xx4o")
-
-[node name="ExtraBalls" type="Sprite2D" parent="Deco"]
-visible = false
-position = Vector2(46, 61)
-texture = ExtResource("8_vgmh0")
-
-[node name="ExtraCoin" type="Sprite2D" parent="Deco"]
-visible = false
-position = Vector2(46, 61)
-texture = ExtResource("8_o3ai0")
-
-[node name="ExtraCoins" type="Sprite2D" parent="Deco"]
-visible = false
-position = Vector2(46, 61)
-texture = ExtResource("6_ukih1")
-
 [node name="Bonus1" type="Sprite2D" parent="Deco"]
 visible = false
-texture = ExtResource("11_qlic5")
+position = Vector2(-2, -31)
+texture = ExtResource("6_aw4yp")
 offset = Vector2(46, 90)
+script = ExtResource("7_ni40k")
+bonus_amount = 1
 
 [node name="Bonus2" type="Sprite2D" parent="Deco"]
 visible = false
-texture = ExtResource("11_qlic5")
+position = Vector2(16, -20)
+texture = ExtResource("7_q3vw4")
 offset = Vector2(30, 85)
+script = ExtResource("7_ni40k")
+bonus_amount = 2
 
 [node name="Bonus3" type="Sprite2D" parent="Deco"]
 visible = false
-texture = ExtResource("11_qlic5")
+position = Vector2(-17, -21)
+texture = ExtResource("8_b3brj")
 offset = Vector2(62, 85)
+script = ExtResource("7_ni40k")
+bonus_amount = 3
 
-[node name="Toxic" type="Sprite2D" parent="Deco"]
+[node name="Bonus4" type="Sprite2D" parent="Deco"]
+visible = false
+position = Vector2(-16, -21)
+texture = ExtResource("9_j0khj")
+offset = Vector2(62, 85)
+script = ExtResource("7_ni40k")
+bonus_amount = 4
+
+[node name="Bonus5" type="Sprite2D" parent="Deco"]
+visible = false
+position = Vector2(-16, -22)
+texture = ExtResource("10_lnwqb")
+offset = Vector2(62, 85)
+script = ExtResource("7_ni40k")
+bonus_amount = 5
+
+[node name="Bonus10" type="Sprite2D" parent="Deco"]
+visible = false
+position = Vector2(-16, -23)
+texture = ExtResource("11_db7b5")
+offset = Vector2(62, 85)
+script = ExtResource("7_ni40k")
+bonus_amount = 10
+
+[node name="Type" type="Node2D" parent="."]
+
+[node name="Toxic" type="Sprite2D" parent="Type"]
 visible = false
 texture = ExtResource("5_bbv0k")
 centered = false
 script = ExtResource("12_085to")
 
-[node name="Firework" type="Sprite2D" parent="Deco"]
+[node name="Firework" type="Sprite2D" parent="Type"]
 visible = false
 texture = ExtResource("6_rkvto")
 centered = false
 script = ExtResource("14_3ehg1")
 
-[node name="Bomb" type="Sprite2D" parent="Deco"]
+[node name="Bomb" type="Sprite2D" parent="Type"]
 visible = false
 texture = ExtResource("7_goaup")
 centered = false
