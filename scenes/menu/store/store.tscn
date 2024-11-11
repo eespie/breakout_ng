@@ -130,7 +130,7 @@ script = ExtResource("8_l7ogv")
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "500"
+text = "300"
 horizontal_alignment = 1
 
 [node name="ToxicDesc" type="Label" parent="MarginContainer/Control/VBoxContainer/GridContainer2"]
@@ -153,7 +153,7 @@ script = ExtResource("11_ina5o")
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "1000"
+text = "500"
 horizontal_alignment = 1
 
 [node name="FireworkDesc" type="Label" parent="MarginContainer/Control/VBoxContainer/GridContainer2"]
@@ -175,7 +175,7 @@ script = ExtResource("14_cvnhe")
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "2000"
+text = "1000"
 horizontal_alignment = 1
 
 [node name="BombDesc" type="Label" parent="MarginContainer/Control/VBoxContainer/GridContainer2"]
