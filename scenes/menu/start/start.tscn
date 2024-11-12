@@ -1,0 +1,143 @@
+[gd_scene load_steps=7 format=3 uid="uid://icbstr1y05xr"]
+
+[ext_resource type="Script" path="res://scenes/menu/start/start.gd" id="1_px7wb"]
+[ext_resource type="FontFile" uid="uid://c23aucss1g3k5" path="res://assets/fonts/Kenney/Kenney Blocks.ttf" id="2_hpjxt"]
+[ext_resource type="Texture2D" uid="uid://jk251f8b413k" path="res://assets/logo-eboreal.png" id="3_2y28x"]
+[ext_resource type="FontFile" uid="uid://bh67d45bm8cxh" path="res://assets/fonts/Kenney/Kenney Bold.ttf" id="4_wweqq"]
+[ext_resource type="Script" path="res://scenes/menu/game_version.gd" id="5_xtllw"]
+[ext_resource type="Script" path="res://scenes/menu/godot_version.gd" id="6_mt4wm"]
+
+[node name="Start" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_px7wb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.964706, 0.878431, 0.811765, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_bottom = 844.0
+grow_horizontal = 2
+
+[node name="Title" type="Label" parent="MarginContainer/Control/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.219501, 0.219501, 0.219501, 1)
+theme_override_fonts/font = ExtResource("2_hpjxt")
+theme_override_font_sizes/font_size = 120
+text = "Octo
+Breakout"
+horizontal_alignment = 1
+justification_flags = 0
+uppercase = true
+
+[node name="Container" type="CenterContainer" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -196.5
+offset_right = 448.0
+offset_bottom = 196.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Control/Container"]
+layout_mode = 2
+texture = ExtResource("3_2y28x")
+
+[node name="Version" type="VBoxContainer" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_right = 122.0
+grow_vertical = 0
+
+[node name="GameVersion" type="Label" parent="MarginContainer/Control/Version"]
+layout_mode = 2
+theme_type_variation = &"LabelSmall"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wweqq")
+theme_override_font_sizes/font_size = 24
+text = "<x.y.z>"
+script = ExtResource("5_xtllw")
+
+[node name="GodotVersion" type="Label" parent="MarginContainer/Control/Version"]
+layout_mode = 2
+theme_type_variation = &"LabelSmall"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wweqq")
+theme_override_font_sizes/font_size = 24
+text = "<GodotVersion>"
+script = ExtResource("6_mt4wm")
+
+[node name="Credits" type="VBoxContainer" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MadeByLabel" type="Label" parent="MarginContainer/Control/Credits"]
+layout_mode = 2
+theme_type_variation = &"LabelSmall"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_wweqq")
+theme_override_font_sizes/font_size = 32
+text = "made by:
+Eric ESPIE"
+
+[node name="Developer1" type="Label" parent="MarginContainer/Control/Credits"]
+visible = false
+layout_mode = 2
+theme_type_variation = &"LabelSmall"
+theme_override_colors/font_color = Color(0.92549, 0.92549, 0.92549, 1)
+
+[node name="Developer2" type="Label" parent="MarginContainer/Control/Credits"]
+visible = false
+layout_mode = 2
+theme_type_variation = &"LabelSmall"
+theme_override_colors/font_color = Color(0.886275, 0.87451, 0.87451, 1)
+text = "Developer 2"
+
+[node name="Developer3" type="Label" parent="MarginContainer/Control/Credits"]
+visible = false
+layout_mode = 2
+theme_type_variation = &"LabelSmall"
+theme_override_colors/font_color = Color(0.886275, 0.87451, 0.87451, 1)
+text = "Developer 3"

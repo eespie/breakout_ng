@@ -4,14 +4,26 @@ extends Node
 
 
 var size: get = get_size
+var scene_history = []
+var params_history = []
 
 
 func change_scene_to_file(new_scene: String, params = {}):
 	if not ResourceLoader.exists(new_scene):
 		push_error("Scene resource not found: ", new_scene)
 		return
+	scene_history.append(new_scene)
+	params_history.append(params)
 	Scenes.change_scene_multithread(new_scene, params)  # multi-thread
 
+func back():
+	# remove current
+	scene_history.pop_back()
+	params_history.pop_back()
+	# get previous
+	var scene = scene_history.pop_back()
+	var params = params_history.pop_back()
+	change_scene_to_file(scene, params)
 
 # Restart the current scene
 func restart_scene():
