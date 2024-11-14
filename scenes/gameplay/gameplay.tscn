@@ -418,7 +418,6 @@ horizontal_alignment = 1
 script = ExtResource("20_ybshx")
 
 [node name="ReplayBonusMessage" type="Label" parent="CanvasLayer/AspectRatioContainer/Message"]
-visible = false
 layout_mode = 0
 offset_left = -397.0
 offset_top = 984.0
@@ -429,6 +428,22 @@ text = "Complete clean-up
 Replay bonus added"
 horizontal_alignment = 1
 script = ExtResource("26_6d4s2")
+
+[node name="CoinsEarned" type="Label" parent="CanvasLayer/AspectRatioContainer/Message/ReplayBonusMessage"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -246.0
+offset_top = 22.0
+offset_right = 242.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0 coins earned"
+horizontal_alignment = 1
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "from_scratch_state", "continue_starting_state")]
 script = ExtResource("9_72q7v")
