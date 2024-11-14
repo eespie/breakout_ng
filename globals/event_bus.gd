@@ -55,7 +55,7 @@ signal sigScorePointsUpdated
 signal sigBonusesUpdated
 
 # Add a new ball
-signal sigAddNewBalls(balls: int)
+signal sigAddNewBalls(balls: float)
 
 # End of game
 signal sigEndOfGame

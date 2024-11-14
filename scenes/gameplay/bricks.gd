@@ -44,7 +44,12 @@ func _generate_one_level_of_bricks():
 		while columns.has(column):
 			column = randi_range(0, 7)
 		columns[column] = column
-		brick_instance.create_brick(column, GameManager.brick_life, brick_types[i])
+		var type = brick_types[i]
+		var life_mult = 1
+		if GameManager.level % 50 == 0 and i == (nb_bricks - 1):
+			type = 'Explode'
+			life_mult = 2
+		brick_instance.create_brick(column, GameManager.brick_life * life_mult, type)
 		add_child(brick_instance)
 
 # Move down bricks using step between 0 and 1

@@ -213,6 +213,21 @@ text = "Smashicons - Flaticon"
 underline = 1
 uri = "https://www.flaticon.com/free-icons/biohazard"
 
+[node name="Explode" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Uicons by"
+
+[node name="LinkButton9" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_43b5n")
+theme_override_font_sizes/font_size = 24
+text = "Flaticon"
+underline = 1
+uri = "https://www.flaticon.com/uicons"
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Control"]
 layout_mode = 1
 anchors_preset = 7

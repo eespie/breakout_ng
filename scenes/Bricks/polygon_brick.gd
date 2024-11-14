@@ -24,7 +24,8 @@ extends StaticBody2D
 @onready var type_masks = {
 	'Toxic' : $Type/Toxic,
 	'Firework' : $Type/Firework,
-	'Bomb' : $Type/Bomb
+	'Bomb' : $Type/Bomb,
+	'Explode' : $Type/Explode
 }
 @onready var deco = $Deco
 
@@ -71,6 +72,8 @@ func _display_brick():
 		brick_sprite.set_modulate(Color.ORANGE)
 		bonus_masks[bonus_amount].show()
 		bonus_masks[bonus_amount].set_modulate(Color.GOLD)
+	elif brick_type == 'Explode':
+		brick_mask.set_modulate(Color.CRIMSON)
 	else:
 		brick_sprite.set_modulate(Color.MEDIUM_PURPLE)
 	if type_masks.has(brick_type):
@@ -101,8 +104,12 @@ func ball_collided(_ball : Node2D):
 	set_life_points(life_points - 1)
 	
 func set_life_points(points : int = 0):
+	if points < 0:
+		points = 0
 	life_points = points
 	brick_mask_cracked.set_modulate(Color(1.0,1.0,1.0,1.0*(starting_life_points - life_points)/starting_life_points))
+	if brick_type == 'Explode':
+		type_masks[brick_type].earn_bonus(brick_type)
 	if life_points == 0:
 		brick_kill(true)
 
@@ -140,3 +147,8 @@ func get_bonus_amount(steps) -> int:
 		if v < step[0]:
 			return step[1]
 	return 1
+
+func reached_red_zone():
+	if brick_type == 'Explode':
+		type_masks[brick_type].reclaim_bonus()
+		set_life_points(0)

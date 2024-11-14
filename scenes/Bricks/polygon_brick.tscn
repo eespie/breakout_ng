@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dx8ctxh8owqpq"]
+[gd_scene load_steps=21 format=3 uid="uid://dx8ctxh8owqpq"]
 
 [ext_resource type="Script" path="res://scenes/bricks/polygon_brick.gd" id="1_5voqs"]
 [ext_resource type="Script" path="res://scenes/bricks/drop_target.gd" id="3_rqbyn"]
@@ -16,8 +16,10 @@
 [ext_resource type="Texture2D" uid="uid://cs8m0rli317q4" path="res://assets/sprites/bricks/bonus5.png" id="10_lnwqb"]
 [ext_resource type="Texture2D" uid="uid://duu3mtrh6jqum" path="res://assets/sprites/bricks/bonus10.png" id="11_db7b5"]
 [ext_resource type="Script" path="res://scenes/bricks/toxic.gd" id="12_085to"]
+[ext_resource type="Script" path="res://scenes/bricks/explode.gd" id="13_uqyc7"]
 [ext_resource type="Script" path="res://scenes/bricks/firework.gd" id="14_3ehg1"]
 [ext_resource type="Script" path="res://scenes/bricks/bomb.gd" id="16_w33o0"]
+[ext_resource type="Texture2D" uid="uid://c6ufm5714ghsg" path="res://assets/sprites/bricks/disease.png" id="19_dyvbm"]
 
 [node name="PolygonBrick" type="StaticBody2D" node_paths=PackedStringArray("brick_sprite", "brick_mask", "brick_mask_cracked") groups=["Bricks"]]
 collision_layer = 2
@@ -121,3 +123,10 @@ visible = false
 texture = ExtResource("7_goaup")
 centered = false
 script = ExtResource("16_w33o0")
+
+[node name="Explode" type="Sprite2D" parent="Type"]
+visible = false
+position = Vector2(14, 28)
+texture = ExtResource("19_dyvbm")
+centered = false
+script = ExtResource("13_uqyc7")

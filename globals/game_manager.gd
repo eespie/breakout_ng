@@ -3,7 +3,7 @@ extends Node
 # In game variables
 var level: int = 0
 var brick_life: int = 0
-var ball_max_count: int = 1
+var ball_max_count: float = 1
 
 # Permanent variables
 var max_level: int = 0
@@ -40,6 +40,8 @@ func update_replay_bonus(bonus : int):
 
 func update_total_points(points : int):
 	total_points += points
+	if total_points < 0:
+		total_points = 0
 	EventBus.sigScorePointsUpdated.emit()
 
 func add_item(_name : String):
@@ -64,9 +66,11 @@ func _on_next_level(lvl : int):
 		max_level = level
 		EventBus.sigMaxLevel.emit(max_level)
 
-func _on_add_new_ball(balls : int):
+func _on_add_new_ball(balls : float):
 	ball_max_count += balls
-	EventBus.sigBallCountUpdated.emit(ball_max_count)
+	if ball_max_count < (level / 2.0):
+		ball_max_count = level / 2.0
+	EventBus.sigBallCountUpdated.emit(floori(ball_max_count))
 
 func _on_end_of_round():
 	is_replay_asked = 0
@@ -76,6 +80,7 @@ func _on_end_moving_bricks():
 	SaveGame.save_game()
 
 func _on_end_of_game():
+	EventBus.sigAddScorePoints.emit(level)
 	level = 0
 	brick_life = 0
 	ball_max_count = 1
@@ -106,7 +111,7 @@ func load_game(node_data):
 	brick_life = node_data["brick_life"]
 	EventBus.sigNextLevel.emit(level)
 	ball_max_count = node_data["ball_max_count"]
-	EventBus.sigBallCountUpdated.emit(ball_max_count)
+	EventBus.sigBallCountUpdated.emit(floori(ball_max_count))
 	
 func save_permanent_data():
 	var save_dict = {

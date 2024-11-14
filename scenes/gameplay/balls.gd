@@ -20,7 +20,7 @@ func _on_ball_shoot():
 		EventBus.sigAbortAiming.emit()
 		return
 	
-	ball_remaining_count = GameManager.ball_max_count
+	ball_remaining_count = floori(GameManager.ball_max_count)
 	ball_next_shoot_time = 0.0
 	
 func shootOneBall():
