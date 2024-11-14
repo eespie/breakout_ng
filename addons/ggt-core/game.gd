@@ -20,10 +20,13 @@ func back():
 	# remove current
 	scene_history.pop_back()
 	params_history.pop_back()
-	# get previous
-	var scene = scene_history.pop_back()
-	var params = params_history.pop_back()
-	change_scene_to_file(scene, params)
+	if scene_history.size() == 0:
+		Game.change_scene_to_file("res://scenes/menu/menu.tscn")
+	else:
+		# get previous
+		var scene = scene_history.pop_back()
+		var params = params_history.pop_back()
+		change_scene_to_file(scene, params)
 
 # Restart the current scene
 func restart_scene():

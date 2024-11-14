@@ -12,11 +12,12 @@ config_version=5
 
 config/name="OctoBreakout"
 config/version="1.0.0"
-run/main_scene="res://scenes/menu/start/start.tscn"
+run/main_scene="res://scenes/menu/menu.tscn"
 config/features=PackedStringArray("4.3")
-boot_splash/bg_color=Color(0.0862745, 0.0862745, 0.0862745, 1)
-boot_splash/image="res://assets/splash.png"
+boot_splash/bg_color=Color(0.964706, 0.878431, 0.811765, 1)
+boot_splash/image="res://assets/logo-eboreal.png"
 config/icon="res://assets/sprites/main_icon.png"
+boot_splash/minimum_display_time=800
 
 [autoload]
 
