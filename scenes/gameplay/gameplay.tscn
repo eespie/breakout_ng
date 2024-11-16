@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://4fyoq8npekf0"]
+[gd_scene load_steps=47 format=3 uid="uid://4fyoq8npekf0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/gameplay.gd" id="1_64d0d"]
 [ext_resource type="Texture2D" uid="uid://edtwtxxl3cux" path="res://assets/sprites/bg_breakout_s.jpg" id="2_eg7hc"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scenes/gameplay/bottom_border.gd" id="5_8y34y"]
 [ext_resource type="Script" path="res://scenes/gameplay/score.gd" id="5_36mxb"]
 [ext_resource type="Texture2D" uid="uid://bg6hob0l71yr2" path="res://assets/sprites/coins-black-big.png" id="6_2v7iq"]
+[ext_resource type="Script" path="res://scenes/gameplay/hits_value.gd" id="6_dk6qi"]
 [ext_resource type="Texture2D" uid="uid://dk2dlhxeew1y6" path="res://assets/sprites/cannon.png" id="7_4jp57"]
 [ext_resource type="Script" path="res://scenes/gameplay/replay_buttons.gd" id="8_fo2tb"]
 [ext_resource type="Script" path="res://scenes/gameplay/ray_cast_for_aiming.gd" id="8_patm2"]
@@ -144,6 +145,15 @@ theme_override_font_sizes/font_size = 32
 text = "0"
 vertical_alignment = 1
 script = ExtResource("5_8vtbj")
+
+[node name="HitsValue" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "hit ratio: 000.0"
+horizontal_alignment = 1
+script = ExtResource("6_dk6qi")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/AspectRatioContainer/HUD"]
 layout_mode = 0
