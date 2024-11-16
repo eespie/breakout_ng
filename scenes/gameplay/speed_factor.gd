@@ -7,6 +7,8 @@ func _ready():
 	EventBus.sigSpeedFactorChanged.connect(_on_speed_factor_changed)
 
 func _on_speed_factor_changed(speed_factor : float):
+	if speed_factor == 1.0:
+		return
 	set_text("%.1fX" % speed_factor)
 	if tween:
 		tween.kill()

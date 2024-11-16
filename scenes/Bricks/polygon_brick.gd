@@ -1,33 +1,36 @@
 extends StaticBody2D
 
+@export_group('Dimensions')
 @export var top_margin : int = 50
 @export var cell_margin : int = 30
 @export var cell_width : int = 120
 @export var cell_height : int = 122
 
+@export_group('Bricks')
 @export var brick_sprite : Sprite2D
 @export var brick_mask : Sprite2D
 @export var brick_mask_cracked : Sprite2D
+
 @onready var bonus_masks = [
-	$Deco/Bonus1,
-	$Deco/Bonus1,
-	$Deco/Bonus2,
-	$Deco/Bonus3,
-	$Deco/Bonus4,
-	$Deco/Bonus5,
-	$Deco/Bonus5,
-	$Deco/Bonus5,
-	$Deco/Bonus5,
-	$Deco/Bonus5,
-	$Deco/Bonus10,
+	%Bonus1,
+	%Bonus1,
+	%Bonus2,
+	%Bonus3,
+	%Bonus4,
+	%Bonus5,
+	%Bonus5,
+	%Bonus5,
+	%Bonus5,
+	%Bonus5,
+	%Bonus10,
 ]
 @onready var type_masks = {
-	'Toxic' : $Type/Toxic,
-	'Firework' : $Type/Firework,
-	'Bomb' : $Type/Bomb,
-	'Explode' : $Type/Explode
+	'Toxic' : %Toxic,
+	'Firework' : %Firework,
+	'Bomb' : %Bomb,
+	'Explode' : %Explode
 }
-@onready var deco = $Deco
+@onready var deco = %Deco
 
 @onready var bonus_extra_ball = preload("res://scenes/bricks/bonus/extra_ball.tscn")
 @onready var bonus_extra_coin = preload("res://scenes/bricks/bonus/extra_coin.tscn")

@@ -1,8 +1,13 @@
 extends "res://state_machine/state.gd"
 
+@export_group('States')
 @export var aim_state : State
+
+@export_group('Levels')
 @export var level_label: Label
 @export var score_label: Label
+
+@export_group('Buttons')
 @export var t_button: TextureRect
 @export var f_button: TextureRect
 @export var b_button: TextureRect

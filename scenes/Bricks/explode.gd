@@ -1,6 +1,6 @@
 extends Sprite2D
 
-var bonus = -100
+var bonus = 0
 var life_boost = 1.3
 
 func earn_bonus(brick_type : String):

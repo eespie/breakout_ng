@@ -55,8 +55,10 @@ texture = ExtResource("6_m2qun")
 centered = false
 
 [node name="Deco" type="Node2D" parent="."]
+unique_name_in_owner = true
 
 [node name="Bonus1" type="Sprite2D" parent="Deco"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(-2, -31)
 texture = ExtResource("6_aw4yp")
@@ -65,6 +67,7 @@ script = ExtResource("7_ni40k")
 bonus_amount = 1
 
 [node name="Bonus2" type="Sprite2D" parent="Deco"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(16, -20)
 texture = ExtResource("7_q3vw4")
@@ -73,6 +76,7 @@ script = ExtResource("7_ni40k")
 bonus_amount = 2
 
 [node name="Bonus3" type="Sprite2D" parent="Deco"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(-17, -21)
 texture = ExtResource("8_b3brj")
@@ -81,6 +85,7 @@ script = ExtResource("7_ni40k")
 bonus_amount = 3
 
 [node name="Bonus4" type="Sprite2D" parent="Deco"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(-16, -21)
 texture = ExtResource("9_j0khj")
@@ -89,6 +94,7 @@ script = ExtResource("7_ni40k")
 bonus_amount = 4
 
 [node name="Bonus5" type="Sprite2D" parent="Deco"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(-16, -22)
 texture = ExtResource("10_lnwqb")
@@ -97,6 +103,7 @@ script = ExtResource("7_ni40k")
 bonus_amount = 5
 
 [node name="Bonus10" type="Sprite2D" parent="Deco"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(-16, -23)
 texture = ExtResource("11_db7b5")
@@ -107,24 +114,28 @@ bonus_amount = 10
 [node name="Type" type="Node2D" parent="."]
 
 [node name="Toxic" type="Sprite2D" parent="Type"]
+unique_name_in_owner = true
 visible = false
 texture = ExtResource("5_bbv0k")
 centered = false
 script = ExtResource("12_085to")
 
 [node name="Firework" type="Sprite2D" parent="Type"]
+unique_name_in_owner = true
 visible = false
 texture = ExtResource("6_rkvto")
 centered = false
 script = ExtResource("14_3ehg1")
 
 [node name="Bomb" type="Sprite2D" parent="Type"]
+unique_name_in_owner = true
 visible = false
 texture = ExtResource("7_goaup")
 centered = false
 script = ExtResource("16_w33o0")
 
 [node name="Explode" type="Sprite2D" parent="Type"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(14, 28)
 texture = ExtResource("19_dyvbm")
