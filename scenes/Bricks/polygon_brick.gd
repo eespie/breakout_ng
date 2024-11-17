@@ -138,10 +138,12 @@ func brick_kill(can_get_points : bool = false):
 	tween.tween_property(self, "scale", Vector2(), 0.1).set_trans(Tween.TRANS_BOUNCE)
 	if type_masks.has(brick_type):
 		type_masks[brick_type].brick_kill()
-	
-	if can_get_points and (brick_type == 'ball' or brick_type == 'point'):
-		bonus_masks[bonus_amount].earn_bonus(brick_type)
-
+		
+	if can_get_points:
+		EventBus.sigBrickKilled.emit()
+		if brick_type == 'ball' or brick_type == 'point':
+			bonus_masks[bonus_amount].earn_bonus(brick_type)
+		
 	tween.tween_callback(self.queue_free)
 
 func get_bonus_amount(steps) -> int:

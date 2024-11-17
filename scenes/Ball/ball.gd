@@ -8,6 +8,7 @@ var dir : float
 func _ready():
 	position = Vector2(0, 0)
 	constant_linear_velocity = Vector2(0, -speed).rotated(dir)
+	EventBus.sigBallSpawned.emit()
 
 func set_color(color : Color):
 	set_modulate(color)

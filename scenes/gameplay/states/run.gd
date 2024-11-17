@@ -18,7 +18,7 @@ func enter() -> void:
 	speed_factor = 1.0
 	elapsed = 0
 	EventBus.sigSpeedFactorChanged.emit(speed_factor)
-	EventBus.sigBallShoot.emit()
+	EventBus.sigBallsStartShooting.emit()
 	
 func exit() -> void:
 	next_state = null

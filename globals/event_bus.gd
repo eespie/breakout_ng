@@ -7,7 +7,10 @@ signal sigEnterState(state : String)
 signal sigExitState(state : String)
 
 # When a ball should start
-signal sigBallShoot
+signal sigBallsStartShooting
+
+# When a new ball is spawned
+signal sigBallSpawned
 
 # When a ball should be removed
 signal sigBallRemoved(ball : Node2D)
@@ -20,6 +23,9 @@ signal sigNoBallsRemaining
 
 # When a ball collide on object
 signal sigBallsCollided(collider : Node2D, ball : Node2D)
+
+# When a brick is killed
+signal sigBrickKilled()
 
 # When aiming with the mouse
 signal sigMouseAiming(pos : Vector2)

@@ -8,6 +8,8 @@ func _ready():
 	EventBus.sigScorePointsUpdated.connect(_on_score_updated)
 
 func _on_score_updated():
+	if not get_tree():
+		return
 	if tween:
 		tween.kill()
 	tween = get_tree().create_tween()

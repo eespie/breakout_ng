@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://4fyoq8npekf0"]
+[gd_scene load_steps=48 format=3 uid="uid://4fyoq8npekf0"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/gameplay.gd" id="1_64d0d"]
 [ext_resource type="Texture2D" uid="uid://edtwtxxl3cux" path="res://assets/sprites/bg_breakout_s.jpg" id="2_eg7hc"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scenes/gameplay/score.gd" id="5_36mxb"]
 [ext_resource type="Texture2D" uid="uid://bg6hob0l71yr2" path="res://assets/sprites/coins-black-big.png" id="6_2v7iq"]
 [ext_resource type="Script" path="res://scenes/gameplay/hits_value.gd" id="6_dk6qi"]
+[ext_resource type="Script" path="res://scenes/gameplay/kills_value.gd" id="7_2h050"]
 [ext_resource type="Texture2D" uid="uid://dk2dlhxeew1y6" path="res://assets/sprites/cannon.png" id="7_4jp57"]
 [ext_resource type="Script" path="res://scenes/gameplay/replay_buttons.gd" id="8_fo2tb"]
 [ext_resource type="Script" path="res://scenes/gameplay/ray_cast_for_aiming.gd" id="8_patm2"]
@@ -106,7 +107,7 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/AspectRatioContainer/HUD"]
 layout_mode = 0
 offset_left = -480.0
-offset_top = 120.0
+offset_top = 100.0
 offset_right = 480.0
 offset_bottom = 380.0
 metadata/_edit_use_anchors_ = true
@@ -146,14 +147,26 @@ text = "0"
 vertical_alignment = 1
 script = ExtResource("5_8vtbj")
 
-[node name="HitsValue" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/AspectRatioContainer/HUD/HBoxContainer"]
+layout_mode = 2
+
+[node name="HitsValue" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "hit ratio: 000.0"
+text = "hit ratio 000.0"
 horizontal_alignment = 1
 script = ExtResource("6_dk6qi")
+
+[node name="KillsValue" type="Label" parent="CanvasLayer/AspectRatioContainer/HUD/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "kills 27 - 100%"
+horizontal_alignment = 1
+script = ExtResource("7_2h050")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/AspectRatioContainer/HUD"]
 layout_mode = 0

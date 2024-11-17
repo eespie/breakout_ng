@@ -11,11 +11,11 @@ var ball_remaining_count = 0
 var ball_next_shoot_time : float
 
 func _ready():
-	EventBus.sigBallShoot.connect(_on_ball_shoot)
+	EventBus.sigBallsStartShooting.connect(_on_ball_start_shooting)
 	EventBus.sigBallRemoved.connect(_on_ball_removed)
 
 # Called when the node enters the scene tree for the first time.
-func _on_ball_shoot():
+func _on_ball_start_shooting():
 	if not raycast_line.ballDir:
 		EventBus.sigAbortAiming.emit()
 		return
