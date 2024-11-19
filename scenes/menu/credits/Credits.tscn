@@ -70,10 +70,9 @@ grow_vertical = 2
 [node name="Familly" type="Label" parent="MarginContainer/Control/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Thanks to my family for
-supporting me and
-giving me the time
-to program this game"
+theme_override_font_sizes/font_size = 24
+text = "Thanks to my family for supporting me
+and giving me the time to program this game"
 
 [node name="Ricochlime2" type="Label" parent="MarginContainer/Control/VBoxContainer"]
 layout_mode = 2
@@ -106,6 +105,21 @@ theme_override_font_sizes/font_size = 24
 text = "Kenney"
 underline = 1
 uri = "https://kenney.nl/"
+
+[node name="Template" type="Label" parent="MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Game template by"
+
+[node name="LinkButton10" type="LinkButton" parent="MarginContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_43b5n")
+theme_override_font_sizes/font_size = 24
+text = "Crystal Bit"
+underline = 1
+uri = "https://github.com/crystal-bit/godot-game-template"
 
 [node name="Coins" type="Label" parent="MarginContainer/Control/VBoxContainer"]
 layout_mode = 2
