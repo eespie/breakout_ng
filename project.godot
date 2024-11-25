@@ -46,6 +46,7 @@ window/size/viewport_height=2133
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
+window/vsync/vsync_mode=0
 window/name="godot-game-template"
 
 [editor]
