@@ -46,7 +46,6 @@ window/size/viewport_height=2133
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
-window/vsync/vsync_mode=0
 window/name="godot-game-template"
 
 [editor]
@@ -100,6 +99,11 @@ debug_quit_game={
 2d_physics/layer_2="brick"
 2d_physics/layer_3="ball"
 2d_physics/layer_4="raycast"
+
+[physics]
+
+2d/run_on_separate_thread=true
+common/physics_ticks_per_second=120
 
 [rendering]
 
