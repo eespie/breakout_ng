@@ -100,11 +100,6 @@ debug_quit_game={
 2d_physics/layer_3="ball"
 2d_physics/layer_4="raycast"
 
-[physics]
-
-2d/run_on_separate_thread=true
-common/physics_ticks_per_second=120
-
 [rendering]
 
 renderer/rendering_method="mobile"

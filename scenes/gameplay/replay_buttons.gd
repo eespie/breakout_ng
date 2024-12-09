@@ -26,6 +26,6 @@ func _on_exit_state(state : String):
 func _on_end_of_round():
 	var remaining_bricks = get_tree().get_node_count_in_group("Bricks")
 	if remaining_bricks == 0:
-		GameManager.update_replay_bonus(1 + floori(GameManager.level / 10.0))
+		GameManager.update_replay_bonus(1)
 		EventBus.sigAddScorePoints.emit(GameManager.level)
 	
